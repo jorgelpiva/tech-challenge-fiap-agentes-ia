@@ -1,0 +1,21 @@
+=== ANÁLISE DE PEDIDOS E RECEITA ===
+
+--- RECEITA ---
+Receita Total: R$ 16,008,872.12
+Ticket Médio: R$ 161.00
+Ticket Mediano: R$ 105.29
+Frete Médio como % do Valor Total (Item): 21.34%
+
+--- PAGAMENTOS ---
+Média de Parcelas (Cartão de Crédito): 3.51
+
+--- FUNIL E ENTREGAS ---
+Total de Pedidos: 99,441
+Taxa de Cancelamento: 0.63%
+Tempo Médio de Entrega: 12.56 dias
+Tempo Mediano de Entrega: 10.22 dias
+
+--- CORRELAÇÕES ---
+Preço vs Frete: 0.4127
+Preço vs Nota de Avaliação: -0.0039
+Frete vs Nota de Avaliação: -0.0362

@@ -1,0 +1,46 @@
+=== RESUMO DA ANÁLISE LOGÍSTICA ===
+
+1. Visão Geral de Entregas
+Tempo médio de entrega: 12.47 dias
+Taxa global de atrasos: 8.11%
+Tempo médio de processamento do vendedor: 3.28 dias
+Tempo médio em trânsito (transportadora): 9.19 dias
+
+2. Atrasos por Região
+Top 3 Estados com maior % de atraso (Cliente):
+  AL: 23.93%
+  MA: 19.67%
+  PI: 15.97%
+Top 3 Estados com maior % de atraso (Vendedor):
+  AM: 66.67%
+
+  MA: 23.63%
+
+  PA: 12.50%
+
+3. Frete
+Correlação Valor Frete x Peso do Produto: 0.6103
+Correlação Valor Frete x Volume do Produto: 0.5833
+Top 3 Categorias onde o Frete representa maior % do valor total:
+  casa_conforto_2: 45.86%
+
+  dvds_blu_ray: 40.58%
+
+  eletronicos: 35.85%
+
+4. Distância (Geolocalização)
+Correlação Distância x Tempo de Entrega: 0.3940
+Correlação Distância x Valor do Frete: 0.3920
+
+5. Gargalos Identificados
+A maior parte do tempo de entrega é consumida pela transportadora (trânsito).
+O processamento dos vendedores (preparação do pacote) leva em média 3.28 dias.
+O trânsito da transportadora leva em média 9.19 dias.
+Conclusão: o trânsito até o cliente é o gargalo principal na velocidade de entrega.
+
+Top 5 Vendedores com MAIS atrasos absolutos (IDs):
+  4a3ca9315b744ce9f8e9374361493884 (214 atrasos, total ordens: 1949)
+  1f50f920176fa81dab994f9023523100 (182 atrasos, total ordens: 1926)
+  4869f7a5dfa277a7dca6462dcf3b52b2 (133 atrasos, total ordens: 1148)
+  1025f0e2d44d7041d6cf58b6550e0bfa (131 atrasos, total ordens: 1420)
+  7c67e1448b00f6e969d365cea6b010ab (130 atrasos, total ordens: 1355)

@@ -1,0 +1,47 @@
+Resumo da Análise de Clustering e Segmentação (Olist)
+===================================================
+
+1. Segmentação de Clientes (RFM)
+--------------------------------
+K-Means K=4 utilizado.
+Perfil dos Clusters (Valores Médios):
+            Recency  Frequency     Monetary   Size
+Cluster                                           
+0        438.803699   1.000000   134.926653  38655
+1        289.490091   1.015690  1196.225244   2422
+2        269.306212   2.116475   290.305945   2962
+3        178.361668   1.000000   135.164795  52056
+
+Distribuição de Segmentos:
+Segmento
+Novos Clientes         52056
+Em Risco / Inativos    38655
+Campeões                5384
+
+2. Segmentação de Vendedores
+----------------------------
+Agrupamento em 3 clusters baseados em receita, ordens, nota média, tempo de entrega e diversidade de produtos.
+Perfil dos Sellers:
+         total_revenue  total_orders  avg_review_score  avg_delivery_time  total_products  Size
+Cluster                                                                                        
+0          3774.607795     27.680473          4.329691          10.043259       10.791716  2535
+1        102985.945152    807.696970          4.026667          12.187651      161.969697    33
+2          1299.348235      6.045541          2.218168          14.352202        3.313093   527
+
+3. Principais Correlações
+-------------------------
+A matriz de correlação revelou:
+- Forte correlação positiva entre 'price' e 'payment_value'.
+- Correlação negativa moderada entre 'delivery_time' e 'review_score' (maior tempo de entrega resulta em avaliações menores).
+- 'freight_value' tem alguma correlação com o preço e número de parcelas.
+
+4. Categorias de Produtos
+-------------------------
+As categorias líderes em receita e volume destacam-se no quadrante superior direito da matriz BCG.
+Avaliações variam bastante, indicando oportunidade para melhorar a qualidade em categorias específicas com alto volume e baixa avaliação.
+
+Recomendações para Agentes de IA:
+---------------------------------
+1. Agente de Engajamento: Pode direcionar campanhas específicas para 'Campeões' (upsell/cross-sell) e tentar reativar clientes 'Em Risco' através de descontos ou frete grátis.
+2. Agente de Qualidade: Deve monitorar o tempo de entrega ('delivery_time'), pois é o principal ofensor do 'review_score'. Pode alertar vendedores (ou clientes) sobre possíveis atrasos na entrega com base em modelagem preditiva.
+3. Agente de Sucesso do Vendedor: Identificar vendedores do cluster com baixa performance (baixa avaliação e alta taxa de entrega) e enviar dicas de melhoria ou retirá-los do catálogo premium.

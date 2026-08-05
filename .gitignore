@@ -1,0 +1,39 @@
+# dados locais e grandes
+data/
+*.csv
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs (manter versionados os PNGs se desejar)
+# notebooks/outputs/  
+
+# PDF original (versionado separadamente se necessário)
+# *.pdf

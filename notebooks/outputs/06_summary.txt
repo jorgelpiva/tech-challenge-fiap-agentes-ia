@@ -1,0 +1,26 @@
+=========================================
+RESUMO: ANÁLISE DE VENDEDORES (SELLERS)
+=========================================
+
+1. VISÃO GERAL
+- Total de vendedores cadastrados: 3095
+- Total de vendedores ativos (com vendas): 3095
+- Top 3 estados com mais vendedores: SP, PR, MG
+
+2. PERFORMANCE DE VENDAS & PARETO
+- % de vendedores que geram 80% da receita: 17.6%
+- Coeficiente de Gini de concentração de receita: 0.792 (muita concentração)
+- Receita Média por vendedor ativo: R$ 4391.48
+- Mediana da Receita por vendedor: R$ 821.48
+
+3. QUALIDADE E AVALIAÇÃO
+- Avaliação média dos vendedores: 3.97
+- Vendedores com nota média < 3.0: 342
+- Tempo médio de processamento (compra até transportadora): 3.7 dias
+
+4. ESPECIALIZAÇÃO
+- Vendedores especialistas (1 categoria): 1728
+- Vendedores generalistas (>1 categoria): 1367
+
+5. LOGÍSTICA E ESTADOS
+- Vendas para clientes em estados diferentes do vendedor: 63.8%

@@ -1,0 +1,26 @@
+=== ANÁLISE DE AVALIAÇÕES E SATISFAÇÃO ===
+
+1. Distribuição de Notas:
+   Nota 1: 11.5%
+   Nota 2: 3.2%
+   Nota 3: 8.2%
+   Nota 4: 19.3%
+   Nota 5: 57.8%
+
+2. Impacto do Atraso:
+   Correlação Atraso vs Nota: -0.229
+   Teste Chi-quadrado (Atraso vs Nota) p-value: 0.000e+00
+   Teste Mann-Whitney U (No prazo vs Atrasado) p-value: 0.000e+00
+
+3. Impacto do Frete:
+   Correlação Valor Frete vs Nota: -0.036
+   Correlação Proporção Frete/Total vs Nota: -0.033
+
+4. Análise de Comentários:
+   Avaliações com comentário: 40668 (41.3%)
+   Avaliações sem comentário: 57742 (58.7%)
+   Top 10 palavras negativas: ['entregue', 'prazo', 'pedido', 'agora', 'minha', 'apenas', 'nem', 'nada', 'sem', 'produtos']
+   Top 10 palavras positivas: ['prazo', 'bom', 'recomendo', 'entregue', 'qualidade', 'ótimo', 'excelente', 'super', 'gostei', 'rápida']
+
+5. Tempo de Resposta (Review):
+   Média de resposta: 3.15 dias

@@ -1,0 +1,15 @@
+=== RESUMO DA ANÁLISE DE CLIENTES E RETENÇÃO ===
+Total de clientes únicos: 93358
+Taxa de recompra: 3.00%
+Tempo médio entre pedidos (recorrentes): 78.8 dias
+
+=== CHURN ===
+Taxa de Churn (inativos há > 6 meses): 58.61%
+Perfil Churn - Ticket Médio: R$ 162.28
+Perfil Ativos - Ticket Médio: R$ 169.32
+Perfil Churn - Avaliação Média: 4.13
+Perfil Ativos - Avaliação Média: 4.19
+
+=== VALOR DO CLIENTE ===
+LTV Estimado Simples: R$ 165.20
+Pareto: Top 10% clientes contribuem com 38.25% da receita.
