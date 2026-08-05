@@ -47,20 +47,14 @@ tech-challenge-agentes-ia/
 │       ├── olist_orders_dataset.csv
 │       ├── olist_order_items_dataset.csv
 │       ├── olist_order_payments_dataset.csv
-│       ├── olist_order_reviews_dataset.csv
-│       ├── olist_products_dataset.csv
-│       ├── olist_sellers_dataset.csv
-│       ├── olist_geolocation_dataset.csv
-│       └── product_category_name_translation.csv
-│
-├── 📁 notebooks/                   # Scripts de análise exploratória
-│   ├── 01_visao_geral_dados.py     # Visão geral e qualidade dos dados
-│   ├── 02_pedidos_e_receita.py     # Análise de pedidos, receita e pagamentos
-│   ├── 03_clientes_e_retencao.py   # Análise de clientes, recompra e churn
-│   ├── 04_reviews_e_satisfacao.py  # Análise de reviews e satisfação do cliente
-│   ├── 05_analise_logistica.py     # Análise logística e performance de entrega
-│   ├── 06_analise_vendedores.py    # Análise e segmentação de vendedores
-│   ├── 07_clustering_segmentacao.py # K-Means, clustering hierárquico, RFM
+│       ├── olist_o├── 📁 notebooks/                   # Jupyter Notebooks de análise exploratória
+│   ├── 01_visao_geral_dados.ipynb  # Visão geral e qualidade dos dados
+│   ├── 02_pedidos_e_receita.ipynb  # Análise de pedidos, receita e pagamentos
+│   ├── 03_clientes_e_retencao.ipynb# Análise de clientes, recompra e churn
+│   ├── 04_reviews_e_satisfacao.ipynb# Análise de reviews e satisfação do cliente
+│   ├── 05_analise_logistica.ipynb  # Análise logística e performance de entrega
+│   ├── 06_analise_vendedores.ipynb # Análise e segmentação de vendedores
+│   ├── 07_clustering_segmentacao.ipynb # K-Means, clustering hierárquico, RFM
 │   └── 📁 outputs/                 # Gráficos e resumos gerados
 │       ├── *.png                   # Visualizações
 │       └── *_summary.txt           # Resumos de cada análise
@@ -106,35 +100,48 @@ geolocation ─── (zip_code_prefix) ─── customers / sellers
 
 ## 🔬 Análises Realizadas
 
-### 1. Visão Geral dos Dados (`01_visao_geral_dados.py`)
+### 1. Visão Geral dos Dados (`01_visao_geral_dados.ipynb`)
 - Inspeção inicial de todas as tabelas
 - Qualidade dos dados (nulos, duplicatas, tipos)
 - Estatísticas descritivas básicas
 - Distribuições iniciais (status, pagamento, reviews, categorias)
 
-### 2. Pedidos e Receita (`02_pedidos_e_receita.py`)
+### 2. Pedidos e Receita (`02_pedidos_e_receita.ipynb`)
 - Evolução temporal de pedidos e receita
 - Análise de sazonalidade (dia da semana, hora do dia)
 - Ticket médio, distribuição de receita
 - Análise de pagamentos (tipos, parcelamento)
 - Correlações: preço × frete × review score
 
-### 3. Clientes e Retenção (`03_clientes_e_retencao.py`)
+### 3. Clientes e Retenção (`03_clientes_e_retencao.ipynb`)
 - Distribuição geográfica de clientes
 - Taxa de recompra e análise de recorrência
 - Análise de cohort (retenção mensal)
 - Análise de churn e perfil de clientes em risco
 - Análise de Pareto (contribuição dos top clientes)
 
-### 4. Reviews e Satisfação (`04_reviews_e_satisfacao.py`)
+### 4. Reviews e Satisfação (`04_reviews_e_satisfacao.ipynb`)
 - Distribuição e evolução de notas
 - Impacto de atrasos na satisfação (com testes estatísticos)
 - Impacto do frete na satisfação
 - Análise textual de comentários (palavras frequentes)
 - Testes: Chi-quadrado, Mann-Whitney U
 
-### 5. Análise Logística (`05_analise_logistica.py`)
+### 5. Análise Logística (`05_analise_logistica.ipynb`)
 - Tempo de entrega vs. estimativa
+- Taxa de atraso por estado e por mês
+- Performance dos vendedores (tempo de processamento)
+- Correlações: peso × frete, distância × tempo, distância × frete
+- Identificação de gargalos
+
+### 6. Análise de Vendedores (`06_analise_vendedores.ipynb`)
+- Distribuição geográfica e evolução da base
+- Performance (receita, reviews, entregas)
+- Análise de Pareto (concentração de vendas)
+- Especialização por categoria
+- Comércio intra-estado vs. inter-estado
+
+### 7. Clustering e Segmentação (`07_clustering_segmentacao.ipynb`)
 - Taxa de atraso por estado e por mês
 - Performance dos vendedores (tempo de processamento)
 - Correlações: peso × frete, distância × tempo, distância × frete
@@ -214,20 +221,28 @@ Se preferir o download manual:
 pip install pandas numpy matplotlib seaborn scipy scikit-learn plotly
 ```
 
-### 4. Executar as análises
+### 4. Executar os Jupyter Notebooks (.ipynb)
+
+Você pode abrir e acompanhar a execução passo a passo dos notebooks via Jupyter Lab ou VS Code:
 
 ```bash
-# Executar análise individual
-python3 notebooks/01_visao_geral_dados.py
+# Abrir via Jupyter Lab / Notebook
+jupyter lab notebooks/
+# ou
+jupyter notebook notebooks/
+```
 
-# Executar todas as análises de uma vez
-for script in notebooks/0*.py; do
-    echo "=== Executando $script ==="
-    python3 "$script"
+Ou re-executar todos os notebooks via linha de comando:
+
+```bash
+# Executar todos os notebooks via kernel headless
+for nb in notebooks/*.ipynb; do
+    echo "=== Executando $nb ==="
+    jupyter nbconvert --to notebook --execute "$nb" --inplace
 done
 ```
 
-Os gráficos serão salvos em `notebooks/outputs/` e os resumos em `notebooks/outputs/*_summary.txt`.
+Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderizados e salvos**, prontos para leitura direta! Os gráficos também ficam armazenados em `notebooks/outputs/`.
 
 ---
 

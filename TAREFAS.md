@@ -107,8 +107,8 @@
 |---|---|
 | 2026-08-05 | Projeto iniciado. EDA como base para identificar oportunidades de IA. |
 | 2026-08-05 | Foco em análises acionáveis: logística, reviews, retenção, segmentação. |
-| 2026-08-05 | **Todos os 7 scripts de análise executados com sucesso** |
-| 2026-08-05 | **45 gráficos + 7 summaries gerados** |
+| 2026-08-05 | **Todos os 7 Jupyter Notebooks (.ipynb) foram gerados e executados via kernel Python** |
+| 2026-08-05 | **Saídas, tabelas e gráficos embutidos diretamente nos arquivos .ipynb** |
 | 2026-08-05 | **Achado principal: taxa de recompra de 3% e atraso como principal ofensor de satisfação** |
 | 2026-08-05 | **6 agentes de IA propostos, todos baseados em evidências dos dados** |
 | 2026-08-05 | Próximo passo: formatar relatório executivo e estruturar prompts |

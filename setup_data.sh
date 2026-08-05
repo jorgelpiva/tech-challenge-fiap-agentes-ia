@@ -62,7 +62,7 @@ check_existing_data() {
     local count=0
     for f in "${EXPECTED_FILES[@]}"; do
         if [[ -f "$DATA_DIR/$f" ]]; then
-            ((count++))
+            count=$((count + 1))
         fi
     done
 
