@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitetura Multi-Agente Olist</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --primary: #6c63ff;
+            --secondary: #2b5c8f;
+            --accent-orange: #f4a261;
+            --accent-green: #52b788;
+            --text-light: #f8f9fa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #a0a0b0;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .architecture-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .layer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .layer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+            color: #d1d1e0;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Box Styles */
+        .box {
+            background: rgba(43, 92, 143, 0.2);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            flex: 1 1 120px;
+            min-width: 120px;
+            max-width: 160px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Processing Boxes */
+        .box-proc {
+            background: rgba(82, 183, 136, 0.15);
+            border-color: var(--accent-green);
+        }
+
+        /* Agent Boxes */
+        .box-agent {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(43, 92, 143, 0.4));
+            border-color: var(--primary);
+            flex: 1 1 180px;
+            max-width: 250px;
+            padding: 1.5rem 1rem;
+            font-weight: bold;
+        }
+
+        .box-agent span {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .box-agent.orchestrator {
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.2), rgba(108, 99, 255, 0.4));
+            border-color: var(--accent-orange);
+            flex: 1 1 100%;
+            max-width: 100%;
+            font-size: 1.2rem;
+        }
+
+        /* Down Arrows */
+        .arrow-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+        }
+
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .legend {
+            margin-top: 3rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .box, .box-agent {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ecossistema de Agentes de IA</h1>
+    <div class="subtitle">Visão Estrutural da Arquitetura Multi-Agente - Projeto Olist</div>
+
+    <div class="architecture-container">
+        
+        <!-- CAMADA 1: FONTES DE DADOS -->
+        <div class="layer">
+            <h2 class="layer-title">🗄️ Camada de Fontes de Dados (Data Lake)</h2>
+            <div class="grid-container">
+                <div class="box">Customers</div>
+                <div class="box">Geolocation</div>
+                <div class="box">Order Items</div>
+                <div class="box">Order Payments</div>
+                <div class="box">Order Reviews</div>
+                <div class="box">Orders</div>
+                <div class="box">Products</div>
+                <div class="box">Sellers</div>
+                <div class="box">Category Translation</div>
+            </div>
+        </div>
+
+        <div class="arrow-container"><div class="arrow-down"></div></div>
+
+        <!-- CAMADA 2: PROCESSAMENTO -->
+        <div class="layer" style="border-color: var(--accent-green);">
+            <h2 class="layer-title">⚙️ Camada de Processamento Analítico</h2>
+            <div class="grid-container">
+                <div class="box box-proc">Pipeline ETL & Limpeza</div>
+                <div class="box box-proc">Feature Engineering</div>
+                <div class="box box-proc">Segmentação RFM</div>
+                <div class="box box-proc">NLP & Topic Modeling</div>
+            </div>
+        </div>
+
+        <div class="arrow-container"><div class="arrow-down"></div></div>
+
+        <!-- CAMADA 3: AGENTES ESPECIALISTAS -->
+        <div class="layer" style="border-color: var(--primary);">
+            <h2 class="layer-title">🤖 Camada de Agentes Especialistas</h2>
+            <div class="grid-container">
+                <div class="box-agent"><span>🛡️</span> Retenção e Engajamento<br><small>(Anti-Churn)</small></div>
+                <div class="box-agent"><span>🚚</span> Logística Preditiva<br><small>(Análise de Malha)</small></div>
+                <div class="box-agent"><span>🗣️</span> Análise de Reviews<br><small>(Sentimento & Texto)</small></div>
+                <div class="box-agent"><span>🤝</span> Sucesso do Vendedor<br><small>(Gestão de Parceiros)</small></div>
+                <div class="box-agent"><span>💰</span> Precificação Inteligente<br><small>(Elasticidade & Frete)</small></div>
+            </div>
+        </div>
+
+        <div class="arrow-container"><div class="arrow-down"></div></div>
+
+        <!-- CAMADA 4: ORQUESTRADOR -->
+        <div class="layer" style="border-color: var(--accent-orange); box-shadow: 0 0 30px rgba(244, 162, 97, 0.2);">
+            <h2 class="layer-title" style="color: var(--accent-orange);">🧠 Camada de Orquestração Autônoma</h2>
+            <div class="grid-container">
+                <div class="box-agent orchestrator">
+                    <span>👑</span> Agente Executivo de BI & Orquestrador Geral<br>
+                    <small style="font-weight: normal; margin-top: 10px; display: block;">Sintetiza dados, resolve conflitos entre agentes e gera insights estratégicos (C-Level)</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow-container"><div class="arrow-down"></div></div>
+
+        <!-- CAMADA 5: USUÁRIOS FINAIS -->
+        <div class="layer">
+            <h2 class="layer-title">👥 Camada de Usuários e Aplicação</h2>
+            <div class="grid-container">
+                <div class="box">Marketing / CRM</div>
+                <div class="box">Logística / Ops</div>
+                <div class="box">Customer Success</div>
+                <div class="box">Gestão Comercial</div>
+                <div class="box">C-Level (Diretoria)</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LEGENDA -->
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(43, 92, 143, 0.5); border: 1px solid var(--secondary);"></div>
+            Dados Brutos / Usuários Finais
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(82, 183, 136, 0.5); border: 1px solid var(--accent-green);"></div>
+            Processamento Analítico
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(108, 99, 255, 0.5); border: 1px solid var(--primary);"></div>
+            Agentes Especialistas
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(244, 162, 97, 0.5); border: 1px solid var(--accent-orange);"></div>
+            Agente Orquestrador / Hub Central
+        </div>
+    </div>
+
+</body>
+</html>

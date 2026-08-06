@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Challenge IA Agêntica — Fase 1 | Olist</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+    :root {
+      --olist-blue:    #0A4EE4;
+      --olist-blue-dk: #0a1f9c;
+      --olist-blue-lt: #e8effe;
+      --olist-dark:    #0B134A;
+      --olist-navy:    #0f1d5c;
+      --olist-orange:  #F4A22C;
+      --olist-green:   #00B140;
+      --olist-red:     #E03131;
+      --olist-grey:    #6b7280;
+      --olist-light:   #f7f8f9;
+      --white:         #ffffff;
+      --slide-w: 1280px;
+      --slide-h: 720px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #070d2a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ─── SLIDE WRAPPER ─── */
+    #deck {
+      position: relative;
+      width: var(--slide-w);
+      height: var(--slide-h);
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 40px 120px rgba(10,78,228,0.35), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    /* ─── INDIVIDUAL SLIDES ─── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+      z-index: 2;
+    }
+    .slide.exit {
+      opacity: 0;
+      transform: translateX(-60px);
+      z-index: 1;
+    }
+
+    /* ─── SHARED LAYOUTS ─── */
+    .slide-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 60px 28px;
+    }
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10,78,228,0.15);
+      border: 1px solid rgba(10,78,228,0.35);
+      color: #7ba8ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .slide-tag span { opacity: 0.7; }
+
+    h1.hero { font-size: 62px; font-weight: 800; line-height: 1.05; color: var(--white); }
+    h2.title { font-size: 42px; font-weight: 800; line-height: 1.1; color: var(--white); }
+    h3.subtitle { font-size: 22px; font-weight: 600; color: rgba(255,255,255,0.72); margin-top: 14px; line-height: 1.4; }
+    .accent { color: var(--olist-orange); }
+    .accent-blue { color: #7ba8ff; }
+    .accent-green { color: #4ade80; }
+    .accent-red { color: #f87171; }
+
+    /* ─── OLIST LOGO TEXT ─── */
+    .olist-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.5px;
+    }
+    .olist-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--olist-blue); }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 60px 0;
+      flex-shrink: 0;
+    }
+    .slide-num {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .hdivider {
+      width: 56px; height: 4px;
+      background: linear-gradient(90deg, var(--olist-blue), var(--olist-orange));
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    /* ─────────────────────────────────────────
+       SLIDE 1 — CAPA
+    ───────────────────────────────────────── */
+    #s1 { background: linear-gradient(145deg, #070d2a 0%, #0d1d5e 55%, #0B134A 100%); }
+    #s1::before {
+      content: '';
+      position: absolute;
+      top: -180px; right: -180px;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, rgba(10,78,228,0.35) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    #s1::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -120px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(244,162,44,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .capa-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fiap-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+      width: fit-content;
+      backdrop-filter: blur(8px);
+    }
+    .fiap-badge .pill {
+      background: var(--olist-blue);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .team-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .team-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+    }
+    .dataset-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(10,78,228,0.12);
+      border: 1px solid rgba(10,78,228,0.3);
+      border-radius: 12px;
+      padding: 8px 18px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #93b4ff;
+      width: fit-content;
+    }
+    .dataset-badge strong { color: var(--white); }
+
+    /* ─────────────────────────────────────────
+       SLIDE 2 — CONTEXTO
+    ───────────────────────────────────────── */
+    #s2 { background: linear-gradient(160deg, #060c25 0%, #0b1845 100%); }
+
+    .stat-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.3s;
+    }
+    .stat-box:hover { border-color: rgba(10,78,228,0.5); }
+    .stat-box .sval {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-box .slabel {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .stat-box .sicon { font-size: 20px; margin-bottom: 2px; }
+    .stat-box.blue-glow { border-color: rgba(10,78,228,0.4); background: rgba(10,78,228,0.1); }
+    .stat-box.orange-glow { border-color: rgba(244,162,44,0.4); background: rgba(244,162,44,0.08); }
+
+    .methodology-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .method-pill {
+      background: rgba(10,78,228,0.12);
+      border: 1px solid rgba(10,78,228,0.3);
+      color: #93b4ff;
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────
+       SLIDE 3 — ACHADO 1 (RETENÇÃO)
+    ───────────────────────────────────────── */
+    #s3 { background: linear-gradient(160deg, #1a0a0a 0%, #2d0f0f 50%, #0f0a2a 100%); }
+
+    .big-metric-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .big-number-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .big-metric {
+      font-size: 120px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--olist-red);
+      text-shadow: 0 0 80px rgba(224,49,49,0.4);
+      letter-spacing: -4px;
+    }
+    .big-metric-label {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+    }
+    .insight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .insight-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 3px solid var(--olist-red);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+    }
+    .insight-item.blue { border-left-color: var(--olist-blue); }
+    .insight-item.green { border-left-color: var(--olist-green); }
+    .insight-item.orange { border-left-color: var(--olist-orange); }
+    .insight-item strong { color: var(--white); }
+
+    /* ─────────────────────────────────────────
+       SLIDE 4 — ACHADO 2 (LOGÍSTICA)
+    ───────────────────────────────────────── */
+    #s4 { background: linear-gradient(160deg, #060c25 0%, #091a4a 100%); }
+
+    .logistics-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .bar-chart-block { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .bar-row { display: flex; flex-direction: column; gap: 5px; }
+    .bar-label-row { display: flex; justify-content: space-between; align-items: center; }
+    .bar-label { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); }
+    .bar-value { font-size: 14px; font-weight: 800; color: var(--white); }
+    .bar-track {
+      height: 16px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      animation: growBar 1s ease-out forwards;
+    }
+    .bar-fill.blue { background: linear-gradient(90deg, var(--olist-blue), #5b8fff); }
+    .bar-fill.orange { background: linear-gradient(90deg, var(--olist-orange), #ffcc70); }
+    .bar-fill.red { background: linear-gradient(90deg, #c92a2a, #f87171); }
+    @keyframes growBar { from { width: 0 !important; } }
+
+    .corr-block { display: flex; flex-direction: column; gap: 8px; }
+    .corr-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .corr-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+    .corr-val { font-size: 22px; font-weight: 800; color: var(--white); }
+    .corr-desc { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+    .callout-box {
+      background: rgba(224,49,49,0.1);
+      border: 1px solid rgba(224,49,49,0.3);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+      margin-top: 8px;
+    }
+    .callout-box.blue { background: rgba(10,78,228,0.1); border-color: rgba(10,78,228,0.3); }
+
+    /* ─────────────────────────────────────────
+       SLIDE 5 — ACHADO 3 (SEGMENTAÇÃO)
+    ───────────────────────────────────────── */
+    #s5 { background: linear-gradient(160deg, #060c25 0%, #0c1e4a 100%); }
+
+    .cluster-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .cluster-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .cluster-card:hover { transform: translateY(-4px); }
+    .cluster-icon { font-size: 22px; }
+    .cluster-name { font-size: 13px; font-weight: 800; color: var(--white); }
+    .cluster-pct { font-size: 28px; font-weight: 800; line-height: 1; }
+    .cluster-detail { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.35; margin-top: 2px; }
+    .cluster-card.novos { border-color: rgba(74,222,128,0.3); }
+    .cluster-card.novos .cluster-pct { color: #4ade80; }
+    .cluster-card.risco { border-color: rgba(248,113,113,0.3); }
+    .cluster-card.risco .cluster-pct { color: #f87171; }
+    .cluster-card.campvl { border-color: rgba(244,162,44,0.3); }
+    .cluster-card.campvl .cluster-pct { color: var(--olist-orange); }
+    .cluster-card.camprec { border-color: rgba(10,78,228,0.4); }
+    .cluster-card.camprec .cluster-pct { color: #7ba8ff; }
+
+    .seller-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .seller-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .seller-card .sname { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 7px; }
+    .seller-kpi { font-size: 11px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-top: 4px; }
+    .seller-kpi strong { color: rgba(255,255,255,0.85); }
+    .seller-card.bad { border-color: rgba(224,49,49,0.4); }
+
+    /* ─────────────────────────────────────────
+       SLIDE 6 — OS 6 AGENTES
+    ───────────────────────────────────────── */
+    #s6 { background: linear-gradient(160deg, #060c25 0%, #0b1845 100%); }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+      flex: 1;
+    }
+    .agent-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .agent-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(10,78,228,0.2);
+    }
+    .agent-header { display: flex; align-items: center; gap: 10px; }
+    .agent-icon { font-size: 22px; }
+    .agent-num { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); letter-spacing: 0.8px; }
+    .agent-name { font-size: 14px; font-weight: 800; color: var(--white); }
+    .agent-desc { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.45; }
+    .agent-kpi {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(10,78,228,0.12);
+      border: 1px solid rgba(10,78,228,0.25);
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #93b4ff;
+      width: fit-content;
+      margin-top: auto;
+    }
+    .agent-card:nth-child(1) { border-color: rgba(248,113,113,0.3); }
+    .agent-card:nth-child(1):hover { border-color: rgba(248,113,113,0.6); }
+    .agent-card:nth-child(1) .agent-kpi { background: rgba(224,49,49,0.12); border-color: rgba(224,49,49,0.3); color: #f87171; }
+    .agent-card:nth-child(2) { border-color: rgba(10,78,228,0.35); }
+    .agent-card:nth-child(2):hover { border-color: rgba(10,78,228,0.7); }
+    .agent-card:nth-child(3) { border-color: rgba(244,162,44,0.3); }
+    .agent-card:nth-child(3):hover { border-color: rgba(244,162,44,0.6); }
+    .agent-card:nth-child(3) .agent-kpi { background: rgba(244,162,44,0.12); border-color: rgba(244,162,44,0.3); color: var(--olist-orange); }
+    .agent-card:nth-child(4) { border-color: rgba(74,222,128,0.3); }
+    .agent-card:nth-child(4):hover { border-color: rgba(74,222,128,0.6); }
+    .agent-card:nth-child(4) .agent-kpi { background: rgba(0,177,64,0.12); border-color: rgba(0,177,64,0.3); color: #4ade80; }
+    .agent-card:nth-child(5) { border-color: rgba(168,85,247,0.3); }
+    .agent-card:nth-child(5):hover { border-color: rgba(168,85,247,0.6); }
+    .agent-card:nth-child(5) .agent-kpi { background: rgba(168,85,247,0.12); border-color: rgba(168,85,247,0.3); color: #c084fc; }
+    .agent-card:nth-child(6) { border-color: rgba(244,162,44,0.4); background: rgba(244,162,44,0.07); }
+    .agent-card:nth-child(6) .agent-kpi { background: rgba(244,162,44,0.15); border-color: rgba(244,162,44,0.4); color: var(--olist-orange); }
+
+    /* ─────────────────────────────────────────
+       SLIDE 7 — ARQUITETURA
+    ───────────────────────────────────────── */
+    #s7 { background: linear-gradient(160deg, #060c25 0%, #091842 100%); }
+
+    .arch-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 12px;
+    }
+    .arch-layer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .arch-label {
+      width: 140px;
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: rgba(255,255,255,0.35);
+      text-align: right;
+    }
+    .arch-nodes {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .arch-node {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      white-space: nowrap;
+    }
+    .arch-node.blue { background: rgba(10,78,228,0.15); border-color: rgba(10,78,228,0.4); color: #93b4ff; }
+    .arch-node.orange { background: rgba(244,162,44,0.12); border-color: rgba(244,162,44,0.35); color: var(--olist-orange); }
+    .arch-node.big {
+      background: linear-gradient(135deg, rgba(10,78,228,0.25), rgba(10,78,228,0.1));
+      border-color: rgba(10,78,228,0.5);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 22px;
+    }
+    .arch-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 14px;
+      margin-left: 140px;
+    }
+
+    /* ─────────────────────────────────────────
+       SLIDE 8 — IMPACTO
+    ───────────────────────────────────────── */
+    #s8 { background: linear-gradient(160deg, #060c25 0%, #0c1e4a 100%); }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+    .impact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .impact-icon { font-size: 28px; }
+    .impact-change {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .impact-card:nth-child(1) .impact-change { color: #4ade80; }
+    .impact-card:nth-child(2) .impact-change { color: #7ba8ff; }
+    .impact-card:nth-child(3) .impact-change { color: var(--olist-orange); }
+    .impact-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); line-height: 1.4; }
+    .impact-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: auto; }
+    .impact-card:nth-child(1) { border-color: rgba(74,222,128,0.3); }
+    .impact-card:nth-child(2) { border-color: rgba(10,78,228,0.35); }
+    .impact-card:nth-child(3) { border-color: rgba(244,162,44,0.3); }
+
+    .summary-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .summary-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 99px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* ─────────────────────────────────────────
+       SLIDE 9 — ENCERRAMENTO
+    ───────────────────────────────────────── */
+    #s9 {
+      background: linear-gradient(145deg, #070d2a 0%, #0d1d5e 55%, #0B134A 100%);
+    }
+    #s9::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(10,78,228,0.2) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .closing-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .olist-logotype {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--olist-blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .closing-title { font-size: 52px; font-weight: 800; color: var(--white); line-height: 1.1; }
+    .closing-sub { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 540px; line-height: 1.6; }
+    .github-pill {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 99px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .github-pill .gh-link { color: #93b4ff; }
+    .team-closing {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .team-name-pill {
+      background: rgba(10,78,228,0.12);
+      border: 1px solid rgba(10,78,228,0.3);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #93b4ff;
+    }
+
+    /* ─────────────────────────────────────────
+       NAV CONTROLS
+    ───────────────────────────────────────── */
+    #controls {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .nav-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { background: rgba(10,78,228,0.4); border-color: var(--olist-blue); color: white; }
+    .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+    #dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: var(--olist-blue);
+      transform: scale(1.4);
+    }
+    .dot:hover { background: rgba(255,255,255,0.5); }
+
+    #progress-bar {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--olist-blue), var(--olist-orange));
+      border-radius: 0 3px 3px 0;
+      transition: width 0.4s ease;
+    }
+
+    .kbd-hint {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 10px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── Responsive scaling ─── */
+    @media (max-width: 1300px) {
+      #deck {
+        width: 95vw;
+        height: calc(95vw * 0.5625);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRESENTATION DECK -->
+<div id="deck">
+  <div id="progress-bar"></div>
+
+  <!-- ══════════════════ SLIDE 1 — CAPA ══════════════════ -->
+  <section class="slide active" id="s1">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Tech Challenge · Fase 1</div>
+      <div class="slide-num">01 / 09</div>
+    </div>
+    <div class="slide-inner capa-content">
+      <div class="fiap-badge">
+        <span class="pill">FIAP</span>
+        Pós-Graduação IA para Devs · Turma 2025
+      </div>
+      <div class="hdivider"></div>
+      <h1 class="hero">IA Agêntica para o<br><span class="accent">E-Commerce Brasileiro</span></h1>
+      <h3 class="subtitle">Diagnóstico de Dados + Arquitetura de Agentes de IA<br>com base no dataset público da <strong style="color:white">Olist</strong></h3>
+      <div class="dataset-badge">
+        📦 <strong>99.441 pedidos</strong> &nbsp;·&nbsp; Brazilian E-Commerce Dataset (Olist) &nbsp;·&nbsp; 2016–2018
+      </div>
+      <div class="team-row">
+        <div class="team-card">🎤 Leonardo Granjeiro</div>
+        <div class="team-card">🎤 Jorge Leandro Piva</div>
+        <div class="team-card">🎤 Caio Sousa</div>
+        <div class="team-card">🎤 Lucas V. O. Mendes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 2 — CONTEXTO ══════════════════ -->
+  <section class="slide" id="s2">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Contexto</div>
+      <div class="slide-num">02 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag">📊 Dataset &amp; Metodologia</div>
+      <h2 class="title">O que analisamos?</h2>
+      <div class="stat-grid-4">
+        <div class="stat-box blue-glow">
+          <div class="sicon">📦</div>
+          <div class="sval">99.441</div>
+          <div class="slabel">Pedidos analisados</div>
+        </div>
+        <div class="stat-box">
+          <div class="sicon">👤</div>
+          <div class="sval">93.358</div>
+          <div class="slabel">Clientes únicos</div>
+        </div>
+        <div class="stat-box">
+          <div class="sicon">🏪</div>
+          <div class="sval">3.095</div>
+          <div class="slabel">Vendedores ativos</div>
+        </div>
+        <div class="stat-box orange-glow">
+          <div class="sicon">💰</div>
+          <div class="sval">R$16M</div>
+          <div class="slabel">Receita total</div>
+        </div>
+      </div>
+      <div class="methodology-row">
+        <div class="method-pill">📉 K-Means Clustering</div>
+        <div class="method-pill">🔬 Análise RFM</div>
+        <div class="method-pill">📊 Correlação de Pearson</div>
+        <div class="method-pill">🧪 Mann-Whitney U</div>
+        <div class="method-pill">📐 Haversine Geoespacial</div>
+        <div class="method-pill">💬 NLP Básico</div>
+        <div class="method-pill">📈 Cohort Analysis</div>
+        <div class="method-pill">⚖️ Chi-Square Test</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 3 — ACHADO 1: RETENÇÃO ══════════════════ -->
+  <section class="slide" id="s3">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Achado #1</div>
+      <div class="slide-num">03 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag" style="border-color:rgba(224,49,49,0.4);color:#f87171;background:rgba(224,49,49,0.1)">🔴 Retenção Crítica</div>
+      <div class="big-metric-layout">
+        <div class="big-number-block">
+          <div class="big-metric">3%</div>
+          <div class="big-metric-label">Taxa de Recompra</div>
+          <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:4px">
+            97 em cada 100 clientes <strong style="color:white">não voltam</strong> para uma segunda compra na plataforma.
+          </p>
+        </div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <strong>LTV Estimado: R$165</strong><br>
+            Praticamente o valor de uma única compra. O modelo opera de forma transacional, sem construir lealdade.
+          </div>
+          <div class="insight-item blue">
+            <strong>58,6% de Churn</strong><br>
+            Mais da metade dos clientes está inativa há mais de 180 dias.
+          </div>
+          <div class="insight-item green">
+            <strong>Top 10% = 38,25% da receita</strong><br>
+            Enorme oportunidade: tratar clientes campeões como VIP.
+          </div>
+          <div class="insight-item orange">
+            <strong>38.655 clientes "Em Risco"</strong><br>
+            Inativos há 439 dias em média. Grupo-alvo prioritário.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 4 — ACHADO 2: LOGÍSTICA ══════════════════ -->
+  <section class="slide" id="s4">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Achado #2</div>
+      <div class="slide-num">04 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag" style="border-color:rgba(10,78,228,0.4);color:#7ba8ff;background:rgba(10,78,228,0.1)">🚚 Gargalo Logístico</div>
+      <h2 class="title">O tempo de entrega revela<br><span class="accent-blue">onde está o problema</span></h2>
+      <div class="logistics-layout" style="margin-top:22px">
+        <div class="bar-chart-block">
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Decomposição do Tempo de Entrega (12,47 dias)</p>
+          <div class="bar-row">
+            <div class="bar-label-row">
+              <span class="bar-label">🏪 Processamento Vendedor</span>
+              <span class="bar-value">3,28 dias (26%)</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:26%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label-row">
+              <span class="bar-label">🚚 Trânsito Transportadora</span>
+              <span class="bar-value" style="color:#f87171">9,19 dias (74%) ⚠️</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill red" style="width:74%"></div></div>
+          </div>
+          <div class="callout-box" style="margin-top:16px">
+            ⚠️ O gargalo <strong>não é o vendedor</strong> — é o transporte. <strong>74% do tempo de espera</strong> está na malha logística da transportadora.
+          </div>
+          <div class="bar-row" style="margin-top:14px">
+            <div class="bar-label-row">
+              <span class="bar-label">📍 Atraso — Alagoas (AL)</span>
+              <span class="bar-value" style="color:#f87171">23,9%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill red" style="width:24%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label-row">
+              <span class="bar-label">📍 Atraso — Maranhão (MA)</span>
+              <span class="bar-value" style="color:#f87171">19,7%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill red" style="width:20%"></div></div>
+          </div>
+        </div>
+        <div class="corr-block">
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Correlações Confirmadas</p>
+          <div class="corr-card">
+            <div class="corr-title">Atraso × Nota de Review</div>
+            <div class="corr-val accent-red">r = −0,229</div>
+            <div class="corr-desc">p &lt; 0,001 · Mann-Whitney U + Chi-Square</div>
+          </div>
+          <div class="corr-card">
+            <div class="corr-title">Frete × Peso do Produto</div>
+            <div class="corr-val" style="color:#7ba8ff">r = 0,61</div>
+            <div class="corr-desc">Correlação forte — automatizável com IA</div>
+          </div>
+          <div class="corr-card">
+            <div class="corr-title">Distância × Tempo Entrega</div>
+            <div class="corr-val" style="color:#4ade80">r = 0,39</div>
+            <div class="corr-desc">63,8% das vendas são inter-estado</div>
+          </div>
+          <div class="callout-box blue">
+            Reviews negativos: <strong>"prazo", "entregue", "pedido"</strong> — logística é o principal ofensor de satisfação.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 5 — ACHADO 3: SEGMENTAÇÃO ══════════════════ -->
+  <section class="slide" id="s5">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Achado #3</div>
+      <div class="slide-num">05 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag">🎯 Segmentação K-Means + RFM</div>
+      <h2 class="title">4 perfis de clientes · 3 perfis de sellers</h2>
+      <div class="cluster-grid">
+        <div class="cluster-card novos">
+          <div class="cluster-icon">🆕</div>
+          <div class="cluster-name">Novos Clientes</div>
+          <div class="cluster-pct">54%</div>
+          <div class="cluster-detail">52.056 clientes · Recência 178d · R$135 avg · Ativação é a chave</div>
+        </div>
+        <div class="cluster-card risco">
+          <div class="cluster-icon">⚠️</div>
+          <div class="cluster-name">Em Risco / Inativos</div>
+          <div class="cluster-pct">40%</div>
+          <div class="cluster-detail">38.655 clientes · Recência 439d · R$135 avg · Alvo prioritário de retenção</div>
+        </div>
+        <div class="cluster-card campvl">
+          <div class="cluster-icon">💎</div>
+          <div class="cluster-name">Campeões Alto Valor</div>
+          <div class="cluster-pct">3%</div>
+          <div class="cluster-detail">2.422 clientes · R$1.196 avg · Tratamento VIP imediato</div>
+        </div>
+        <div class="cluster-card camprec">
+          <div class="cluster-icon">🏆</div>
+          <div class="cluster-name">Campeões Recorrentes</div>
+          <div class="cluster-pct">3%</div>
+          <div class="cluster-detail">2.962 clientes · 2,1 pedidos avg · R$290 avg · Fidelização</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.35);font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-top:22px;margin-bottom:12px">Segmentação de Vendedores (K=3)</p>
+      <div class="seller-grid">
+        <div class="seller-card">
+          <div class="sname">🟢 Regulares <span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400">(82% dos sellers)</span></div>
+          <div class="seller-kpi"><span>Receita Média</span><strong>R$ 3.775</strong></div>
+          <div class="seller-kpi"><span>Nota Média</span><strong>4,33 ⭐</strong></div>
+          <div class="seller-kpi"><span>Entrega Média</span><strong>10,0 dias</strong></div>
+        </div>
+        <div class="seller-card">
+          <div class="sname">🏅 Top Performers <span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400">(1% dos sellers)</span></div>
+          <div class="seller-kpi"><span>Receita Média</span><strong style="color:var(--olist-orange)">R$ 102.986</strong></div>
+          <div class="seller-kpi"><span>Nota Média</span><strong>4,03 ⭐</strong></div>
+          <div class="seller-kpi"><span>Pedidos</span><strong>808</strong></div>
+        </div>
+        <div class="seller-card bad">
+          <div class="sname">🔴 Problemáticos <span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400">(17% dos sellers)</span></div>
+          <div class="seller-kpi"><span>Nota Média</span><strong style="color:#f87171">2,22 ⭐</strong></div>
+          <div class="seller-kpi"><span>Entrega Média</span><strong style="color:#f87171">14,4 dias</strong></div>
+          <div class="seller-kpi"><span>Sellers</span><strong>527 sellers</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 6 — OS 6 AGENTES ══════════════════ -->
+  <section class="slide" id="s6">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Proposta</div>
+      <div class="slide-num">06 / 09</div>
+    </div>
+    <div class="slide-inner" style="padding-bottom:36px">
+      <div class="slide-tag">🤖 6 Agentes de IA Autônomos</div>
+      <h2 class="title" style="font-size:34px">Cada agente ataca um problema real dos dados</h2>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">🎯</div>
+            <div>
+              <div class="agent-num">AGENTE 01</div>
+              <div class="agent-name">Anti-Churn / Retenção</div>
+            </div>
+          </div>
+          <div class="agent-desc">Identifica clientes "Em Risco" e dispara campanhas personalizadas de reativação. Target: 38.655 clientes inativos.</div>
+          <div class="agent-kpi">↑ Recompra de 3% → 6% = +R$480K/ano</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">🚚</div>
+            <div>
+              <div class="agent-num">AGENTE 02</div>
+              <div class="agent-name">Logística Preditiva</div>
+            </div>
+          </div>
+          <div class="agent-desc">Prevê probabilidade de atraso por pedido cruzando CEP, produto, transportadora e histórico. Alerta cliente proativamente.</div>
+          <div class="agent-kpi">↓ Atraso 8,1% → 4%: +4.000 entregas/ano no prazo</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">⭐</div>
+            <div>
+              <div class="agent-num">AGENTE 03</div>
+              <div class="agent-name">Reviews &amp; Sentimento</div>
+            </div>
+          </div>
+          <div class="agent-desc">Classifica sentimento com NLP em tempo real, extrai temas recorrentes e gera alertas. 11,5% das notas são 1 estrela.</div>
+          <div class="agent-kpi">Detecção imediata de 342 sellers nota &lt;3</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">🏪</div>
+            <div>
+              <div class="agent-num">AGENTE 04</div>
+              <div class="agent-name">Sucesso do Vendedor</div>
+            </div>
+          </div>
+          <div class="agent-desc">Monitora KPIs de cada seller, envia relatórios de coaching automatizados e escala para suspensão quando necessário.</div>
+          <div class="agent-kpi">527 sellers problemáticos → &lt;200</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">💰</div>
+            <div>
+              <div class="agent-num">AGENTE 05</div>
+              <div class="agent-name">Precificação &amp; Frete</div>
+            </div>
+          </div>
+          <div class="agent-desc">Frete = 21% do valor total do pedido. Otimiza embalagem e precificação. Correlação frete×peso: 0,61 — previsível e automatizável.</div>
+          <div class="agent-kpi">↓ Impacto do frete na conversão</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">📊</div>
+            <div>
+              <div class="agent-num">AGENTE 06</div>
+              <div class="agent-name">Orquestrador BI</div>
+            </div>
+          </div>
+          <div class="agent-desc">Coordena os 5 agentes, responde perguntas executivas em linguagem natural e gera relatórios sob demanda para a diretoria.</div>
+          <div class="agent-kpi">Decisões orientadas por dados em segundos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 7 — ARQUITETURA ══════════════════ -->
+  <section class="slide" id="s7">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Arquitetura</div>
+      <div class="slide-num">07 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag">🏗️ Arquitetura Conceitual do Sistema</div>
+      <h2 class="title" style="font-size:34px">Fluxo: Dados → Agentes → Decisão</h2>
+      <div class="arch-wrapper">
+        <div class="arch-layer">
+          <div class="arch-label">📦 Fontes de Dados</div>
+          <div class="arch-nodes">
+            <div class="arch-node">customers</div>
+            <div class="arch-node">orders</div>
+            <div class="arch-node">order_items</div>
+            <div class="arch-node">payments</div>
+            <div class="arch-node">reviews</div>
+            <div class="arch-node">products</div>
+            <div class="arch-node">sellers</div>
+            <div class="arch-node">geolocation</div>
+          </div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <div class="arch-label">⚙️ Processamento</div>
+          <div class="arch-nodes">
+            <div class="arch-node blue">ETL &amp; Limpeza</div>
+            <div class="arch-node blue">Feature Engineering</div>
+            <div class="arch-node blue">RFM Score</div>
+            <div class="arch-node blue">K-Means (K=4)</div>
+            <div class="arch-node blue">NLP Pipeline</div>
+            <div class="arch-node blue">Haversine Geo</div>
+          </div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <div class="arch-label">🤖 Agentes</div>
+          <div class="arch-nodes">
+            <div class="arch-node" style="border-color:rgba(248,113,113,0.4);color:#f87171">Anti-Churn</div>
+            <div class="arch-node" style="border-color:rgba(10,78,228,0.4);color:#93b4ff">Logística</div>
+            <div class="arch-node" style="border-color:rgba(244,162,44,0.4);color:var(--olist-orange)">Reviews</div>
+            <div class="arch-node" style="border-color:rgba(74,222,128,0.4);color:#4ade80">Sellers</div>
+            <div class="arch-node" style="border-color:rgba(168,85,247,0.4);color:#c084fc">Frete</div>
+          </div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <div class="arch-label">🎯 Orquestrador</div>
+          <div class="arch-nodes">
+            <div class="arch-node big">📊 Agente Executivo — BI &amp; Orquestrador · Linguagem Natural · Relatórios Automáticos</div>
+          </div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <div class="arch-label">👥 Usuários</div>
+          <div class="arch-nodes">
+            <div class="arch-node orange">Marketing / CRM</div>
+            <div class="arch-node orange">Operações</div>
+            <div class="arch-node orange">Produto</div>
+            <div class="arch-node orange">Gestão Sellers</div>
+            <div class="arch-node orange">Diretoria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 8 — IMPACTO ══════════════════ -->
+  <section class="slide" id="s8">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Impacto Esperado</div>
+      <div class="slide-num">08 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="slide-tag">📈 Resultados Projetados</div>
+      <h2 class="title">O que esse sistema pode mudar?</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-icon">💸</div>
+          <div class="impact-change">+R$480K</div>
+          <div class="impact-label">Receita incremental estimada / ano ao dobrar a taxa de recompra de 3% para 6%</div>
+          <div class="impact-note">Agente 01 — Anti-Churn</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">📦</div>
+          <div class="impact-change">+4.000</div>
+          <div class="impact-label">Pedidos adicionais entregues no prazo ao ano, reduzindo atrasos de 8,1% para 4%</div>
+          <div class="impact-note">Agente 02 — Logística Preditiva</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">⭐</div>
+          <div class="impact-change">3,97 → 4,2</div>
+          <div class="impact-label">Nota média da plataforma ao reduzir sellers problemáticos de 527 para menos de 200</div>
+          <div class="impact-note">Agentes 03 e 04 — Reviews + Sellers</div>
+        </div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-pill">🎯 6 Agentes entregues</div>
+        <div class="summary-pill">📓 7 Notebooks com análises reais</div>
+        <div class="summary-pill">📐 Arquitetura completa documentada</div>
+        <div class="summary-pill">🧠 Prompts estruturados por agente</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SLIDE 9 — ENCERRAMENTO ══════════════════ -->
+  <section class="slide" id="s9">
+    <div class="top-bar">
+      <div class="olist-logo"><div class="dot"></div> Obrigado</div>
+      <div class="slide-num">09 / 09</div>
+    </div>
+    <div class="slide-inner">
+      <div class="closing-content">
+        <div class="olist-logotype">● OLIST × FIAP</div>
+        <h1 class="closing-title">IA Agêntica para o<br><span class="accent">futuro do e-commerce</span></h1>
+        <p class="closing-sub">
+          Diagnóstico baseado em dados reais · Arquitetura de 6 agentes · Prompts estruturados · Pronto para as próximas fases
+        </p>
+        <div class="github-pill">
+          🐙 <span>github.com/</span><span class="gh-link">jorgelpiva/tech-challenge-fiap-agentes-ia</span>
+        </div>
+        <div class="team-closing">
+          <div class="team-name-pill">Leonardo Granjeiro</div>
+          <div class="team-name-pill">Jorge Leandro Piva</div>
+          <div class="team-name-pill">Caio Sousa</div>
+          <div class="team-name-pill">Lucas V. O. Mendes</div>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.25);margin-top:8px">Pós-Graduação IA para Devs · FIAP · Turma 2025 · Tech Challenge Fase 1</p>
+      </div>
+    </div>
+  </section>
+</div><!-- /#deck -->
+
+<!-- NAVIGATION -->
+<div id="controls">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>←</button>
+  <div id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">→</button>
+</div>
+<p class="kbd-hint">← → Setas do teclado para navegar · Clique nos pontos para ir direto</p>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsEl = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressBar = document.getElementById('progress-bar');
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    const prev = current;
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('exit');
+    setTimeout(() => slides[prev].classList.remove('exit'), 600);
+
+    current = n;
+    slides[current].classList.add('active');
+
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+    progressBar.style.width = ((current + 1) / slides.length * 100) + '%';
+  }
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < slides.length) goTo(next);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+  });
+
+  // Initial progress
+  progressBar.style.width = (1 / slides.length * 100) + '%';
+</script>
+</body>
+</html>

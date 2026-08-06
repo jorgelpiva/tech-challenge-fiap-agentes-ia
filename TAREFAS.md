@@ -81,23 +81,30 @@
 
 ---
 
-## 📄 Relatório Executivo
+## 📄 Entregáveis da Fase 1
 
+### Relatório Executivo
 - [x] Diagnóstico do negócio baseado nos dados (BRAINSTORMING.md)
-- [x] Oportunidades identificadas para IA (6 agentes propostos)
-- [x] Mapa de Agentes de IA (≥3 agentes) — 6 agentes detalhados
-- [x] Arquitetura conceitual inicial (diagrama em BRAINSTORMING.md)
-- [ ] Formatação final do relatório (Word/Google Docs/Notion)
-- [ ] Prompts estruturados para cada agente (objetivo, contexto, instrução, resultado)
-- [ ] Impacto esperado quantificado para cada agente
+- [x] Análise de 5 temas (Retenção, Logística, Satisfação, Vendedores, Segmentação)
+- [x] **[RELATORIO_EXECUTIVO.md](docs/RELATORIO_EXECUTIVO.md)** — 197 linhas, formato executivo completo
 
----
+### Mapa de Agentes de IA (≥ 3 agentes → entregamos 6)
+- [x] **[MAPA_AGENTES.md](docs/MAPA_AGENTES.md)** — 6 agentes detalhados com KPIs, impacto quantificado e topologia de interação
+- [x] Roadmap de implementação em 3 fases
+- [x] Diagrama Mermaid de topologia de agentes
 
-## 🎥 Vídeo Executivo
+### Arquitetura Inicial
+- [x] **[ARQUITETURA.html](docs/ARQUITETURA.html)** — Diagrama visual interativo em HTML standalone (dark mode, glassmorphism)
+- [x] Fluxo completo: Dados → ETL → Agentes → Orquestrador → Usuários
 
-- [ ] Roteiro do vídeo (até 5 min)
-- [ ] Apresentação de apoio (slides)
-- [ ] Gravação
+### Estruturação de Prompts
+- [x] **[PROMPTS_ESTRUTURADOS.md](docs/PROMPTS_ESTRUTURADOS.md)** — 491 linhas, 6 agentes com System Prompt, Template, Exemplo, Tools e KPIs
+- [x] Prompts de geração de imagem para DALL-E / Midjourney (Arquitetura + Mapa de Agentes)
+
+### Vídeo Executivo
+- [x] **[ROTEIRO_VIDEO.md](docs/ROTEIRO_VIDEO.md)** — Roteiro completo com 4 apresentadores, cenas, falas e notas de produção
+- [ ] Slides de apoio (Google Slides / Canva)
+- [ ] Gravação do vídeo
 
 ---
 
