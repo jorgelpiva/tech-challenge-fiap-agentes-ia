@@ -34,20 +34,25 @@ A Olist é um marketplace brasileiro que conecta pequenos lojistas a grandes can
 tech-challenge-agentes-ia/
 │
 ├── 📄 README.md                    # Este arquivo
-├── 📄 CONTEXTO.md                  # Contexto do projeto e referência rápida
-├── 📄 TAREFAS.md                   # Wiki de acompanhamento de tarefas
+├── 📄 CONTEXTO.md                  # Contexto e referência rápida do projeto
 ├── 📄 BRAINSTORMING.md             # Achados, insights e ideias de agentes IA
 ├── 🔧 setup_data.sh                # Script para baixar o dataset automaticamente
+├── 🔧 build_notebooks.py           # Script auxiliar de geração dos notebooks
 ├── 📄 .gitignore                   # Arquivos ignorados pelo Git
 ├── 📄 TECH_CHALLENGE_AGENTIC_AI-FASE_1.pdf  # Enunciado do desafio
 │
-├── 📁 data/
-│   └── 📁 olist/                   # Dataset Olist (Brazilian E-Commerce)
+├── 📁 data/olist/                  # Dataset Olist (baixado via setup_data.sh, fora do Git)
 │       ├── olist_customers_dataset.csv
 │       ├── olist_orders_dataset.csv
 │       ├── olist_order_items_dataset.csv
 │       ├── olist_order_payments_dataset.csv
-│       ├── olist_o├── 📁 notebooks/                   # Jupyter Notebooks de análise exploratória
+│       ├── olist_order_reviews_dataset.csv
+│       ├── olist_products_dataset.csv
+│       ├── olist_sellers_dataset.csv
+│       ├── olist_geolocation_dataset.csv
+│       └── product_category_name_translation.csv
+│
+├── 📁 notebooks/                   # Jupyter Notebooks de análise exploratória
 │   ├── 01_visao_geral_dados.ipynb  # Visão geral e qualidade dos dados
 │   ├── 02_pedidos_e_receita.ipynb  # Análise de pedidos, receita e pagamentos
 │   ├── 03_clientes_e_retencao.ipynb# Análise de clientes, recompra e churn
@@ -55,13 +60,16 @@ tech-challenge-agentes-ia/
 │   ├── 05_analise_logistica.ipynb  # Análise logística e performance de entrega
 │   ├── 06_analise_vendedores.ipynb # Análise e segmentação de vendedores
 │   ├── 07_clustering_segmentacao.ipynb # K-Means, clustering hierárquico, RFM
-│   └── 📁 outputs/                 # Gráficos e resumos gerados
-│       ├── *.png                   # Visualizações
-│       └── *_summary.txt           # Resumos de cada análise
+│   └── 📁 outputs/                 # Gráficos (*.png) e resumos (*_summary.txt)
 │
-├── 📁 docs/                        # Documentação adicional
-│
-└── 📁 reports/                     # Relatório executivo final
+└── 📁 docs/                        # Entregáveis da Fase 1
+    ├── RELATORIO_EXECUTIVO.md      # Relatório executivo (documento principal)
+    ├── MAPA_AGENTES.md             # Mapa de agentes (texto)
+    ├── MAPA_AGENTES.html           # Mapa de agentes (diagrama visual)
+    ├── ARQUITETURA.html            # Arquitetura conceitual (diagrama visual)
+    ├── PROMPTS_ESTRUTURADOS.md     # Estruturação de prompts dos agentes
+    ├── ROTEIRO_VIDEO.md            # Roteiro do vídeo executivo
+    └── APRESENTACAO.html           # Slides de apoio da apresentação
 ```
 
 ---
@@ -142,19 +150,6 @@ geolocation ─── (zip_code_prefix) ─── customers / sellers
 - Comércio intra-estado vs. inter-estado
 
 ### 7. Clustering e Segmentação (`07_clustering_segmentacao.ipynb`)
-- Taxa de atraso por estado e por mês
-- Performance dos vendedores (tempo de processamento)
-- Correlações: peso × frete, distância × tempo, distância × frete
-- Identificação de gargalos
-
-### 6. Análise de Vendedores (`06_analise_vendedores.py`)
-- Distribuição geográfica e evolução da base
-- Performance (receita, reviews, entregas)
-- Análise de Pareto (concentração de vendas)
-- Especialização por categoria
-- Comércio intra-estado vs. inter-estado
-
-### 7. Clustering e Segmentação (`07_clustering_segmentacao.py`)
 - **RFM Analysis** (Recency, Frequency, Monetary)
 - **K-Means Clustering** com método Elbow e Silhouette
 - **Clustering Hierárquico** (dendrograma)
@@ -168,16 +163,16 @@ geolocation ─── (zip_code_prefix) ─── customers / sellers
 
 Com base nas análises, foram identificadas oportunidades para os seguintes agentes:
 
-| Agente | Problema Resolvido | Impacto Esperado |
+| Agente (codinome) | Problema Resolvido | Impacto Esperado |
 |--------|-------------------|-----------------|
-| **Agente de Atendimento** | Respostas lentas a clientes | ↓ Tempo de resposta, ↑ Satisfação |
-| **Agente de Reviews** | Reviews sem análise estruturada | Identificação rápida de problemas |
-| **Agente de Logística** | Atrasos impactam satisfação | ↓ Atrasos, ↑ NPS |
-| **Agente de Retenção** | Baixa taxa de recompra | ↑ Retenção e LTV |
-| **Agente de Sellers** | Vendedores com baixa performance | ↑ Nível de serviço |
-| **Agente de Precificação** | Frete alto como barreira | ↑ Conversão |
+| **Retenção — Anti-Churn (WinBack)** | Recompra de apenas 3% | Recompra 3% → 7% |
+| **Logística Preditiva (LogiPredict)** | 8,11% de atrasos; 74% do tempo em trânsito | Atrasos → <4% |
+| **Reviews & Sentimento (SentimentDesk)** | 11,5% de notas 1; resposta em ~3 dias | Resposta em minutos |
+| **Sucesso do Vendedor (SellerCare)** | 527 sellers problemáticos (nota média 2,22) | −50% do cluster em 6 meses |
+| **Precificação & Frete (SmartFreight)** | Frete = 21% do valor do pedido | Conversão +12% |
+| **Orquestrador Executivo — BI (Maestro)** | Dados fragmentados atrasam a decisão | −40h/semana em relatórios |
 
-> Detalhes completos no arquivo [BRAINSTORMING.md](BRAINSTORMING.md).
+> Detalhes completos no [Mapa de Agentes](docs/MAPA_AGENTES.md) e nos [Prompts Estruturados](docs/PROMPTS_ESTRUTURADOS.md).
 
 ---
 
@@ -250,9 +245,12 @@ Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderiz
 
 | Documento | Descrição |
 |-----------|-----------|
-| [CONTEXTO.md](CONTEXTO.md) | Referência rápida do projeto, entregáveis, critérios |
-| [TAREFAS.md](TAREFAS.md) | Wiki de acompanhamento do progresso |
-| [BRAINSTORMING.md](BRAINSTORMING.md) | Achados, insights e propostas de agentes |
+| [docs/RELATORIO_EXECUTIVO.md](docs/RELATORIO_EXECUTIVO.md) | Relatório executivo — documento principal da Fase 1 |
+| [docs/MAPA_AGENTES.md](docs/MAPA_AGENTES.md) · [.html](docs/MAPA_AGENTES.html) | Mapa de agentes (texto + diagrama visual) |
+| [docs/ARQUITETURA.html](docs/ARQUITETURA.html) | Arquitetura conceitual (diagrama visual) |
+| [docs/PROMPTS_ESTRUTURADOS.md](docs/PROMPTS_ESTRUTURADOS.md) | Estruturação de prompts dos agentes |
+| [docs/ROTEIRO_VIDEO.md](docs/ROTEIRO_VIDEO.md) · [APRESENTACAO.html](docs/APRESENTACAO.html) | Roteiro e slides do vídeo executivo |
+| [CONTEXTO.md](CONTEXTO.md) · [BRAINSTORMING.md](BRAINSTORMING.md) | Referência rápida e achados/insights de apoio |
 
 ---
 
@@ -270,7 +268,12 @@ Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderiz
 
 ## 👥 Equipe
 
-*(Adicionar nomes dos integrantes do grupo)*
+- Leonardo Granjeiro
+- Jorge Leandro Piva
+- Caio Sousa
+- Lucas Vinicius Oliveira Mendes
+
+> Pós-Graduação em IA para Devs — FIAP | Turma 2025
 
 ---
 

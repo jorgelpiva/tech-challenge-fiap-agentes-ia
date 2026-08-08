@@ -114,35 +114,35 @@ Ao invés de tratar a base de forma homogênea, revelamos *personas* baseadas em
 
 A partir do diagnóstico doloroso de baixa recompra e atrito logístico, propomos uma arquitetura com **6 Agentes de IA Autônomos** focados na virada desses KPIs.
 
-1. 🤖 **Agente de Antecipação Logística (LogiPredict AI)**
+1. 🤖 **Agente de Logística Preditiva (LogiPredict)**
    - **Gatilho:** Assim que um pedido é despachado para AL, MA, PI, ou rotas críticas identificadas.
    - **Ação:** Monitora o status no trânsito (que representa 74% do tempo). Se houver anomalia ou risco da entrega passar dos 12 dias previstos, alerta o cliente preventivamente e re-calcula o prazo, gerenciando a ansiedade antes da reclamação formal.
    - **Impacto Esperado:** Redução de 30% nas avaliações negativas ligadas a prazo e logística.
 
-2. 🤖 **Agente de Resgate de Churn (WinBack AI)**
+2. 🤖 **Agente de Retenção — Anti-Churn (WinBack)**
    - **Gatilho:** Quando um cliente entra no 6º mês de inatividade (caminhando para compor os 58,61% de Churn).
    - **Ação:** Gera ofertas hiper-personalizadas utilizando o histórico de compras e produtos similares. Para os "Campeões de Alto Valor", autoriza a emissão de cupons agressivos de desconto no frete.
-   - **Impacto Esperado:** Elevação da taxa de recompra de 3,00% para um benchmark mais saudável (estimado 8 a 10%).
+   - **Impacto Esperado:** Elevação da taxa de recompra de 3,00% para um benchmark mais saudável (estimado 7% em 12 meses).
 
-3. 🤖 **Agente Auditor de Lojistas (SellerQuality AI)**
+3. 🤖 **Agente de Sucesso do Vendedor (SellerCare)**
    - **Gatilho:** Queda contínua de avaliações de um vendedor ou entrada no cluster "Problemáticos" (atualmente com 527 lojistas).
    - **Ação:** O agente bloqueia a exposição (BuyBox) deste vendedor automaticamente e envia um plano de ação gerado por IA apontando falhas de *SLA* de processamento interno (que hoje é de 3,28 dias).
    - **Impacto Esperado:** Limpeza automática do marketplace e aumento da nota média global.
 
-4. 🤖 **Agente Conciliador de Reviews (SentimentResponder AI)**
+4. 🤖 **Agente de Reviews & Sentimento (SentimentDesk)**
    - **Gatilho:** Inserção de uma avaliação com notas 1 ou 2 acompanhada de comentários de texto.
    - **Ação:** Reduz o tempo de resposta atual (3,15 dias) para menos de 5 minutos. O agente interpreta o motivo (ex: atraso), emite um pedido formal de desculpas, abre protocolo e, se aplicável, oferece ressarcimento parcial do frete de forma autônoma.
    - **Impacto Esperado:** Retenção imediata de detratores em momento de fúria e reversão potencial da nota.
 
-5. 🤖 **Agente Dinâmico de Precificação de Frete (SmartFreight AI)**
-   - **Gatilho:** Checkout de vendas inter-estado (63,8% das operações).
-   - **Ação:** Como o frete impacta 21% do valor do pedido, o Agente busca e negocia em tempo real as APIs de diferentes parceiros logísticos analisando peso e volume, oferecendo o melhor balanço preço/prazo.
-   - **Impacto Esperado:** Aumento de conversão no carrinho.
+5. 🤖 **Agente de Precificação & Frete (SmartFreight)**
+   - **Gatilho:** Checkout de vendas inter-estado (63,8% das operações) ou cadastro de novo produto.
+   - **Ação:** Como o frete impacta 21% do valor do pedido, o Agente busca e negocia em tempo real as APIs de diferentes parceiros logísticos analisando peso e volume, oferecendo o melhor balanço preço/prazo. Também propõe **kits/bundles** (cross-sell) para diluir o custo logístico e elevar o ticket médio (R$ 161,00).
+   - **Impacto Esperado:** Aumento de conversão no carrinho e crescimento da receita vinculada.
 
-6. 🤖 **Agente Construtor de Cross-Sell (BundleCreator AI)**
-   - **Gatilho:** Lojistas especialistas em 1 categoria (56% da base).
-   - **Ação:** O agente propõe "Kits" automáticos agrupando produtos da categoria de especialidade do lojista com outros complementares do marketplace, elevando o Ticket Médio atual de R$ 161,00.
-   - **Impacto Esperado:** Crescimento de 15% na Receita Total de vendas vinculadas.
+6. 🤖 **Agente Orquestrador Executivo — BI (Maestro)**
+   - **Gatilho:** Consulta do C-Level em linguagem natural ou sinais consolidados dos 5 agentes especialistas.
+   - **Ação:** Roteia cada pergunta de negócio ao agente competente, consolida as respostas, resolve conflitos (ex.: Retenção quer desconto agressivo × Finanças acusa prejuízo) e gera relatórios executivos sob demanda (Text-to-SQL sobre o data warehouse).
+   - **Impacto Esperado:** Decisão mais rápida e cerca de 40 horas/semana economizadas em consolidação manual de relatórios gerenciais.
 
 ---
 
@@ -151,15 +151,15 @@ A partir do diagnóstico doloroso de baixa recompra e atrito logístico, propomo
 Para o *board* diretivo, recomendamos as seguintes ações táticas priorizadas pelo modelo Custo x Benefício:
 
 **Curto Prazo (Q1 - Q2):**
-1. **Implantação Imediata do Agente Conciliador de Reviews:** Não podemos tolerar 3 dias para responder um detrator. A automação desta camada tem ROI instantâneo.
+1. **Implantação Imediata do Agente de Reviews & Sentimento (SentimentDesk):** Não podemos tolerar 3 dias para responder um detrator. A automação desta camada tem ROI instantâneo.
 2. **"Quarentena" Algorítmica de Vendedores Problemáticos:** Executar uma suspensão temporária dos 342 vendedores com nota abaixo de 3,0 para frear a degradação da marca.
 
 **Médio Prazo (Q3):**
 3. **Campanha "Primeira Recompra" orquestrada por IA:** Focar todos os esforços em resgatar a base inativa de 40%. A meta é provar a viabilidade de forçar o LTV para o patamar de R$ 300,00 na amostra impactada.
-4. **Reengenharia Logística para o Nordeste:** Utilizar o *LogiPredict AI* atrelado a Centros de Distribuição Avançados (Cross-docking) para mitigar os gargalos em AL, MA e PI.
+4. **Reengenharia Logística para o Nordeste:** Utilizar o *LogiPredict* atrelado a Centros de Distribuição Avançados (Cross-docking) para mitigar os gargalos em AL, MA e PI.
 
 **Longo Prazo (Q4):**
-5. **Transição para um Modelo de IA Agêntica Completo:** Implementar uma malha de agentes operando colaborativamente — o agente de atendimento (SentimentResponder) informando o agente de qualidade (SellerQuality) em tempo real, retroalimentando o sistema sem intervenção humana de analistas de nível 1.
+5. **Transição para um Modelo de IA Agêntica Completo:** Implementar uma malha de agentes operando colaborativamente — o agente de reviews (SentimentDesk) informando o agente de qualidade de vendedores (SellerCare) em tempo real, sob a coordenação do orquestrador (Maestro), retroalimentando o sistema sem intervenção humana de analistas de nível 1.
 
 ---
 
