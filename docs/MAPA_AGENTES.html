@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Agentes de IA — Olist</title>
+<style>
+  :root{
+    --bg:#1a1a2e; --panel:#16162a; --primary:#6c63ff; --secondary:#2b5c8f;
+    --orange:#f4a261; --green:#52b788; --text:#f8f9fa; --muted:#a9a7c8;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);margin:0;padding:1.5rem;
+       font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1280px;margin:0 auto;}
+  .hint{text-align:center;color:var(--muted);font-size:.85rem;margin:.5rem 0 1rem;}
+  svg{width:100%;height:auto;display:block;
+      background:radial-gradient(1200px 600px at 50% 20%,#20203c 0%,var(--panel) 70%);
+      border:1px solid rgba(255,255,255,.08);border-radius:18px;}
+  /* SVG text classes */
+  .title{fill:var(--text);font-size:27px;font-weight:700;}
+  .sub{fill:var(--muted);font-size:14px;}
+  .chipData{fill:var(--muted);font-size:13px;}
+  .sect{fill:var(--muted);font-size:12px;font-weight:700;letter-spacing:2px;}
+  .aName{fill:var(--text);font-size:19px;font-weight:700;text-anchor:middle;}
+  .aRole{fill:var(--muted);font-size:12.5px;text-anchor:middle;}
+  .emoji{font-size:32px;text-anchor:middle;}
+  .badgeT{fill:#bfe9d4;font-size:12.5px;font-weight:600;text-anchor:middle;}
+  .hName{fill:var(--text);font-size:21px;font-weight:700;text-anchor:middle;}
+  .hSub{fill:#f6d9bd;font-size:12.5px;text-anchor:middle;}
+  .uT{fill:var(--text);font-size:14px;font-weight:600;text-anchor:middle;}
+  .legT{fill:var(--muted);font-size:12.5px;}
+  .noteT{fill:var(--muted);font-size:12px;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg viewBox="0 0 1280 880" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Mapa de agentes de IA da Olist">
+  <defs>
+    <linearGradient id="cardG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#26284c"/><stop offset="1" stop-color="#1b1d3a"/>
+    </linearGradient>
+    <linearGradient id="hubG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2f36"/><stop offset="1" stop-color="#2a2445"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrO" markerWidth="11" markerHeight="11" refX="7.5" refY="3.2"
+            orient="auto-start-reverse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#f4a261"/></marker>
+    <marker id="arrG" markerWidth="11" markerHeight="11" refX="7.5" refY="3.2"
+            orient="auto"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#52b788"/></marker>
+  </defs>
+
+  <!-- Título -->
+  <text class="title" x="40" y="50">Mapa de Agentes de IA — Olist</text>
+  <text class="sub" x="41" y="74">6 agentes autônomos orientados a negócio · cada um ancorado em um achado dos dados</text>
+  <text class="chipData" x="1240" y="52" text-anchor="end">99.441 pedidos · Olist 2016–2018</text>
+
+  <!-- Fluxos de COLABORAÇÃO entre agentes (verde) -->
+  <g fill="none" stroke="#52b788" stroke-width="2" opacity="0.7" marker-end="url(#arrG)">
+    <path d="M600 248 Q 395 158 175 246"/>   <!-- SentimentDesk -> WinBack -->
+    <path d="M585 250 Q 500 200 420 250"/>   <!-- SentimentDesk -> LogiPredict -->
+    <path d="M695 250 Q 780 200 862 250"/>   <!-- SentimentDesk -> SellerCare -->
+    <path d="M420 246 Q 770 150 1108 246"/>  <!-- LogiPredict -> SmartFreight -->
+    <path d="M1108 244 Q 640 72 172 244"/>   <!-- SmartFreight -> WinBack -->
+  </g>
+
+  <!-- Setos ORQUESTRADOR <-> especialistas (laranja, bidirecional) -->
+  <g fill="none" stroke="#f4a261" stroke-width="2.2" opacity="0.85"
+     marker-start="url(#arrO)" marker-end="url(#arrO)">
+    <path d="M150 402 L 452 518"/>
+    <path d="M395 402 L 560 518"/>
+    <path d="M640 402 L 640 518"/>
+    <path d="M885 402 L 720 518"/>
+    <path d="M1130 402 L 828 518"/>
+  </g>
+
+  <!-- Orquestrador -> Usuários -->
+  <g fill="none" stroke="#f4a261" stroke-width="2.2" opacity="0.85" marker-end="url(#arrO)">
+    <path d="M640 632 L 640 694"/>
+  </g>
+
+  <!-- Rótulos de seção -->
+  <text class="sect" x="40" y="236">AGENTES ESPECIALISTAS</text>
+  <text class="sect" x="360" y="512">ORQUESTRAÇÃO</text>
+  <text class="sect" x="40" y="686">USUÁRIOS &amp; ÁREAS</text>
+
+  <!-- ===== CARDS DOS AGENTES (linha) ===== -->
+  <!-- 1 WinBack -->
+  <g filter="url(#soft)">
+    <rect x="40" y="250" width="220" height="150" rx="16" fill="url(#cardG)" stroke="#6c63ff" stroke-width="1.5"/>
+    <text class="emoji" x="150" y="300">🛡️</text>
+    <text class="aName" x="150" y="338">WinBack</text>
+    <text class="aRole" x="150" y="360">Retenção · Anti-Churn</text>
+    <rect x="60" y="374" width="180" height="26" rx="13" fill="rgba(82,183,136,.15)" stroke="#52b788"/>
+    <text class="badgeT" x="150" y="391">Recompra 3% → 7%</text>
+  </g>
+  <!-- 2 LogiPredict -->
+  <g filter="url(#soft)">
+    <rect x="285" y="250" width="220" height="150" rx="16" fill="url(#cardG)" stroke="#6c63ff" stroke-width="1.5"/>
+    <text class="emoji" x="395" y="300">🚚</text>
+    <text class="aName" x="395" y="338">LogiPredict</text>
+    <text class="aRole" x="395" y="360">Logística Preditiva</text>
+    <rect x="305" y="374" width="180" height="26" rx="13" fill="rgba(82,183,136,.15)" stroke="#52b788"/>
+    <text class="badgeT" x="395" y="391">Atrasos 8% → &lt;4%</text>
+  </g>
+  <!-- 3 SentimentDesk -->
+  <g filter="url(#soft)">
+    <rect x="530" y="250" width="220" height="150" rx="16" fill="url(#cardG)" stroke="#6c63ff" stroke-width="1.5"/>
+    <text class="emoji" x="640" y="300">🗣️</text>
+    <text class="aName" x="640" y="338">SentimentDesk</text>
+    <text class="aRole" x="640" y="360">Reviews &amp; Sentimento</text>
+    <rect x="550" y="374" width="180" height="26" rx="13" fill="rgba(82,183,136,.15)" stroke="#52b788"/>
+    <text class="badgeT" x="640" y="391">Resposta 3d → minutos</text>
+  </g>
+  <!-- 4 SellerCare -->
+  <g filter="url(#soft)">
+    <rect x="775" y="250" width="220" height="150" rx="16" fill="url(#cardG)" stroke="#6c63ff" stroke-width="1.5"/>
+    <text class="emoji" x="885" y="300">🤝</text>
+    <text class="aName" x="885" y="338">SellerCare</text>
+    <text class="aRole" x="885" y="360">Sucesso do Vendedor</text>
+    <rect x="795" y="374" width="180" height="26" rx="13" fill="rgba(82,183,136,.15)" stroke="#52b788"/>
+    <text class="badgeT" x="885" y="391">527 sellers ruins → −50%</text>
+  </g>
+  <!-- 5 SmartFreight -->
+  <g filter="url(#soft)">
+    <rect x="1020" y="250" width="220" height="150" rx="16" fill="url(#cardG)" stroke="#6c63ff" stroke-width="1.5"/>
+    <text class="emoji" x="1130" y="300">💰</text>
+    <text class="aName" x="1130" y="338">SmartFreight</text>
+    <text class="aRole" x="1130" y="360">Precificação &amp; Frete</text>
+    <rect x="1040" y="374" width="180" height="26" rx="13" fill="rgba(82,183,136,.15)" stroke="#52b788"/>
+    <text class="badgeT" x="1130" y="391">Conversão +12%</text>
+  </g>
+
+  <!-- ===== HUB ORQUESTRADOR ===== -->
+  <g filter="url(#soft)">
+    <rect x="360" y="520" width="560" height="112" rx="18" fill="url(#hubG)" stroke="#f4a261" stroke-width="2"/>
+    <text class="emoji" x="640" y="560">👑</text>
+    <text class="hName" x="640" y="590">Maestro — Orquestrador Executivo (BI)</text>
+    <text class="hSub" x="640" y="614">Coordena os 5 agentes · resolve conflitos · atende o C-Level · −40h/sem em relatórios</text>
+  </g>
+
+  <!-- ===== USUÁRIOS ===== -->
+  <g>
+    <rect x="40" y="700" width="220" height="60" rx="12" fill="#1e2a3a" stroke="#2b5c8f"/>
+    <text class="uT" x="150" y="736">🎯 Marketing / CRM</text>
+    <rect x="285" y="700" width="220" height="60" rx="12" fill="#1e2a3a" stroke="#2b5c8f"/>
+    <text class="uT" x="395" y="736">🚚 Logística / Ops</text>
+    <rect x="530" y="700" width="220" height="60" rx="12" fill="#1e2a3a" stroke="#2b5c8f"/>
+    <text class="uT" x="640" y="736">💬 CX / SAC</text>
+    <rect x="775" y="700" width="220" height="60" rx="12" fill="#1e2a3a" stroke="#2b5c8f"/>
+    <text class="uT" x="885" y="736">🤝 Comercial</text>
+    <rect x="1020" y="700" width="220" height="60" rx="12" fill="#1e2a3a" stroke="#2b5c8f"/>
+    <text class="uT" x="1130" y="736">📊 C-Level</text>
+  </g>
+
+  <!-- ===== LEGENDA + NOTAS ===== -->
+  <g>
+    <line x1="40" y1="812" x2="80" y2="812" stroke="#f4a261" stroke-width="2.2"
+          marker-start="url(#arrO)" marker-end="url(#arrO)"/>
+    <text class="legT" x="90" y="816">Sinais &amp; delegação (Orquestrador)</text>
+    <line x1="360" y1="812" x2="400" y2="812" stroke="#52b788" stroke-width="2" marker-end="url(#arrG)"/>
+    <text class="legT" x="410" y="816">Colaboração entre agentes</text>
+    <text class="noteT" x="720" y="816">Cross-sell integrado ao SmartFreight · SAC distribuído (SentimentDesk + WinBack)</text>
+  </g>
+</svg>
+</div>
+</body>
+</html>
