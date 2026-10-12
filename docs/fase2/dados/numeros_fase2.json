@@ -1,0 +1,384 @@
+{
+  "pedidos_total": {
+    "valor": 99441,
+    "definicao": "Pedidos no dataset (todas as situações)",
+    "fonte": "orders"
+  },
+  "pedidos_entregues": {
+    "valor": 96470,
+    "definicao": "Pedidos com status delivered e data de entrega",
+    "fonte": "orders"
+  },
+  "receita_total": {
+    "valor": 16008872.12,
+    "definicao": "Soma de payment_value",
+    "fonte": "order_payments"
+  },
+  "ticket_medio": {
+    "valor": 160.99,
+    "definicao": "Valor médio pago por pedido",
+    "fonte": "order_payments"
+  },
+  "dias_entrega_medio": {
+    "valor": 12.56,
+    "definicao": "Média (dias corridos fracionados) entre compra e entrega, pedidos entregues. Substitui o 12,47 da Fase 1.",
+    "fonte": "orders"
+  },
+  "dias_transito_medio": {
+    "valor": 9.33,
+    "definicao": "Média entre postagem (delivered_carrier) e entrega",
+    "fonte": "orders"
+  },
+  "dias_proc_medio": {
+    "valor": 3.23,
+    "definicao": "Média entre compra e postagem (processamento do seller)",
+    "fonte": "orders"
+  },
+  "pct_transito": {
+    "valor": 74.3,
+    "definicao": "% do tempo total gasto em trânsito",
+    "fonte": "orders"
+  },
+  "taxa_atraso": {
+    "valor": 8.11,
+    "definicao": "% de pedidos entregues após order_estimated_delivery_date",
+    "fonte": "orders"
+  },
+  "nota_media_atrasado": {
+    "valor": 2.57,
+    "definicao": "Nota média de pedidos entregues com atraso",
+    "fonte": "orders+reviews"
+  },
+  "nota_media_no_prazo": {
+    "valor": 4.29,
+    "definicao": "Nota média de pedidos entregues no prazo",
+    "fonte": "orders+reviews"
+  },
+  "pct_neg_atrasado": {
+    "valor": 54.1,
+    "definicao": "% de notas 1–2 em pedidos atrasados",
+    "fonte": "orders+reviews"
+  },
+  "pct_neg_no_prazo": {
+    "valor": 9.2,
+    "definicao": "% de notas 1–2 em pedidos no prazo",
+    "fonte": "orders+reviews"
+  },
+  "pct_postagem_atrasada": {
+    "valor": 9.0,
+    "definicao": "% de pedidos em que o seller postou após shipping_limit_date",
+    "fonte": "orders+order_items"
+  },
+  "atraso_se_postagem_atrasada": {
+    "valor": 24.4,
+    "definicao": "Taxa de atraso quando a postagem foi após o limite",
+    "fonte": "orders+order_items"
+  },
+  "atraso_se_postagem_no_prazo": {
+    "valor": 6.5,
+    "definicao": "Taxa de atraso quando a postagem foi no prazo",
+    "fonte": "orders+order_items"
+  },
+  "pct_atrasos_com_postagem_atrasada": {
+    "valor": 27.2,
+    "definicao": "% dos pedidos atrasados que tiveram postagem atrasada pelo seller",
+    "fonte": "orders+order_items"
+  },
+  "mediana_dias_postagem_ate_prazo_atrasados": {
+    "valor": 17.5,
+    "definicao": "Nos pedidos que atrasaram: mediana de dias entre a postagem e o prazo prometido (janela para agir)",
+    "fonte": "orders"
+  },
+  "atraso_top_uf": {
+    "valor": {
+      "AL": 23.9,
+      "MA": 19.7,
+      "PI": 16.0,
+      "CE": 15.3,
+      "SE": 15.2
+    },
+    "definicao": "UFs de destino com maior taxa de atraso",
+    "fonte": "orders+customers"
+  },
+  "reviews_total": {
+    "valor": 99224,
+    "definicao": "Avaliações no dataset",
+    "fonte": "order_reviews"
+  },
+  "pct_nota_1": {
+    "valor": 11.5,
+    "definicao": "% de avaliações nota 1",
+    "fonte": "order_reviews"
+  },
+  "pct_nota_1_2": {
+    "valor": 14.7,
+    "definicao": "% de avaliações nota 1 ou 2",
+    "fonte": "order_reviews"
+  },
+  "reviews_negativas": {
+    "valor": 14575,
+    "definicao": "Avaliações nota 1–2",
+    "fonte": "order_reviews"
+  },
+  "reviews_negativas_com_texto": {
+    "valor": 10994,
+    "definicao": "Avaliações nota 1–2 com título ou comentário",
+    "fonte": "order_reviews"
+  },
+  "motivos_reviews_negativas": {
+    "valor": {
+      "Não recebido": 39.5,
+      "Outros/genérico": 17.8,
+      "Item faltando": 10.4,
+      "Produto errado/diferente": 7.4,
+      "Qualidade/expectativa": 7.2,
+      "Atraso": 7.1,
+      "Atendimento/estorno": 5.4,
+      "Defeito/avaria": 5.1
+    },
+    "definicao": "Motivo principal (regras) em reviews 1–2 com texto",
+    "fonte": "order_reviews"
+  },
+  "grupos_reviews_negativas": {
+    "valor": {
+      "Entrega": 46.7,
+      "Outros": 17.8,
+      "Pedido incorreto": 17.8,
+      "Produto": 12.3,
+      "Atendimento e financeiro": 5.4
+    },
+    "definicao": "Grupo executivo do motivo principal",
+    "fonte": "order_reviews"
+  },
+  "pct_neg_em_pedido_atrasado": {
+    "valor": 33.8,
+    "definicao": "% das notas 1–2 (pedidos entregues) cujo pedido atrasou",
+    "fonte": "orders+reviews"
+  },
+  "reviews_negativas_12m": {
+    "valor": 11711,
+    "definicao": "Avaliações 1–2 criadas entre set/2017 e ago/2018",
+    "fonte": "order_reviews"
+  },
+  "clientes_unicos": {
+    "valor": 93358,
+    "definicao": "customer_unique_id com ao menos 1 pedido entregue",
+    "fonte": "orders+customers"
+  },
+  "taxa_recompra": {
+    "valor": 3.0,
+    "definicao": "% de clientes únicos com 2+ pedidos entregues",
+    "fonte": "orders+customers"
+  },
+  "recompras_validas": {
+    "valor": 1948,
+    "definicao": "Clientes com 2ª compra em dia diferente da 1ª",
+    "fonte": "orders"
+  },
+  "mediana_dias_2a_compra": {
+    "valor": 76,
+    "definicao": "Mediana de dias entre 1ª e 2ª compra (gap ≥ 1 dia)",
+    "fonte": "orders"
+  },
+  "pct_2a_compra_ate_30d": {
+    "valor": 29.3,
+    "definicao": "% das 2ªs compras que ocorrem em até 30 dias",
+    "fonte": "orders"
+  },
+  "pct_2a_compra_ate_60d": {
+    "valor": 44.4,
+    "definicao": "% das 2ªs compras que ocorrem em até 60 dias",
+    "fonte": "orders"
+  },
+  "pct_2a_compra_ate_90d": {
+    "valor": 54.4,
+    "definicao": "% das 2ªs compras que ocorrem em até 90 dias",
+    "fonte": "orders"
+  },
+  "pct_2a_compra_ate_180d": {
+    "valor": 75.4,
+    "definicao": "% das 2ªs compras que ocorrem em até 180 dias",
+    "fonte": "orders"
+  },
+  "ticket_2a_compra": {
+    "valor": 148.35,
+    "definicao": "Valor médio da 2ª compra",
+    "fonte": "orders+payments"
+  },
+  "recompra_1a_atrasada": {
+    "valor": 1.56,
+    "definicao": "Recompra quando a 1ª compra atrasou",
+    "fonte": "orders+reviews"
+  },
+  "recompra_1a_no_prazo": {
+    "valor": 2.13,
+    "definicao": "Recompra quando a 1ª compra chegou no prazo",
+    "fonte": "orders+reviews"
+  },
+  "recompra_top_categorias": {
+    "valor": {
+      "fashion_bolsas_e_acessorios": 3.6,
+      "moveis_decoracao": 2.7,
+      "esporte_lazer": 2.7,
+      "cama_mesa_banho": 2.6,
+      "pet_shop": 2.5
+    },
+    "definicao": "Categorias da 1ª compra com maior recompra (≥1.000 clientes)",
+    "fonte": "orders+items+products"
+  },
+  "priorizacao": {
+    "valor": {
+      "LogiPredict": 4.75,
+      "SentimentDesk": 4.6,
+      "WinBack": 4.2,
+      "SellerCare": 3.4,
+      "SmartFreight": 2.75,
+      "Maestro": 2.4
+    },
+    "definicao": "Score ponderado (pesos 30/25/20/15/10)",
+    "fonte": "avaliação do grupo"
+  },
+  "bc_pedidos_12m": {
+    "valor": 74206,
+    "definicao": "Pedidos entregues set/2017–ago/2018",
+    "fonte": "orders"
+  },
+  "bc_postagens_atrasadas_12m": {
+    "valor": 6689,
+    "definicao": "Pedidos com postagem atrasada no período",
+    "fonte": "orders+items"
+  },
+  "bc_novos_clientes_12m": {
+    "valor": 71693,
+    "definicao": "1ª compra entregue no período",
+    "fonte": "orders"
+  },
+  "bc_conversao_2a_compra_90d": {
+    "valor": 1.13,
+    "definicao": "% de clientes com 2ª compra em 1–90 dias",
+    "fonte": "orders"
+  },
+  "bc_premissas": {
+    "valor": {
+      "reducao_gap_atraso": {
+        "Conservador": 0.25,
+        "Base": 0.5,
+        "Otimista": 0.75
+      },
+      "min_manual": 12,
+      "min_agente": 3,
+      "custo_hora": 45.0,
+      "cobertura_sentiment": {
+        "Conservador": 0.5,
+        "Base": 0.7,
+        "Otimista": 0.9
+      },
+      "uplift_pp_2a_compra": {
+        "Conservador": 0.0025,
+        "Base": 0.005,
+        "Otimista": 0.01
+      }
+    },
+    "definicao": "Premissas do business case",
+    "fonte": "grupo"
+  },
+  "bc_logipredict": {
+    "valor": {
+      "Conservador": {
+        "atrasos_evitados": 335,
+        "notas_1_2_evitadas": 150
+      },
+      "Base": {
+        "atrasos_evitados": 670,
+        "notas_1_2_evitadas": 300
+      },
+      "Otimista": {
+        "atrasos_evitados": 1006,
+        "notas_1_2_evitadas": 451
+      }
+    },
+    "definicao": "Atrasos e notas 1–2 evitados por ano",
+    "fonte": "cálculo"
+  },
+  "bc_sentimentdesk": {
+    "valor": {
+      "Conservador": {
+        "horas_poupadas": 878,
+        "reais_poupados": 39525.0
+      },
+      "Base": {
+        "horas_poupadas": 1229,
+        "reais_poupados": 55334.0
+      },
+      "Otimista": {
+        "horas_poupadas": 1580,
+        "reais_poupados": 71144.0
+      }
+    },
+    "definicao": "Horas e R$ de triagem poupados por ano",
+    "fonte": "cálculo"
+  },
+  "bc_winback": {
+    "valor": {
+      "Conservador": {
+        "segundas_compras_extra": 179,
+        "receita_extra": 26589.0
+      },
+      "Base": {
+        "segundas_compras_extra": 358,
+        "receita_extra": 53178.0
+      },
+      "Otimista": {
+        "segundas_compras_extra": 716,
+        "receita_extra": 106357.0
+      }
+    },
+    "definicao": "2ªs compras e receita incremental por ano",
+    "fonte": "cálculo"
+  },
+  "transito_rotas_exemplos": {
+    "valor": {
+      "MG->MA": {
+        "pedidos": 61,
+        "mediana": 14.9,
+        "p75": 20.5,
+        "p90": 26.1
+      },
+      "SP->BA": {
+        "pedidos": 2307,
+        "mediana": 14.1,
+        "p75": 20.5,
+        "p90": 28.0
+      },
+      "SP->SP": {
+        "pedidos": 30735,
+        "mediana": 3.6,
+        "p75": 6.1,
+        "p90": 9.4
+      }
+    },
+    "definicao": "Trânsito (dias) por rota UF seller → UF cliente, usado nos exemplos do LogiPredict",
+    "fonte": "orders+sellers+customers"
+  },
+  "pct_2a_compra_mesma_categoria": {
+    "valor": 37.8,
+    "definicao": "% das 2ªs compras na mesma categoria da 1ª",
+    "fonte": "orders+items+products"
+  },
+  "categorias_2a_compra_exemplos": {
+    "valor": {
+      "cama_mesa_banho": {
+        "cama_mesa_banho": 46.5,
+        "moveis_decoracao": 9.3,
+        "utilidades_domesticas": 6.2
+      },
+      "beleza_saude": {
+        "beleza_saude": 50.7,
+        "perfumaria": 4.6,
+        "esporte_lazer": 4.6
+      }
+    },
+    "definicao": "Categorias mais comuns da 2ª compra por categoria da 1ª (exemplos do WinBack)",
+    "fonte": "orders+items+products"
+  }
+}

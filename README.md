@@ -1,8 +1,26 @@
-# 🚀 Tech Challenge — Agentic AI | Fase 1
+# 🚀 Tech Challenge — Agentic AI
 
 > **Pós-graduação em IA Agêntica (FIAP)**  
 > **Case: Olist Intelligent Marketplace**  
 > **Equipe de Consultoria Estratégica em IA**
+
+---
+
+## ▶️ Fase 2 (em andamento, entrega em 27/10/2026)
+
+**"Como os agentes de IA irão interagir com usuários, dados e processos da Olist para gerar valor real ao negócio?"**
+
+A Fase 2 detalha três agentes priorizados na jornada do pedido: **LogiPredict** (guardião do prazo), **SentimentDesk** (triagem de avaliações negativas) e **WinBack** (segunda compra), com casos de uso, fluxos operacionais, prompts testados com casos reais e business case.
+
+| Documento | Descrição |
+|---|---|
+| [docs/fase2/EVOLUCAO_FASE2.md](docs/fase2/EVOLUCAO_FASE2.md) | **Comece aqui:** evolução Fase 1 → 2, entregáveis e decisões |
+| [docs/fase2/RELATORIO_EXECUTIVO_FASE2.md](docs/fase2/RELATORIO_EXECUTIVO_FASE2.md) | Relatório Executivo v2 (fonte; o PDF é gerado a partir dele) |
+| [docs/fase2/prompts/PROMPTS_V2.md](docs/fase2/prompts/PROMPTS_V2.md) | Prompts estruturados v2 com 10 casos reais |
+| [docs/fase2/NUMEROS_OFICIAIS.md](docs/fase2/NUMEROS_OFICIAIS.md) | Fonte única de números (notebook 08) |
+| [notebooks/08_fase2_evidencias_business_case.ipynb](notebooks/08_fase2_evidencias_business_case.ipynb) | Cadeia de evidência, priorização e business case |
+
+> O conteúdo abaixo documenta a **Fase 1** (preservado).
 
 ---
 
@@ -258,8 +276,8 @@ Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderiz
 
 | Fase | Status | Foco |
 |------|--------|------|
-| **Fase 1** | 🔄 Em andamento | Fundamentos, EDA, visão estratégica |
-| Fase 2 | ⏳ Futuro | Casos de uso e desenho de agentes |
+| **Fase 1** | ✅ Entregue (80/90) | Fundamentos, EDA, visão estratégica |
+| **Fase 2** | 🔄 Em andamento ([plano](docs/fase2/PLANO_FASE2.md)) | Casos de uso e desenho de agentes |
 | Fase 3 | ⏳ Futuro | Protótipos e validação |
 | Fase 4 | ⏳ Futuro | Orquestração multiagentes |
 | Fase 5 | ⏳ Futuro | Governança e escala corporativa |

@@ -1,0 +1,161 @@
+{
+  "sentimentdesk": [
+    {
+      "motivo_baseline": "Não recebido",
+      "review_id": "0f58b4e74ba6c90a914d1180358239db",
+      "order_id": "66c14b06bc8003888862ecf57985bbaf",
+      "nota": 1,
+      "titulo": "",
+      "comentario": "Só chegou a mochila, estou aguardando a lancheira... Depois poderei avaliar adequadamente... Quando chegar a lancheira dou mais estrelas.",
+      "categoria": "papelaria",
+      "uf_cliente": "RJ",
+      "uf_seller": "SP",
+      "data_compra": "2017-12-13",
+      "prazo_estimado": "2018-01-12",
+      "data_entrega": "2018-01-03",
+      "atrasou": false,
+      "valor_pedido": 160.89,
+      "seller_id": "3d871de0142ce09b7081e2b9d1733cb1"
+    },
+    {
+      "motivo_baseline": "Item faltando",
+      "review_id": "14951d82da22dc7d9f55d0b06aa51b3f",
+      "order_id": "859980aae511377b7230f72d90bfc580",
+      "nota": 1,
+      "titulo": "",
+      "comentario": " a targaryen apenas me entregou um dos produtos ficando o outro sem entrega ... o que está faltando é relogio feminino corrente dourada casual ... gostaria de saber o que está acontecendo e porque a Amer",
+      "categoria": "relogios_presentes",
+      "uf_cliente": "RJ",
+      "uf_seller": "RJ",
+      "data_compra": "2018-03-16",
+      "prazo_estimado": "2018-04-05",
+      "data_entrega": "2018-04-02",
+      "atrasou": false,
+      "valor_pedido": 106.77,
+      "seller_id": "b1fc4f64df5a0e8b6913ab38803c57a9"
+    },
+    {
+      "motivo_baseline": "Produto errado/diferente",
+      "review_id": "18a3328f0b1345263abbe00868a5ff8e",
+      "order_id": "0e5423b2f5a2083884f519fbd18dd11a",
+      "nota": 2,
+      "titulo": "",
+      "comentario": " recebi os produtos dentro do prazo. o jogo de copo foi igual ,mas comprei 2 conjuntos de taças com uma estampa específica e veio outra completamente diferente. Me sinto insatisfeita e frustada.",
+      "categoria": "utilidades_domesticas",
+      "uf_cliente": "MG",
+      "uf_seller": "SP",
+      "data_compra": "2017-11-24",
+      "prazo_estimado": "2017-12-15",
+      "data_entrega": "2017-12-11",
+      "atrasou": false,
+      "valor_pedido": 136.92,
+      "seller_id": "98dac6635aee4995d501a3972e047414"
+    },
+    {
+      "motivo_baseline": "Defeito/avaria",
+      "review_id": "ddfc398c61c326dc40ab29f59369cc67",
+      "order_id": "a8b2111a24cd1ebe4246f720de1b238b",
+      "nota": 1,
+      "titulo": "",
+      "comentario": "Olá bom dia já mandei dois imais para informar q ao abrir a caixa vi q meu produto estava quebrado e nem o retirei da caixa nem da embalagem pq gostaria de uma solução",
+      "categoria": "ferramentas_jardim",
+      "uf_cliente": "SP",
+      "uf_seller": "ES",
+      "data_compra": "2017-07-04",
+      "prazo_estimado": "2017-07-28",
+      "data_entrega": "2017-07-11",
+      "atrasou": false,
+      "valor_pedido": 126.92,
+      "seller_id": "001cca7ae9ae17fb1caed9dfb1094831"
+    },
+    {
+      "motivo_baseline": "Atraso",
+      "review_id": "907f7bdbc6046c10be0fadc24182fcc3",
+      "order_id": "66fc98f7d344e1e2073260292fbe6e4d",
+      "nota": 1,
+      "titulo": "",
+      "comentario": "DEMORARAM MIL ANOS PRA MANDAR, QUANDO MANDARAM O FORNECEDOR NAO ENVIOU O CELULAR. DEPOIS ME ENVIOU A PROPOSTA DE OUTRO CELULAR EU ACEITEI, MAS NO FINAL NAO MANDOU NADA DE NADA",
+      "categoria": "telefonia",
+      "uf_cliente": "RJ",
+      "uf_seller": "SP",
+      "data_compra": "2018-03-06",
+      "prazo_estimado": "2018-04-06",
+      "data_entrega": "2018-04-03",
+      "atrasou": false,
+      "valor_pedido": 45.22,
+      "seller_id": "ea8482cd71df3c1969d7b9473ff13abc"
+    }
+  ],
+  "logipredict": [
+    {
+      "order_id": "cfed507ac357129f750f05a0d7d71b15",
+      "seller_id": "08cdbae123ff67ca4e36d9d641ce0119",
+      "uf_seller": "MG",
+      "uf_cliente": "MA",
+      "categoria": "moveis_sala",
+      "data_compra": "2018-02-25 12:15:02",
+      "limite_postagem": "2018-03-04 22:10:27",
+      "data_postagem": "2018-03-08 18:06:50",
+      "prazo_estimado": "2018-03-27",
+      "taxa_atraso_uf_destino_pct": 19.7,
+      "resultado_real": {
+        "data_entrega": "2018-04-06",
+        "atrasou": true
+      }
+    },
+    {
+      "order_id": "0016dfedd97fc2950e388d2971d718c7",
+      "seller_id": "a35124e2d763d7ca3fbe3b97d143200f",
+      "uf_seller": "SP",
+      "uf_cliente": "BA",
+      "categoria": "ferramentas_jardim",
+      "data_compra": "2017-04-28 19:54:40",
+      "limite_postagem": "2017-05-05 10:05:12",
+      "data_postagem": "2017-05-16 08:40:49",
+      "prazo_estimado": "2017-06-01",
+      "taxa_atraso_uf_destino_pct": 14.0,
+      "resultado_real": {
+        "data_entrega": "2017-05-22",
+        "atrasou": false
+      }
+    },
+    {
+      "order_id": "b5b17e32ff5821a918338446a51c6ce7",
+      "seller_id": "60da8bfa7eebe230b7d66ac4082d79b3",
+      "uf_seller": "SP",
+      "uf_cliente": "SP",
+      "categoria": "informatica_acessorios",
+      "data_compra": "2018-08-16 14:46:01",
+      "limite_postagem": "2018-08-20 15:04:10",
+      "data_postagem": "2018-08-17 11:30:00",
+      "prazo_estimado": "2018-08-29",
+      "taxa_atraso_uf_destino_pct": 5.9,
+      "resultado_real": {
+        "data_entrega": "2018-08-22",
+        "atrasou": false
+      }
+    }
+  ],
+  "winback": [
+    {
+      "customer_unique_id": "79fd243f3f81176107a29b2036579ce6",
+      "uf": "RS",
+      "data_1a_compra": "2018-04-18",
+      "data_entrega": "2018-04-27",
+      "categoria_1a_compra": "cama_mesa_banho",
+      "valor_1a_compra": 112.44,
+      "nota_1a_compra": 5,
+      "atrasou": false
+    },
+    {
+      "customer_unique_id": "dfa6666a1f4e7e4b1d918f49e32a6abc",
+      "uf": "SP",
+      "data_1a_compra": "2018-01-29",
+      "data_entrega": "2018-02-28",
+      "categoria_1a_compra": "beleza_saude",
+      "valor_1a_compra": 77.19,
+      "nota_1a_compra": 2,
+      "atrasou": true
+    }
+  ]
+}
