@@ -238,6 +238,16 @@
     "definicao": "Score ponderado (pesos 30/25/20/15/10)",
     "fonte": "avaliação do grupo"
   },
+  "bc_atraso_se_postagem_atrasada_12m": {
+    "valor": 27.6,
+    "definicao": "Janela set/17–ago/18: atraso quando a postagem foi após o limite",
+    "fonte": "orders+order_items"
+  },
+  "bc_atraso_se_postagem_no_prazo_12m": {
+    "valor": 7.5,
+    "definicao": "Janela set/17–ago/18: atraso quando a postagem foi no prazo",
+    "fonte": "orders+order_items"
+  },
   "bc_pedidos_12m": {
     "valor": 74206,
     "definicao": "Pedidos entregues set/2017–ago/2018",
@@ -285,16 +295,16 @@
   "bc_logipredict": {
     "valor": {
       "Conservador": {
-        "atrasos_evitados": 335,
-        "notas_1_2_evitadas": 150
+        "atrasos_evitados": 336,
+        "notas_1_2_evitadas": 151
       },
       "Base": {
-        "atrasos_evitados": 670,
-        "notas_1_2_evitadas": 300
+        "atrasos_evitados": 672,
+        "notas_1_2_evitadas": 302
       },
       "Otimista": {
-        "atrasos_evitados": 1006,
-        "notas_1_2_evitadas": 451
+        "atrasos_evitados": 1008,
+        "notas_1_2_evitadas": 453
       }
     },
     "definicao": "Atrasos e notas 1–2 evitados por ano",
@@ -307,11 +317,11 @@
         "reais_poupados": 39525.0
       },
       "Base": {
-        "horas_poupadas": 1229,
+        "horas_poupadas": 1230,
         "reais_poupados": 55334.0
       },
       "Otimista": {
-        "horas_poupadas": 1580,
+        "horas_poupadas": 1581,
         "reais_poupados": 71144.0
       }
     },
@@ -329,7 +339,7 @@
         "receita_extra": 53178.0
       },
       "Otimista": {
-        "segundas_compras_extra": 716,
+        "segundas_compras_extra": 717,
         "receita_extra": 106357.0
       }
     },

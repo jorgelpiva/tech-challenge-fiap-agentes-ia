@@ -46,14 +46,16 @@
 | `recompra_1a_no_prazo` | 2,13 | Recompra quando a 1ª compra chegou no prazo | orders+reviews |
 | `recompra_top_categorias` | fashion_bolsas_e_acessorios: 3,60; moveis_decoracao: 2,70; esporte_lazer: 2,70; cama_mesa_banho: 2,60; pet_shop: 2,50 | Categorias da 1ª compra com maior recompra (≥1.000 clientes) | orders+items+products |
 | `priorizacao` | LogiPredict: 4,75; SentimentDesk: 4,60; WinBack: 4,20; SellerCare: 3,40; SmartFreight: 2,75; Maestro: 2,40 | Score ponderado (pesos 30/25/20/15/10) | avaliação do grupo |
+| `bc_atraso_se_postagem_atrasada_12m` | 27,60 | Janela set/17–ago/18: atraso quando a postagem foi após o limite | orders+order_items |
+| `bc_atraso_se_postagem_no_prazo_12m` | 7,50 | Janela set/17–ago/18: atraso quando a postagem foi no prazo | orders+order_items |
 | `bc_pedidos_12m` | 74.206 | Pedidos entregues set/2017–ago/2018 | orders |
 | `bc_postagens_atrasadas_12m` | 6.689 | Pedidos com postagem atrasada no período | orders+items |
 | `bc_novos_clientes_12m` | 71.693 | 1ª compra entregue no período | orders |
 | `bc_conversao_2a_compra_90d` | 1,13 | % de clientes com 2ª compra em 1–90 dias | orders |
 | `bc_premissas` | reducao_gap_atraso: Conservador: 0,25; Base: 0,50; Otimista: 0,75; min_manual: 12; min_agente: 3; custo_hora: 45,00; cobertura_sentiment: Conservador: 0,50; Base: 0,70; Otimista: 0,90; uplift_pp_2a_compra: Conservador: 0,00; Base: 0,01; Otimista: 0,01 | Premissas do business case | grupo |
-| `bc_logipredict` | Conservador: atrasos_evitados: 335; notas_1_2_evitadas: 150; Base: atrasos_evitados: 670; notas_1_2_evitadas: 300; Otimista: atrasos_evitados: 1.006; notas_1_2_evitadas: 451 | Atrasos e notas 1–2 evitados por ano | cálculo |
-| `bc_sentimentdesk` | Conservador: horas_poupadas: 878; reais_poupados: 39.525,00; Base: horas_poupadas: 1.229; reais_poupados: 55.334,00; Otimista: horas_poupadas: 1.580; reais_poupados: 71.144,00 | Horas e R$ de triagem poupados por ano | cálculo |
-| `bc_winback` | Conservador: segundas_compras_extra: 179; receita_extra: 26.589,00; Base: segundas_compras_extra: 358; receita_extra: 53.178,00; Otimista: segundas_compras_extra: 716; receita_extra: 106.357,00 | 2ªs compras e receita incremental por ano | cálculo |
+| `bc_logipredict` | Conservador: atrasos_evitados: 336; notas_1_2_evitadas: 151; Base: atrasos_evitados: 672; notas_1_2_evitadas: 302; Otimista: atrasos_evitados: 1.008; notas_1_2_evitadas: 453 | Atrasos e notas 1–2 evitados por ano | cálculo |
+| `bc_sentimentdesk` | Conservador: horas_poupadas: 878; reais_poupados: 39.525,00; Base: horas_poupadas: 1.230; reais_poupados: 55.334,00; Otimista: horas_poupadas: 1.581; reais_poupados: 71.144,00 | Horas e R$ de triagem poupados por ano | cálculo |
+| `bc_winback` | Conservador: segundas_compras_extra: 179; receita_extra: 26.589,00; Base: segundas_compras_extra: 358; receita_extra: 53.178,00; Otimista: segundas_compras_extra: 717; receita_extra: 106.357,00 | 2ªs compras e receita incremental por ano | cálculo |
 | `transito_rotas_exemplos` | MG->MA: pedidos: 61; mediana: 14,90; p75: 20,50; p90: 26,10; SP->BA: pedidos: 2.307; mediana: 14,10; p75: 20,50; p90: 28,00; SP->SP: pedidos: 30.735; mediana: 3,60; p75: 6,10; p90: 9,40 | Trânsito (dias) por rota UF seller → UF cliente, usado nos exemplos do LogiPredict | orders+sellers+customers |
 | `pct_2a_compra_mesma_categoria` | 37,80 | % das 2ªs compras na mesma categoria da 1ª | orders+items+products |
 | `categorias_2a_compra_exemplos` | cama_mesa_banho: cama_mesa_banho: 46,50; moveis_decoracao: 9,30; utilidades_domesticas: 6,20; beleza_saude: beleza_saude: 50,70; perfumaria: 4,60; esporte_lazer: 4,60 | Categorias mais comuns da 2ª compra por categoria da 1ª (exemplos do WinBack) | orders+items+products |

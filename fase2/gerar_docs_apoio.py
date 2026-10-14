@@ -111,7 +111,7 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
         ('Substituído', 'Tabela de desafios', 'Desafio · Evidência · Resposta agêntica · KPI (6 agentes)', 'Mesmos 6 desafios + coluna **"Situação na Fase 2"** (3 detalhados, 3 absorvidos/backlog/Fase 4)'),
         ('Substituído', 'Recomendação', '"Jornada progressiva com cinco agentes especialistas e um orquestrador"', '**3 agentes priorizados** na jornada do pedido + **piloto de 90 dias da Wave 1**'),
         ('Acrescentado', 'Pergunta e resposta da Fase 2', '—', 'Atraso → 54% de notas 1–2; 27% dos atrasos nascem na postagem; atraso reduz recompra'),
-        ('Acrescentado', 'Valor esperado', '—', 'Cenário base: 670 atrasos evitados, 1.229 h poupadas (R$ 55 mil), 358 2ªs compras (R$ 53 mil)'),
+        ('Acrescentado', 'Valor esperado', '—', 'Cenário base: 672 atrasos evitados, 1.230 h poupadas (R$ 55 mil), 358 2ªs compras (R$ 53 mil), com memória de cálculo na Seção 13.4'),
         ('Corrigido', 'Links', 'Vídeo da Fase 1 + GitHub', 'Vídeo da Fase 2 + vídeo da Fase 1 + GitHub'),
     ]),
     ('2. Contexto e Problema de Negócio', '2. Contexto e Problema', [
@@ -178,7 +178,7 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
         ('Corrigido', 'Tempo de resposta a reviews', '3,15 dias', '**A medir no piloto** (a coluna era a resposta do cliente à pesquisa)'),
         ('Retirado', 'Nota sobre divergência', '"essa divergência deve ser conferida antes da submissão"', 'Divergência resolvida'),
         ('Acrescentado', 'Novos baselines', '—', 'Conversão em 2ª compra em 90 dias (1,13%); postagem após o limite (9,0%)'),
-        ('Acrescentado', '13.2 e 13.3', '—', 'Metas do piloto + business case em 3 cenários'),
+        ('Acrescentado', '13.2 a 13.4', '—', 'Metas do piloto + business case em 3 cenários + **memória de cálculo** (cada entrada, fórmula e conta)'),
     ]),
     ('13. Recomendação → 14. Recomendação Executiva', '14. Recomendação Executiva', [
         ('Substituído', 'Recomendação', 'Começar por experiência e logística; depois retenção e sellers; depois frete e orquestração', '**Aprovar piloto de 90 dias da Wave 1** com grupo controle e metas'),
@@ -279,6 +279,7 @@ APOIO = [
     ('Cadeia de evidência (racional dos achados)', '4.5 Da evidência à decisão', 'notebooks/08_fase2_evidencias_business_case.ipynb'),
     ('Fonte única de números', '15. Fontes do Projeto', 'fase2/NUMEROS_OFICIAIS.md'),
     ('Business case e metas do piloto', '13.3 Business case', 'notebooks/08_fase2_evidencias_business_case.ipynb'),
+    ('Memória de cálculo (conta passo a passo)', '13.4 Memória de cálculo', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 13.4)'),
     ('Governança e humano no loop', '11.3 Quem decide', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 11)'),
     ('Rastreabilidade dos requisitos', 'Apêndice A', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Apêndice A)'),
 ]

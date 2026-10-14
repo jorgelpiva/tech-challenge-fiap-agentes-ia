@@ -44,7 +44,7 @@ Por isso, **dos seis agentes propostos na Fase 1, três foram priorizados e deta
 | Peso do frete | 21,34% do pedido | SmartFreight | Backlog (falta dado de concorrência) | Frete / conversão |
 | Decisão fragmentada | Sinais dispersos | Maestro | Orquestração na Fase 4 | Tempo para decisão |
 
-**Valor esperado no cenário base (12 meses, escala do dataset):** 670 atrasos evitados e cerca de 300 avaliações 1–2 a menos (LogiPredict); 1.229 horas de triagem poupadas, ou R$ 55 mil (SentimentDesk); 358 segundas compras adicionais, ou R$ 53 mil de receita (WinBack).
+**Valor esperado no cenário base (12 meses, escala do dataset):** 672 atrasos evitados e 302 avaliações 1–2 a menos (LogiPredict); 1.230 horas de triagem poupadas, ou R$ 55 mil (SentimentDesk); 358 segundas compras adicionais, ou R$ 53 mil de receita (WinBack). O cálculo completo, com cada número de entrada e premissa, está na Seção 13.4.
 
 **Recomendação:** aprovar um **piloto de 90 dias da Wave 1 (LogiPredict + SentimentDesk)**, com grupo controle. O WinBack entra na Wave 2.
 
@@ -561,13 +561,90 @@ Janela: set/2017 a ago/2018, **na escala do dataset público**. Como o dataset �
 
 | Agente | Lógica do cálculo | Conservador | Base | Otimista |
 |---|---|---|---|---|
-| LogiPredict | 6.689 postagens atrasadas × diferença de atraso (24,4% → 6,5%) × % eliminada (25/50/75%) | 335 atrasos · 150 notas 1–2 a menos | **670 atrasos · 300 notas 1–2 a menos** | 1.006 atrasos · 451 notas 1–2 a menos |
-| SentimentDesk | 11.711 avaliações 1–2 × % tratada (50/70/90%) × 9 min poupados × R$ 45/h | 878 h · R$ 39,5 mil | **1.229 h · R$ 55,3 mil** | 1.580 h · R$ 71,1 mil |
-| WinBack | 71.693 novos clientes × aumento da conversão (+0,25/+0,5/+1,0 p.p.) × ticket da 2ª compra (R$ 148,35) | 179 compras · R$ 26,6 mil | **358 compras · R$ 53,2 mil** | 716 compras · R$ 106,4 mil |
+| LogiPredict | Postagens atrasadas × diferença de atraso que o agente elimina; atrasos evitados × diferença de notas 1–2 | 336 atrasos · 151 notas 1–2 a menos | **672 atrasos · 302 notas 1–2 a menos** | 1.008 atrasos · 453 notas 1–2 a menos |
+| SentimentDesk | Avaliações 1–2 tratadas com o agente × minutos poupados × custo do analista | 878 h · R$ 39,5 mil | **1.230 h · R$ 55,3 mil** | 1.581 h · R$ 71,1 mil |
+| WinBack | Novos clientes × aumento da conversão em 2ª compra × ticket da 2ª compra | 179 compras · R$ 26,6 mil | **358 compras · R$ 53,2 mil** | 717 compras · R$ 106,4 mil |
 
-**Premissas:** 12 minutos de triagem manual contra 3 com o agente; analista a R$ 45/hora; incrementos de conversão em pontos percentuais sobre a base de 1,13%. O efeito indireto (cliente com entrega no prazo recompra mais) **não foi somado**.
+O efeito indireto (cliente com entrega no prazo recompra mais) **não foi somado**, para manter o cálculo conservador. A conta completa, com cada número de entrada, está na Seção 13.4.
 
 > **Leitura executiva.** O maior retorno está na combinação: menos atrasos geram menos avaliações negativas, o que reduz a fila do CX e preserva a chance de segunda compra. Os três agentes atacam elos da mesma corrente.
+
+## 13.4 Memória de cálculo do business case (novo na Fase 2)
+Todas as contas abaixo podem ser refeitas com calculadora a partir dos números impressos; os resultados são arredondados para o inteiro mais próximo apenas no final. Os dados de entrada vêm do notebook `08_fase2_evidencias_business_case.ipynb` e estão listados, com definição, em `fase2/NUMEROS_OFICIAIS.md`.
+
+**Janela de cálculo:** pedidos e avaliações de **set/2017 a ago/2018** (12 meses mais recentes e completos do dataset).
+
+> **Como ler esta seção.** Para cada agente há (1) a lógica **em linguagem simples**, (2) uma tabela com cada número usado: o que é **dado** saiu do dataset; o que é **premissa** é uma estimativa do grupo, a ser confirmada no piloto, e (3) a conta de cada cenário. "p.p." significa **pontos percentuais**: de 7,5% para 27,6% são 20,1 p.p. de diferença.
+
+### LogiPredict: atrasos e avaliações negativas evitados
+
+**Em linguagem simples.** Nos últimos 12 meses, **6.689 pedidos** foram postados pelo seller depois do prazo de postagem. Nesse grupo, **cerca de 28 em cada 100** chegaram atrasados ao cliente; quando o seller posta no prazo, são **7 a 8 em cada 100**. Postar no prazo, portanto, evita **cerca de 20 atrasos a cada 100 pedidos**. O LogiPredict lembra o seller antes do limite e aciona operações. Se ele eliminar **metade** dessa diferença (cenário base), são **10 atrasos a menos a cada 100 pedidos** desse grupo, ou **672 no ano**. E como um pedido atrasado recebe nota 1–2 muito mais vezes (54 em cada 100, contra 9 em cada 100 no prazo), **cada 100 atrasos evitados poupam cerca de 45 avaliações negativas**: **302 no ano**.
+
+| Entrada | Valor | Origem |
+|---|---|---|
+| A. Pedidos entregues com postagem após o limite (12 meses) | **6.689** | `orders.order_delivered_carrier_date` > `order_items.shipping_limit_date` |
+| B. Taxa de atraso quando a postagem foi após o limite (12 meses) | **27,6%** | `orders`: entrega > prazo estimado |
+| C. Taxa de atraso quando a postagem foi no prazo (12 meses) | **7,5%** | idem |
+| D. Diferença que o agente pode eliminar (B − C) | **20,1 p.p.** | cálculo |
+| E. % de notas 1–2 em pedido atrasado | **54,1%** | `orders` + `order_reviews` (dataset inteiro) |
+| F. % de notas 1–2 em pedido no prazo | **9,2%** | idem |
+| G. Notas 1–2 a menos por atraso evitado (E − F) | **44,9 p.p.** | cálculo |
+| H. % da diferença D eliminada pelo agente (premissa) | **25% / 50% / 75%** | premissa do grupo (cenários) |
+
+**Fórmulas:** atrasos evitados = A × D × H · notas 1–2 evitadas = atrasos evitados × G
+
+| Cenário | Atrasos evitados | Notas 1–2 evitadas |
+|---|---|---|
+| Conservador (H = 25%) | 6.689 × 20,1% × 25% = 336,1 → **336** | 336,1 × 44,9% = 150,9 → **151** |
+| Base (H = 50%) | 6.689 × 20,1% × 50% = 672,2 → **672** | 672,2 × 44,9% = 301,8 → **302** |
+| Otimista (H = 75%) | 6.689 × 20,1% × 75% = 1.008,4 → **1.008** | 1.008,4 × 44,9% = 452,8 → **453** |
+
+*Por que 27,6% e não 24,4%?* O 24,4% (Seção 4.2) é a média de 2016–2018. Para o business case foi usada a janela dos últimos 12 meses, mais próxima da operação recente, na qual a postagem atrasada pesou mais.
+
+### SentimentDesk: horas de triagem poupadas
+
+**Em linguagem simples.** Hoje, cada avaliação negativa exige que alguém leia, entenda o problema, escreva uma resposta e encaminhe o caso: estimamos **12 minutos**. Com o agente, a pessoa só confere o que já chega pronto (motivo, resumo e resposta sugerida): **3 minutos**. São **9 minutos poupados por avaliação**. No ano foram **11.711 avaliações** nota 1–2. Supondo que **70%** passem pelo agente (o restante continua manual: casos críticos e de baixa confiança), são cerca de **8.200 avaliações × 9 minutos ≈ 1.230 horas**, o equivalente a **7 a 8 meses de trabalho de um analista em tempo integral**. A R$ 45 por hora, **R$ 55 mil por ano**.
+
+| Entrada | Valor | Origem |
+|---|---|---|
+| A. Avaliações nota 1–2 criadas em 12 meses | **11.711** | `order_reviews` (`review_creation_date` na janela) |
+| B. % das avaliações tratadas com apoio do agente (premissa) | **50% / 70% / 90%** | premissa do grupo (cenários) |
+| C. Tempo manual por avaliação (ler, classificar, responder, encaminhar) | **12 min** | premissa do grupo |
+| D. Tempo com o agente (revisar o que o agente preparou) | **3 min** | premissa do grupo |
+| E. Minutos poupados por avaliação (C − D) | **9 min** | cálculo |
+| F. Custo da hora do analista de CX (com encargos) | **R$ 45,00** | premissa do grupo |
+
+**Fórmulas:** horas poupadas = A × B × E ÷ 60 · economia = horas poupadas × F
+
+| Cenário | Horas poupadas | Economia anual |
+|---|---|---|
+| Conservador (B = 50%) | 11.711 × 50% × 9 ÷ 60 = 878,3 → **878 h** | 878,3 × R$ 45 = **R$ 39.525** |
+| Base (B = 70%) | 11.711 × 70% × 9 ÷ 60 = 1.229,7 → **1.230 h** | 1.229,7 × R$ 45 = **R$ 55.334** |
+| Otimista (B = 90%) | 11.711 × 90% × 9 ÷ 60 = 1.581,0 → **1.581 h** | 1.581,0 × R$ 45 = **R$ 71.144** |
+
+### WinBack: segundas compras e receita adicional
+
+**Em linguagem simples.** Hoje, de cada **1.000 clientes novos**, cerca de **11 voltam** a comprar em até 90 dias (1,13%). O cenário base supõe que o contato do WinBack, no momento certo e com a categoria certa, faça voltar **mais 5 em cada 1.000** (de 11 para 16). Com **71.693 clientes novos** no ano, isso dá **358 segundas compras a mais**. Como a 2ª compra vale em média **R$ 148,35**, são **R$ 53 mil por ano**.
+
+| Entrada | Valor | Origem |
+|---|---|---|
+| A. Clientes com 1ª compra entregue em 12 meses | **71.693** | `orders` + `customers.customer_unique_id` |
+| B. Conversão atual em 2ª compra em até 90 dias | **1,13%** | `orders` (2ª compra entre 1 e 90 dias após a 1ª) |
+| C. Aumento da conversão pelo agente (premissa, pontos percentuais) | **+0,25 / +0,5 / +1,0 p.p.** | premissa do grupo (cenários); o base leva 1,13% a 1,63% |
+| D. Valor médio da 2ª compra | **R$ 148,35** | `order_payments` das 2ªs compras |
+
+**Fórmulas:** segundas compras adicionais = A × C · receita adicional = segundas compras adicionais × D
+
+| Cenário | Segundas compras adicionais | Receita adicional |
+|---|---|---|
+| Conservador (C = +0,25 p.p.) | 71.693 × 0,25% = 179,2 → **179** | 179,2 × R$ 148,35 = **R$ 26.589** |
+| Base (C = +0,5 p.p.) | 71.693 × 0,5% = 358,5 → **358** | 358,5 × R$ 148,35 = **R$ 53.178** |
+| Otimista (C = +1,0 p.p.) | 71.693 × 1,0% = 716,9 → **717** | 716,9 × R$ 148,35 = **R$ 106.357** |
+
+### Como ler esses números
+- **São valores na escala do dataset público**, que é uma amostra da operação da Olist. A lógica escala linearmente: com o volume real, multiplica-se A de cada agente.
+- **As premissas (H, B, C, D, F e o aumento de conversão) são do grupo** e devem ser substituídas por valores medidos no piloto, que tem grupo controle justamente para isso.
+- **Custos de implantação não estão incluídos.** Eles dependem da plataforma escolhida e serão estimados na Fase 3, com o protótipo.
 
 # 14. Recomendação Executiva (atualizado na Fase 2)
 

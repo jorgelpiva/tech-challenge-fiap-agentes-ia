@@ -324,16 +324,20 @@ code(r"""
 P0, P1 = '2017-09-01', '2018-09-01'
 dd = d[(d.order_purchase_timestamp>=P0)&(d.order_purchase_timestamp<P1)]
 ped12 = len(dd); post_atr12 = int(dd.postagem_atrasada.sum())
-gap_atr = dd[dd.postagem_atrasada].atrasado.mean() - dd[~dd.postagem_atrasada].atrasado.mean()
-delta_neg = neg_atr - neg_ok
+atr_pa12 = dd[dd.postagem_atrasada].atrasado.mean(); atr_po12 = dd[~dd.postagem_atrasada].atrasado.mean()
+# o cálculo usa as taxas ARREDONDADAS (1 casa, em %) que aparecem no relatório → qualquer pessoa refaz a conta à mão
+gap_atr = (round(atr_pa12*100,1) - round(atr_po12*100,1)) / 100
+reg('bc_atraso_se_postagem_atrasada_12m', round(float(atr_pa12*100),1), 'Janela set/17–ago/18: atraso quando a postagem foi após o limite', 'orders+order_items')
+reg('bc_atraso_se_postagem_no_prazo_12m', round(float(atr_po12*100),1), 'Janela set/17–ago/18: atraso quando a postagem foi no prazo', 'orders+order_items')
+delta_neg = (round(neg_atr*100,1) - round(neg_ok*100,1)) / 100
 cen = {'Conservador':0.25, 'Base':0.50, 'Otimista':0.75}
-logi = {k: {'atrasos_evitados': int(post_atr12*gap_atr*f), 'notas_1_2_evitadas': int(post_atr12*gap_atr*f*delta_neg)} for k,f in cen.items()}
+logi = {k: {'atrasos_evitados': round(post_atr12*gap_atr*f), 'notas_1_2_evitadas': round(post_atr12*gap_atr*f*delta_neg)} for k,f in cen.items()}
 
 # SentimentDesk: produtividade da triagem + resposta
 MIN_MANUAL, MIN_AGENTE, CUSTO_HORA = 12, 3, 45.0   # premissas: minutos por caso e custo/hora do analista
 neg12 = N['reviews_negativas_12m']['valor']
 cob = {'Conservador':0.5, 'Base':0.7, 'Otimista':0.9}  # % dos casos tratados com apoio do agente
-senti = {k: {'horas_poupadas': int(neg12*f*(MIN_MANUAL-MIN_AGENTE)/60),
+senti = {k: {'horas_poupadas': round(neg12*f*(MIN_MANUAL-MIN_AGENTE)/60),
              'reais_poupados': round(neg12*f*(MIN_MANUAL-MIN_AGENTE)/60*CUSTO_HORA, 0)} for k,f in cob.items()}
 
 # WinBack: novos clientes no período x aumento da conversão em 2ª compra (90 dias)
@@ -341,7 +345,7 @@ novos12 = int(((prim.order_purchase_timestamp>=P0)&(prim.order_purchase_timestam
 base90 = float(((fs.gap>=1)&(fs.gap<=90)).sum()/len(fs))
 upl = {'Conservador':0.0025, 'Base':0.005, 'Otimista':0.010}   # pontos percentuais absolutos
 tk2 = N['ticket_2a_compra']['valor']
-win = {k: {'segundas_compras_extra': int(novos12*u), 'receita_extra': round(novos12*u*tk2, 0)} for k,u in upl.items()}
+win = {k: {'segundas_compras_extra': round(novos12*u), 'receita_extra': round(novos12*u*tk2, 0)} for k,u in upl.items()}
 
 reg('bc_pedidos_12m', ped12, 'Pedidos entregues set/2017–ago/2018', 'orders')
 reg('bc_postagens_atrasadas_12m', post_atr12, 'Pedidos com postagem atrasada no período', 'orders+items')

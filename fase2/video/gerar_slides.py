@@ -149,13 +149,19 @@ imagem(sl, F2 / 'fluxos' / 'jornada_multiagente.png', Inches(0.5), Inches(1.55),
 
 # 11 · valor
 sl = novo('Valor esperado (cenário base, 12 meses, escala do dataset)', 'Premissas conservadoras; validação com grupo controle no piloto',
-          notas='[Jorge · 4:10–4:35] No cenário base: 670 atrasos evitados e cerca de 300 avaliações negativas a menos, 1.229 horas de triagem poupadas e 358 segundas compras adicionais. '
+          notas='[Jorge · 4:10–4:35] No cenário base: 672 atrasos evitados e 302 avaliações negativas a menos, 1.230 horas de triagem poupadas e 358 segundas compras adicionais. '
                 'O ganho maior vem da combinação: menos atraso gera menos detrator e preserva a recompra.')
-numero(sl, Inches(0.7), Inches(1.9), '670', 'atrasos evitados · ~300 notas 1–2 a menos (LogiPredict)', AG['LogiPredict'])
-numero(sl, Inches(4.9), Inches(1.9), '1.229 h', 'de triagem poupadas · R$ 55 mil (SentimentDesk)', AG['SentimentDesk'])
+numero(sl, Inches(0.7), Inches(1.9), '672', 'atrasos evitados · 302 notas 1–2 a menos (LogiPredict)', AG['LogiPredict'])
+numero(sl, Inches(4.9), Inches(1.9), '1.230 h', 'de triagem poupadas · R$ 55 mil (SentimentDesk)', AG['SentimentDesk'])
 numero(sl, Inches(9.1), Inches(1.9), '358', '2ªs compras adicionais · R$ 53 mil (WinBack)', AG['WinBack'])
-texto(sl, Inches(0.7), Inches(4.4), Inches(12), Inches(2.2), ['**Metas do piloto (90 dias):** −1 p.p. de atraso nas rotas do Nordeste · 90% das avaliações respondidas em < 24h · ≥ 85% de classificação correta · falso positivo do aviso ≤ 20%',
-      '**Governança:** agente executa o que é reversível; pessoas decidem compensação, transportadora e incentivo acima do teto.'], 17, INK)
+# fórmula de cada número, para o slide ser rastreável (conta completa: Seção 13.4 do relatório)
+for x, f in ((0.7, '6.689 postagens atrasadas × 20,1 p.p. de atraso × 50% eliminado'),
+             (4.9, '11.711 avaliações 1–2 × 70% × 9 min poupados ÷ 60 × R$ 45/h'),
+             (9.1, '71.693 novos clientes × +0,5 p.p. de conversão × R$ 148,35')):
+    texto(sl, Inches(x), Inches(3.55), Inches(3.9), Inches(0.8), f, 12, CINZA)
+texto(sl, Inches(0.7), Inches(4.6), Inches(12), Inches(2.0), ['**Metas do piloto (90 dias):** −1 p.p. de atraso nas rotas do Nordeste · 90% das avaliações respondidas em < 24h · ≥ 85% de classificação correta · falso positivo do aviso ≤ 20%',
+      '**Governança:** agente executa o que é reversível; pessoas decidem compensação, transportadora e incentivo acima do teto.',
+      'Memória de cálculo completa (entradas, premissas e contas): Seção 13.4 do relatório.'], 16, INK)
 
 # 12 · pedido
 sl = novo('Nossa recomendação', notas='[Jorge · 4:35–5:00] Pedimos a aprovação de um piloto de 90 dias com LogiPredict e SentimentDesk, focado nas rotas do Nordeste, com grupo controle e as metas que mostramos. '
