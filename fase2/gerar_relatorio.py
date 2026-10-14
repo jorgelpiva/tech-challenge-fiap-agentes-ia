@@ -164,15 +164,17 @@ def p(texto='', tam=10, cor=None, negrito=False, alinh=None, depois=None, antes=
 
 p('TECH CHALLENGE · FASE 2', 13, AZUL, True, antes=60)
 p('Olist Intelligent Marketplace', 28, AZUL_ESC, True, depois=2)
-p('Do diagnóstico à operação: como os agentes de IA vão funcionar na Olist', 16, CINZA, depois=26)
-p('Relatório Executivo · evolução do relatório da Fase 1', 11, None, True)
+p('Relatório Executivo e Visão Estratégica de IA Agêntica', 17, CINZA, depois=4)
+p('Versão 2.0 · evolução do relatório da Fase 1 com os entregáveis da Fase 2', 12, AZUL, True, depois=26)
 p('Pós-graduação em IA Agêntica · FIAP', 10)
 p('Base: Brazilian E-Commerce Public Dataset by Olist (2016–2018) · 99.441 pedidos · R$ 16 milhões', 10)
 p(f"Versão {'final' if FINAL else 'rascunho para revisão do grupo'} · {CFG['DATA_VERSAO']}", 10, CINZA, depois=26)
 p('Equipe', 10, None, True, depois=2)
 for m in CFG['EQUIPE']:
     p(m, 9, depois=1)
-p('Pergunta da Fase 2', 10, None, True, antes=22, depois=2)
+p('Pergunta central (Fase 1)', 10, None, True, antes=18, depois=2)
+p('“Como a Olist poderia utilizar IA Generativa e Agentes de IA para melhorar sua operação e seus indicadores de negócio?”', 11, CINZA, depois=8)
+p('Pergunta da Fase 2', 10, None, True, depois=2)
 p('“Como os agentes de IA irão interagir com usuários, dados e processos da Olist para gerar valor real ao negócio?”', 12, AZUL_ESC)
 lk = p('', antes=18, depois=1); runs(lk, 'Vídeo executivo (Fase 2): ', tam=9, negrito=True); runs(lk, '{{LINK_VIDEO}}', tam=9)
 lk = p('', depois=1); runs(lk, 'Repositório: ', tam=9, negrito=True); runs(lk, '{{LINK_GITHUB}}', tam=9)
@@ -275,6 +277,8 @@ while i < len(linhas):
         cap, cam = m.groups()
         par = doc.add_paragraph(); par.alignment = WD_ALIGN_PARAGRAPH.CENTER; par.paragraph_format.keep_with_next = True
         larg_img = LARG['util'] if LARG['util'] < Cm(20) else Cm(23.5)
+        if cam.startswith('img/'):
+            larg_img = int(larg_img * 0.72)   # gráficos menores que os fluxos/diagramas
         par.add_run().add_picture(str(AQUI / cam), width=larg_img)
         c = doc.add_paragraph(); c.alignment = WD_ALIGN_PARAGRAPH.CENTER
         runs(c, cap, tam=8.5, cor=CINZA); c.runs[0].italic = True

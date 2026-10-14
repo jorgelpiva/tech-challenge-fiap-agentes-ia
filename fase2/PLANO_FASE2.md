@@ -25,9 +25,9 @@ Critérios de avaliação (iguais aos da Fase 1): visão estratégica · IA × o
 
 ## 3. Feedback da Fase 1 (real)
 Nota inicial 60/90, revisada para 80/90 após contato no Discord (29/09). O professor justificou a revisão pelo link do vídeo: o PDF dizia "[INSERIR LINK]" no apêndice, embora o link estivesse na página 2. O feedback escrito permanece válido e guiou a Fase 2:
-1. Detalhar o racional de onde partiram os achados → **cadeia de evidência** (relatório §3).
-2. Ações dos agentes muito amplas, carecendo de especialização → **escopo fechado por agente** (§5–§8).
-3. Múltiplos objetivos; priorizar o mais próximo do negócio → **matriz de priorização, 6 → 3 agentes** (§4).
+1. Detalhar o racional de onde partiram os achados → **cadeia de evidência** (relatório §4.5).
+2. Ações dos agentes muito amplas, carecendo de especialização → **escopo fechado por agente** (§8–§10).
+3. Múltiplos objetivos; priorizar o mais próximo do negócio → **matriz de priorização, 6 → 3 agentes** (§5.3).
 4. Falha de revisão → **fonte única de números + QA automático no gerador** (sem placeholders).
 
 Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap contraditório (Wave 1 × Fase A) e divergência 12,47 × 12,56 dias. Tudo corrigido.
@@ -60,7 +60,8 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | W3 | 3 fluxos swimlane + jornada multiagente + tabela de exceções + RACI | ✅ |
 | W4 | Prompts v2 + 10 exemplos com casos reais (`prompts/PROMPTS_V2.md`) | ✅ |
 | W5 | Business case em 3 cenários + indicadores com metas do piloto | ✅ |
-| W6 | Relatório v2: fonte MD + gerador DOCX/PDF + QA automático (21 págs.) | ✅ rascunho |
+| W6 | Relatório v2: fonte MD + gerador DOCX/PDF + QA automático | ✅ rascunho |
+| W6b | Relatório reestruturado como **versão 2.0 do relatório da Fase 1** (mesmas seções, Fase 1 corrigida + Fase 2 incrementada; 26 págs.) | ✅ 14/10 |
 | W7 | Roteiro do vídeo + 12 slides com notas do apresentador | ✅ |
 
 ### A fazer até 27/10
@@ -79,6 +80,12 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 
 ## 6. Log de decisões e sessões
 > Mais recente no topo.
+
+### 2026-10-14 — Sessão 3: reorganização e relatório como evolução da Fase 1
+- Repositório reorganizado: uma pasta por fase na raiz (`fase1/`, `fase2/`); `notebooks/` e `data/` compartilhados.
+- Ponto levantado pelo Jorge: o enunciado pede **evoluir** o relatório da Fase 1. O rascunho anterior parecia um documento novo.
+- Relatório reescrito como **versão 2.0**: mesmas seções da Fase 1 (1 a 14 + apêndices), conteúdo da Fase 1 corrigido, entregáveis da Fase 2 inseridos (seções 4.5, 5.3, 7.2, 8, 9, 10, 11.3, 13.2, 13.3), "Histórico do Documento" com as mudanças e marcas *atualizado/novo* nos títulos; arquitetura da Fase 1 incluída como imagem. 26 páginas.
+- Arquivos de `fase1/` não alterados (registro do entregue); as correções aparecem na versão 2.0.
 
 ### 2026-10-12 — Sessão 2: execução do rascunho completo
 - Dataset baixado do repositório oficial da Olist (`olist/work-at-olist-data`) em `data/olist/` (fora do Git).

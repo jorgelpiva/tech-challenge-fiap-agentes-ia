@@ -1,69 +1,126 @@
 <!--
-FONTE ÚNICA do Relatório Executivo da Fase 2.
+FONTE ÚNICA do Relatório Executivo — versão 2.0 (Fase 2).
+É a EVOLUÇÃO do relatório entregue na Fase 1 (fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf):
+mesma estrutura de seções; conteúdo da Fase 1 mantido e corrigido; itens da Fase 2 inseridos.
+Marcas nos títulos: "(atualizado na Fase 2)" e "(novo na Fase 2)".
 Gerar .docx/.pdf:  python fase2/gerar_relatorio.py
-Números: fase2/dados/numeros_fase2.json (notebook 08). Não digitar número que não esteja lá.
-A capa é montada pelo script (equipe, links); o link do vídeo fica em fase2/config_relatorio.json.
+Números: fase2/dados/numeros_fase2.json (notebook 08) e, para os números herdados da Fase 1, notebooks 01–07.
 -->
 
-# 1. Sumário Executivo
+# Histórico do Documento
 
-Na Fase 1, mostramos **onde** a Olist perde valor. A Fase 2 responde à pergunta da diretoria: **como os agentes de IA vão interagir com usuários, dados e processos para gerar valor real?**
+| Versão | Data | Fase | Conteúdo |
+|---|---|---|---|
+| 1.0 | 26/08/2026 | Fase 1 · Identificar oportunidades | Diagnóstico do dataset, mapa de 6 agentes, arquitetura conceitual, prompts iniciais, riscos e roadmap |
+| **2.0** | **27/10/2026** | **Fase 2 · Estruturar casos de uso e desenho dos agentes** | Este documento: Fase 1 revisada + priorização, casos de uso detalhados, jornadas, prompts v2 e business case |
 
-A resposta parte de uma constatação dos dados. Os problemas de experiência, reputação e recorrência **nascem no mesmo lugar: a jornada do pedido**. Quando o pedido atrasa, **54%** dos clientes dão nota 1 ou 2, contra **9%** quando chega no prazo. **Um quarto** dos atrasos (27%) começa antes da transportadora, com o seller postando depois do limite. E quem teve a primeira compra atrasada volta menos (1,56% contra 2,13%).
+**O que mudou da versão 1.0 para a 2.0**
 
-Por isso, **concentramos a iniciativa em três agentes especializados** que atuam em sequência na jornada do pedido, em vez dos seis propostos na Fase 1:
-
-| Agente | Papel único na operação | Gatilho | Humano decide quando… | KPI principal |
-|---|---|---|---|---|
-| **LogiPredict** · Guardião do Prazo | Detectar o risco de atraso e agir antes do vencimento | Limite de postagem, postagem, D-3 do prazo | Risco alto exige tratativa com a transportadora | Taxa de atraso (8,11%) |
-| **SentimentDesk** · Triagem de Avaliações Negativas | Classificar o motivo, responder e rotear cada avaliação 1–3 | Avaliação publicada | O caso é crítico, a confiança é baixa ou há compensação | Tempo até a 1ª resposta |
-| **WinBack** · Segunda Compra | Converter a 1ª compra em 2ª dentro da janela de 90 dias | D+7 após a 1ª entrega | O incentivo passa do teto de 10% | Conversão em 2ª compra (1,13% em 90 dias) |
-
-**Valor esperado no cenário base (12 meses, na escala do dataset):** 670 atrasos evitados e cerca de 300 avaliações 1–2 a menos (LogiPredict); 1.229 horas de triagem poupadas, ou R$ 55 mil (SentimentDesk); 358 segundas compras adicionais, ou R$ 53 mil de receita (WinBack). As premissas são conservadoras e estão explícitas na Seção 9.
-
-**Recomendação:** aprovar um **piloto de 90 dias da Wave 1 (LogiPredict + SentimentDesk)**. Os dois agentes usam dados que a Olist já possui, decidem dentro de casa e têm efeito mensurável em semanas. O WinBack entra na Wave 2, quando opt-in e grupo controle estiverem prontos.
-
-> **Links:** vídeo executivo da Fase 2: {{LINK_VIDEO}} · repositório: {{LINK_GITHUB}} · vídeo da Fase 1: {{LINK_VIDEO_FASE1}}
-
-<!-- pagebreak -->
-
-# 2. Evolução do Projeto: da Fase 1 para a Fase 2
-
-## 2.1 O que mantivemos
-A base analítica da Fase 1 continua válida: 99.441 pedidos, sete frentes de análise (EDA, RFM, clusterização, correlações, testes de hipótese, análise geoespacial e NLP) e as quatro fricções do diagnóstico (retenção, logística, experiência e sellers). Os nomes dos agentes também foram mantidos, para preservar a rastreabilidade.
-
-## 2.2 O que aprendemos com a avaliação da Fase 1 e como respondemos
-
-| Ponto da avaliação | O que fizemos na Fase 2 | Onde ver |
+| Aprendizado da avaliação da Fase 1 | Como a versão 2.0 responde | Onde |
 |---|---|---|
-| Detalhar o racional de onde partiram os achados | Cada achado agora segue uma **cadeia de evidência**: pergunta → tabela/coluna → método → resultado → decisão de desenho | Seção 3 |
-| Ações dos agentes muito amplas, sem especialização | Cada agente tem **um objetivo**, **gatilhos definidos**, **lista fechada de ações** e uma seção explícita do que **não faz** | Seções 5 e 6 |
-| Muitos objetivos; priorizar o mais próximo do negócio | **Matriz de priorização** com critérios ponderados: de 6 agentes para **3 detalhados**, todos na jornada do pedido | Seção 4 |
-| Falha de revisão | **Fonte única de números** gerada por notebook, checklist de QA e apêndice de rastreabilidade | Apêndices A e B |
+| Detalhar o racional de onde partiram os achados | Cada achado ganhou uma **cadeia de evidência**: pergunta → tabela/coluna → método → resultado → decisão de desenho | Seção 4.5 |
+| Ações dos agentes muito amplas | Cada agente priorizado tem **um objetivo**, **gatilhos definidos**, **lista fechada de ações** e um quadro do que **não faz** | Seções 8 a 10 |
+| Muitos objetivos; priorizar o mais próximo do negócio | **Matriz de priorização** ponderada: dos 6 agentes, **3 detalhados**, todos na jornada do pedido | Seção 5.3 |
+| Falha de revisão | Fonte única de números gerada por notebook, revisão de consistência e apêndice de rastreabilidade | Apêndice A |
 
-## 2.3 Correções de rigor em relação à Fase 1
-- **Tempo médio de entrega:** padronizado em **12,56 dias** (compra → entrega, dias corridos fracionados, pedidos entregues). A Fase 1 registrava 12,47 e 12,56 em pontos diferentes.
-- **"Tempo de resposta a reviews (3,15 dias)":** a coluna `review_answer_timestamp` registra quando o **cliente respondeu a pesquisa**, não quando a Olist respondeu o cliente. Retiramos esse número como baseline do SentimentDesk; o tempo real de resposta será **medido no piloto**.
-- **Público do WinBack:** na Fase 1, o alvo eram 38.655 clientes inativos há mais de 439 dias. Os dados mostram que **54% das segundas compras acontecem em até 90 dias** e 75% em até 180. Reativar base antiga tem baixa probabilidade de retorno, então o agente foi **reposicionado para a janela pós-1ª compra**.
-- **Roadmap:** a Fase 1 trazia ordens diferentes para as ondas em duas seções. Agora há um roadmap único (Seção 11).
-
-## 2.4 O que é novo nesta fase
-Casos de uso com os seis elementos pedidos (a–f), **fluxos operacionais** com gatilhos, decisões e humano no loop, uma **jornada multiagente** com um pedido real, **prompts v2 testados com casos reais** do dataset e **business case em três cenários**.
+**Correções em relação à versão 1.0:** tempo médio de entrega padronizado em **12,56 dias**, com trânsito de 9,33 dias e processamento de 3,23 dias (recalculados no notebook 08). O "tempo de resposta a reviews de 3,15 dias" foi reinterpretado: a coluna `review_answer_timestamp` registra quando o **cliente respondeu a pesquisa**, não quando a Olist respondeu. O roadmap, que tinha duas ordens diferentes na versão 1.0, foi unificado.
 
 <!-- pagebreak -->
 
-# 3. Da Evidência à Decisão: o racional dos achados
+# 1. Sumário Executivo (atualizado na Fase 2)
 
-Todos os números desta seção vêm do notebook `08_fase2_evidencias_business_case.ipynb`, executado sobre as tabelas públicas da Olist. A tabela mostra o caminho de cada achado até a decisão de desenho do agente.
+A análise do dataset público da Olist revelou, na Fase 1, um marketplace com forte capacidade de aquisição e fricções relevantes em retenção, logística, experiência do cliente e gestão de sellers. A recompra é de apenas **3,00%**; **8,11%** dos pedidos chegam após o prazo; o frete representa **21,34%** do valor do pedido; e **14,7%** das avaliações são notas 1 ou 2.
+
+Na Fase 2, a diretoria aprovou a continuidade e perguntou: **como os agentes vão interagir com usuários, dados e processos para gerar valor real?** A resposta parte de uma constatação: os problemas de experiência, reputação e recorrência **nascem no mesmo lugar, a jornada do pedido**. Quando o pedido atrasa, **54%** dos clientes dão nota 1 ou 2 (contra 9% no prazo). **27%** dos atrasos começam antes da transportadora, com o seller postando depois do limite. E quem teve a 1ª compra atrasada volta menos (1,56% contra 2,13%).
+
+Por isso, **dos seis agentes propostos na Fase 1, três foram priorizados e detalhados**. Eles atuam em sequência na jornada do pedido:
+
+| Desafio (Fase 1) | Evidência | Agente | Situação na Fase 2 | KPI principal |
+|---|---|---|---|---|
+| Atrasos logísticos | 8,11%; 27% começam na postagem | **LogiPredict** · Guardião do Prazo | **Detalhado** | Taxa de atraso |
+| Insatisfação | 14,7% notas 1–2; 47% falam de entrega | **SentimentDesk** · Triagem de Avaliações Negativas | **Detalhado** | Tempo até a 1ª resposta |
+| Baixa recorrência | Recompra 3,00%; 54% das 2ªs compras em até 90 dias | **WinBack** · Segunda Compra | **Detalhado** (reposicionado) | Conversão em 2ª compra |
+| Qualidade de sellers | 527 no cluster problemático | SellerCare | Ações absorvidas por LogiPredict e SentimentDesk; Wave 3 | Nota / SLA |
+| Peso do frete | 21,34% do pedido | SmartFreight | Backlog (falta dado de concorrência) | Frete / conversão |
+| Decisão fragmentada | Sinais dispersos | Maestro | Orquestração na Fase 4 | Tempo para decisão |
+
+**Valor esperado no cenário base (12 meses, escala do dataset):** 670 atrasos evitados e cerca de 300 avaliações 1–2 a menos (LogiPredict); 1.229 horas de triagem poupadas, ou R$ 55 mil (SentimentDesk); 358 segundas compras adicionais, ou R$ 53 mil de receita (WinBack).
+
+**Recomendação:** aprovar um **piloto de 90 dias da Wave 1 (LogiPredict + SentimentDesk)**, com grupo controle. O WinBack entra na Wave 2.
+
+> **Links:** vídeo executivo da Fase 2: {{LINK_VIDEO}} · vídeo da Fase 1: {{LINK_VIDEO_FASE1}} · repositório: {{LINK_GITHUB}}
+
+As metas apresentadas são hipóteses de impacto para validação em piloto, não resultados comprovados pelo dataset histórico.
+
+<!-- pagebreak -->
+
+# 2. Contexto e Problema de Negócio
+
+O case propõe que a Olist inicie sua jornada de transformação com IA Generativa e Agentes de IA, buscando melhorar experiência do cliente, eficiência logística, retenção, análise de reviews, eficiência operacional, automação e apoio à decisão.
+
+## 2.1 Diagnóstico em quatro fricções prioritárias
+
+| Fricção | Evidência |
+|---|---|
+| **Retenção e fidelização** | 93.358 clientes únicos e apenas 3,00% de recompra; LTV estimado de R$ 165,20, próximo ao ticket médio de R$ 161,00 |
+| **Logística e custo de servir** | Tempo médio de entrega de 12,56 dias; 8,11% de atrasos; 63,8% das vendas interestaduais; frete equivalente a 21,34% do pedido |
+| **Experiência e reviews** | 57,8% das avaliações são nota 5, porém 11,5% são nota 1 e 3,2% nota 2; comentários negativos concentrados em entrega |
+| **Qualidade e concentração de sellers** | 3.095 vendedores; Gini 0,792; 17,6% geram 80% da receita; 342 com nota média abaixo de 3,0 e 527 no cluster problemático |
+
+## 2.2 A pergunta da Fase 2 (novo na Fase 2)
+A Fase 1 respondeu **onde** a IA pode gerar valor. A Fase 2 responde **como**: *"Como os agentes de IA irão interagir com usuários, dados e processos da Olist para gerar valor real ao negócio?"* Isso exige descer do mapa de oportunidades para o desenho operacional: gatilhos, decisões, pessoas envolvidas, dados de entrada e resultados mensuráveis.
+
+# 3. Abordagem Analítica (atualizado na Fase 2)
+
+Foram analisadas oito frentes complementares do dataset. O detalhamento técnico permanece nos notebooks do projeto.
+
+| Frente | Finalidade executiva |
+|---|---|
+| EDA e qualidade de dados | Compreender pedidos, receita, preço, frete, prazos e dados ausentes |
+| RFM + K-Means de clientes | Identificar grupos de comportamento e oportunidades de retenção |
+| K-Means de vendedores | Separar perfis de performance e apoiar ações de seller success |
+| Correlações | Explorar relações entre distância, frete e prazo |
+| Testes de hipótese | Avaliar associação estatística entre atraso e avaliação do cliente |
+| Análise geoespacial | Estimar distâncias origem-destino e identificar rotas críticas |
+| NLP básico em reviews | Extrair termos e temas recorrentes de avaliações negativas |
+| **Evidências para desenho dos agentes** *(novo, notebook 08)* | Origem do atraso, taxonomia de motivos das avaliações 1–2, janela da 2ª compra, priorização e business case |
+
+## 3.1 Nota de interpretação estatística
+Os testes Mann-Whitney U, Chi-Quadrado e as correlações sustentam **associação** entre variáveis, não causalidade. Por isso, cada agente é proposto com **grupo controle no piloto**, para medir o efeito real.
+
+## 3.2 Limitações do diagnóstico
+- O dataset é histórico (2016–2018) e não representa necessariamente a operação atual da Olist.
+- Churn e LTV dependem das definições adotadas no projeto.
+- O dataset não contém o tempo de resposta da Olist às avaliações: esse baseline será **medido no piloto**.
+- Metas de impacto são hipóteses a testar em pilotos controlados.
+
+<!-- pagebreak -->
+
+# 4. Principais Achados (atualizado na Fase 2)
+
+## 4.1 Retenção: a maior oportunidade econômica
+A recompra de 3,00% indica que 97 em cada 100 clientes não fazem uma segunda compra. A segmentação RFM identifica 40% da base no grupo "Em Risco", e o Top 10% dos clientes concentra 38,25% da receita. **Novo na Fase 2:** quando o cliente volta, volta cedo. A mediana até a 2ª compra é de 76 dias, e **54%** das segundas compras ocorrem em até 90 dias.
+
+## 4.2 Logística: o principal ponto de atrito operacional
+O tempo médio total de entrega é de **12,56 dias**. O trânsito responde por **9,33 dias (74%)** e o processamento do seller por 3,23 dias. A taxa de atraso é de 8,11%, mais alta em AL (23,9%), MA (19,7%) e PI (16,0%). **Novo na Fase 2:** quando o seller posta depois do limite (9,0% dos pedidos), o atraso sobe para **24,4%**, contra 6,5% quando posta no prazo.
+
+## 4.3 Reviews: atraso e satisfação caminham em direções opostas
+A nota 5 representa 57,8% das avaliações, mas há uma cauda de detratores: 11,5% nota 1 e 3,2% nota 2. A correlação entre tempo de espera e nota é negativa (-0,229; p < 0,001). **Novo na Fase 2:** com atraso, **54,1%** das avaliações são 1–2, contra 9,2% no prazo; e **47%** dos comentários negativos falam de entrega.
+
+## 4.4 Sellers: concentração e heterogeneidade de performance
+Dos 3.095 vendedores, 17,6% respondem por 80% da receita. Há 342 sellers com nota média inferior a 3,0 e 527 no cluster "Problemáticos" (nota 2,22, entrega de 14,4 dias). São critérios diferentes e não devem ser tratados como equivalentes.
+
+## 4.5 Da evidência à decisão (novo na Fase 2)
+Para responder à pergunta *"de onde partiram os achados?"*, cada evidência que orienta o desenho dos agentes é apresentada com sua origem nos dados.
 
 | # | Pergunta de negócio | Dado utilizado | Método | Resultado | Decisão de desenho |
 |---|---|---|---|---|---|
-| E1 | O atraso pesa na satisfação? | `orders` (entrega × prazo) + `order_reviews` (nota) | Comparação de proporções entre pedidos atrasados e no prazo | **54,1%** de notas 1–2 com atraso vs **9,2%** no prazo; nota média 2,57 vs 4,29 | Atraso é o primeiro problema a atacar (LogiPredict) |
-| E2 | Onde o atraso nasce? | `order_items.shipping_limit_date` × `orders.order_delivered_carrier_date` | Taxa de atraso segmentada pela pontualidade da postagem | Postagem após o limite em **9,0%** dos pedidos: atraso de **24,4%** vs **6,5%**; **27%** de todos os atrasos | Primeiro checkpoint do LogiPredict é o **limite de postagem** |
-| E3 | Onde o atraso é mais provável? | `orders` + `customers` (UF destino) | Taxa de atraso por UF | AL 23,9%, MA 19,7%, PI 16,0%, CE 15,3% (média 8,11%) | UF destino entra no score de risco; piloto começa no Nordeste |
-| E4 | Do que reclamam os insatisfeitos? | `order_reviews` (título + comentário, notas 1–2) | Classificação por regras em 10.994 avaliações com texto | **47%** entrega (39,5% "não recebido"), **18%** pedido incorreto, **12%** produto, **5%** atendimento | Taxonomia fixa do SentimentDesk; o motivo define o roteamento |
-| E5 | Quando o cliente volta? | `orders` + `customers.customer_unique_id` | Intervalo entre 1ª e 2ª compra (excluindo mesmo dia) | Mediana de **76 dias**; **54%** em até 90 dias | WinBack atua de D+7 a D+90, não na base antiga |
-| E6 | A experiência afeta a recompra? | `orders` + `order_reviews` | Recompra por pontualidade da 1ª compra | 1,56% (atrasou) vs 2,13% (no prazo) | WinBack **pausa** a oferta quando a 1ª experiência foi ruim |
+| E1 | O atraso pesa na satisfação? | `orders` (entrega × prazo) + `order_reviews` | Proporções por pontualidade | **54,1%** de notas 1–2 com atraso vs **9,2%** no prazo | Atraso é o primeiro problema a atacar |
+| E2 | Onde o atraso nasce? | `order_items.shipping_limit_date` × `orders.order_delivered_carrier_date` | Atraso segmentado pela postagem | Atraso de **24,4%** vs **6,5%**; **27%** dos atrasos | 1º checkpoint do LogiPredict: limite de postagem |
+| E3 | Onde o atraso é mais provável? | `orders` + `customers` (UF destino) | Taxa de atraso por UF | AL 23,9%, MA 19,7%, PI 16,0% (média 8,11%) | UF no score de risco; piloto no Nordeste |
+| E4 | Do que reclamam os insatisfeitos? | `order_reviews` (título + comentário) | Classificação por regras em 10.994 avaliações | **47%** entrega, **18%** pedido incorreto, **12%** produto, **5%** atendimento | Taxonomia fixa do SentimentDesk |
+| E5 | Quando o cliente volta? | `orders` + `customer_unique_id` | Intervalo entre 1ª e 2ª compra | Mediana de **76 dias**; **54%** em até 90 dias | WinBack atua de D+7 a D+90 |
+| E6 | A experiência afeta a recompra? | `orders` + `order_reviews` | Recompra por pontualidade da 1ª compra | 1,56% (atrasou) vs 2,13% (no prazo) | WinBack pausa a oferta após experiência ruim |
 
 ![Atraso e satisfação (E1) e origem do atraso na postagem do seller (E2).](img/f2_evidencia_atraso.png)
 
@@ -71,58 +128,96 @@ Todos os números desta seção vêm do notebook `08_fase2_evidencias_business_c
 
 ![Distribuição acumulada do tempo até a 2ª compra (E5).](img/f2_janela_2a_compra.png)
 
-> **Nota de interpretação.** São associações observadas em dados históricos (2016–2018), não prova de causalidade. Por isso, cada agente é proposto com **grupo controle no piloto**, para medir o efeito real antes de escalar.
-
 <!-- pagebreak -->
 
-# 4. Priorização: por que três agentes
+# 5. Segmentação e Priorização (atualizado na Fase 2)
 
-Avaliamos os seis agentes da Fase 1 em cinco critérios, com pesos definidos pelo grupo. **Proximidade do core** mede se o agente atua diretamente na jornada compra → entrega → avaliação → recompra, que é onde está a receita do marketplace.
+## 5.1 Clientes: RFM K=4
 
-| Agente | Impacto (30%) | Proximidade do core (25%) | Evidência nos dados (20%) | Viabilidade (15%) | Risco, inverso (10%) | Score | Decisão |
+| Segmento | Qtd. | Recência média | Valor médio | Leitura executiva |
+|---|---|---|---|---|
+| Novos | 54% | 178 dias | R$ 135 | Maior grupo; primeira compra recente. **Público natural do WinBack na Fase 2** |
+| Em Risco | 40% | 439 dias | R$ 135 | Base inativa; baixa probabilidade de retorno (E5) |
+| Campeões Alto Valor | 3% | 290 dias | R$ 1.196 | Ticket muito superior; retenção prioritária |
+| Campeões Recorrentes | 3% | 269 dias | R$ 290 | Maior frequência relativa |
+
+## 5.2 Vendedores: K=3
+
+| Segmento | Qtd. | Receita média | Nota | Leitura executiva |
+|---|---|---|---|---|
+| Regulares | 82% | R$ 3.775 | 4,33 | Base sólida; foco em escala e eficiência |
+| Top Performers | 1% | R$ 102.986 | 4,03 | Alta relevância econômica e pressão operacional |
+| Problemáticos | 17% (527) | R$ 1.299 | 2,22 | Baixa satisfação e entrega média de 14,4 dias |
+
+## 5.3 Priorização dos agentes (novo na Fase 2)
+Na Fase 1, o critério de priorização foi descrito de forma qualitativa. Na Fase 2, os seis agentes foram pontuados em cinco critérios ponderados. **Proximidade do core** mede se o agente atua diretamente na jornada compra → entrega → avaliação → recompra.
+
+| Agente | Impacto (30%) | Proximidade do core (25%) | Evidência (20%) | Viabilidade (15%) | Risco, inverso (10%) | Score | Decisão |
 |---|---|---|---|---|---|---|---|
 | **LogiPredict** | 5 | 5 | 5 | 4 | 4 | **4,75** | Detalhar |
 | **SentimentDesk** | 4 | 5 | 5 | 5 | 4 | **4,60** | Detalhar |
 | **WinBack** | 5 | 4 | 4 | 4 | 3 | **4,20** | Detalhar |
 | SellerCare | 4 | 3 | 4 | 3 | 2 | 3,40 | Absorvido / Wave 3 |
 | SmartFreight | 3 | 3 | 3 | 2 | 2 | 2,75 | Backlog |
-| Maestro | 3 | 2 | 2 | 2 | 3 | 2,40 | Fase 4 (orquestração) |
+| Maestro | 3 | 2 | 2 | 2 | 3 | 2,40 | Fase 4 |
 
-![Matriz impacto × viabilidade dos agentes propostos na Fase 1.](img/f2_priorizacao.png)
-
-**O que acontece com os demais agentes:**
-- **SellerCare:** as duas ações de maior evidência foram **absorvidas**. O lembrete de postagem ficou no LogiPredict, e o ticket ao seller por pedido incorreto, no SentimentDesk. O coaching estruturado de sellers fica para a Wave 3, alimentado pelos dados desses dois agentes.
-- **SmartFreight:** depende de dados de concorrência e de regras de margem que o dataset não contém. Fica no backlog.
-- **Maestro:** a orquestração só faz sentido quando houver especialistas em produção. Será desenhada na **Fase 4**, conforme o roadmap do curso. Nesta fase, a interação entre os três agentes acontece por **sinais simples** (Seção 7.4).
+![Matriz impacto × viabilidade dos seis agentes.](img/f2_priorizacao.png)
 
 <!-- pagebreak -->
 
-# 5. Como os Agentes Operam na Olist
+# 6. Mapa de Agentes de IA (atualizado na Fase 2)
 
-## 5.1 Visão operacional
-Os três agentes atuam em momentos diferentes da mesma jornada e conversam por sinais. Nenhum deles executa decisões financeiras ou reputacionais sozinho.
+O ecossistema da Fase 1 é mantido como visão de longo prazo. A coluna "Fase 2" mostra o que foi decidido para cada agente.
+
+| Agente | Objetivo | Problema | Usuários | Fase 2 |
+|---|---|---|---|---|
+| **LogiPredict** | Proteger o prazo prometido, agindo antes do vencimento | 8,11% de atrasos; 27% começam na postagem | Operações, sellers, clientes | **Detalhado** (Seções 8 a 10) |
+| **SentimentDesk** | Classificar, responder e rotear avaliações 1–3 | 14,7% notas 1–2; motivos não estruturados | CX, sellers, clientes | **Detalhado** |
+| **WinBack** | Converter a 1ª compra em 2ª na janela de 90 dias *(antes: reativar a base inativa)* | Recompra de 3%; 1,13% voltam em 90 dias | CRM, Marketing, clientes | **Detalhado** e reposicionado |
+| SellerCare | Diagnosticar sellers e gerar coaching | 527 sellers problemáticos | Comercial, KAMs | Lembrete de postagem → LogiPredict; ticket ao seller → SentimentDesk; coaching na Wave 3 |
+| SmartFreight | Otimizar frete e precificação | Frete = 21% do pedido | Financeiro, Comercial | Backlog |
+| Maestro | Orquestrar especialistas e apoiar decisões | Dados fragmentados | C-Level, diretores | Fase 4 (orquestração) |
+
+## 6.1 Interações entre os agentes priorizados
+Na Fase 1, foram mapeadas 6 interações entre os 6 agentes. Na Fase 2, as interações essenciais foram reduzidas a **três sinais simples** entre os agentes priorizados:
+- **LogiPredict → SentimentDesk:** "pedido em risco", para que a resposta a uma avaliação já considere o atraso.
+- **SentimentDesk → LogiPredict:** "motivo = entrega", que reforça o histórico de risco da rota e do seller.
+- **SentimentDesk → WinBack:** "pausar", que impede oferta comercial a um cliente com problema aberto.
+
+## 6.2 Decisões de escopo
+- Na Fase 1, o grupo indicou um agente de atendimento (SAC) como candidato para a Fase 2. A decisão foi **não criar um 7º agente**: o contato com o cliente é coberto pelo SentimentDesk (avaliações) e pelo LogiPredict (aviso proativo).
+- Cross-sell continua sem agente próprio. A recomendação de categoria foi incorporada ao WinBack, baseada nas 2ªs compras reais (38% na mesma categoria da 1ª).
+
+# 7. Arquitetura Conceitual (atualizado na Fase 2)
+
+A arquitetura da Fase 1 continua válida: fontes de dados → processamento analítico → agentes especialistas ↔ orquestrador → usuários, com guardrails e validação humana.
+
+![Arquitetura conceitual da Fase 1, mantida como visão de longo prazo.](../fase1/arquiteturaConceitual.jpeg)
+
+## 7.1 Princípio de autonomia responsável
+Autonomia não significa ausência de controle. Ações reversíveis e de baixo impacto podem ser automatizadas; decisões financeiras, comerciais ou reputacionais exigem aprovação humana e trilha de auditoria.
+
+## 7.2 Visão operacional dos agentes priorizados (novo na Fase 2)
 
 | | LogiPredict | SentimentDesk | WinBack |
 |---|---|---|---|
 | **Momento da jornada** | Aprovação → entrega | Após a avaliação | D+7 a D+90 após a 1ª entrega |
 | **Frequência** | Varredura a cada 6h + eventos | Por avaliação (tempo real) | Batch diário |
 | **Usuários que recebem** | Analista de Operações, seller, cliente | Analista de CX, seller, cliente | Analista/Gestor de CRM, cliente |
-| **Sistemas tocados** | Pedidos, rastreio, mensageria | Avaliações, atendimento (tickets), mensageria | CRM, catálogo, mensageria |
-| **Envia sinal para** | SentimentDesk (pedido em risco) | LogiPredict (motivo entrega), WinBack (pausar) | n/a (consome sinais) |
+| **Sistemas tocados** | Pedidos, rastreio, mensageria | Avaliações, tickets, mensageria | CRM, catálogo, mensageria |
 | **Nunca faz sozinho** | Trocar transportadora, compensar cliente | Reembolso, cupom, penalizar seller | Incentivo > 10%, contato sem opt-in |
-
-## 5.2 Padrão visual dos fluxos
-Todos os fluxos da Seção 7 usam a mesma legenda: **gatilho** (caixa escura), **ação do agente** (cor do agente), **decisão** (losango amarelo), **humano no loop** (borda laranja) e **saída** (verde). As raias separam o que dispara o fluxo, o que o agente faz, o que exige pessoa e o que é entregue.
 
 <!-- pagebreak -->
 
-# 6. Casos de Uso Detalhados
+# 8. Casos de Uso Detalhados (novo na Fase 2)
 
-## 6.1 LogiPredict · Guardião do Prazo de Entrega
+Na Fase 1, esta seção trazia um parágrafo de caso de uso e guardrails por agente. Na Fase 2, os três agentes priorizados são detalhados nos seis elementos pedidos: **a) objetivo, b) problema, c) usuários, d) dados, e) entradas e saídas, f) indicadores**, além de um quadro do que o agente faz e não faz e da comparação entre o processo atual e o processo com o agente.
+
+## 8.1 LogiPredict · Guardião do Prazo de Entrega
 
 **a) Objetivo.** Reduzir pedidos entregues após o prazo prometido, agindo **antes do vencimento** em três checkpoints: limite de postagem, postagem efetiva e D-3 do prazo.
 
-**b) Problema resolvido.** **8,11%** dos pedidos entregues atrasam. Em pedidos atrasados, **54%** das avaliações são nota 1–2. O trânsito responde por **74%** do tempo de entrega, mas **27%** dos atrasos começam com o seller postando depois do limite. Hoje, o atraso só aparece quando o cliente reclama. A consequência é perda de reputação, avaliação negativa e menor recompra.
+**b) Problema resolvido.** **8,11%** dos pedidos atrasam, e em pedidos atrasados **54%** das avaliações são nota 1–2. O trânsito responde por **74%** do tempo de entrega, mas **27%** dos atrasos começam com o seller postando depois do limite. Hoje o atraso só aparece quando o cliente reclama. A consequência é perda de reputação, avaliação negativa e menor recompra.
 
 **c) Usuários envolvidos.** Analista de Operações Logísticas (decide a tratativa), seller (recebe lembrete), cliente (recebe aviso com nova data), Gestor de Logística (painel por rota).
 
@@ -145,27 +240,23 @@ Todos os fluxos da Seção 7 usam a mesma legenda: **gatilho** (caixa escura), *
 | D-3 do prazo sem entrega | Aviso ao cliente com nova data (template aprovado) |
 | Fechamento diário | Painel de risco por rota/UF; sinal "pedido em risco" ao SentimentDesk |
 
-**f) Indicadores impactados.** Taxa de atraso (baseline 8,11%), % de postagens após o limite (9,0%), % de notas 1–2 em pedidos de risco, contatos "onde está meu pedido", taxa de falso positivo dos alertas.
-
-**Faz / não faz.**
+**f) Indicadores impactados.** Taxa de atraso (8,11%), postagens após o limite (9,0%), notas 1–2 em pedidos de risco, contatos "onde está meu pedido", falso positivo dos alertas.
 
 | Faz | Não faz |
 |---|---|
 | Calcula risco, lembra o seller, alerta operações, avisa o cliente com data projetada | Não troca transportadora, não negocia frete, não concede compensação, não avisa o cliente sem projeção de estouro |
 
-**AS-IS → TO-BE** *(processo atual presumido, a validar com a área)*
-
-| Hoje | Com o LogiPredict |
+| Hoje *(processo presumido, a validar com a área)* | Com o LogiPredict |
 |---|---|
-| O atraso é descoberto quando o cliente reclama ou avalia | Risco identificado na postagem; nos pedidos que atrasaram, a postagem ocorreu em mediana **17,5 dias antes do prazo**, tempo suficiente para agir |
+| O atraso é descoberto quando o cliente reclama | Risco identificado na postagem; nos pedidos que atrasaram, a postagem ocorreu em mediana **17,5 dias antes do prazo** |
 | O seller não é lembrado do limite de postagem | Lembrete automático 24h antes do limite |
 | Aviso ao cliente inexistente ou genérico | Aviso com nova data, só quando a projeção estoura o prazo |
 
-## 6.2 SentimentDesk · Triagem e Resposta de Avaliações Negativas
+## 8.2 SentimentDesk · Triagem e Resposta de Avaliações Negativas
 
 **a) Objetivo.** Responder rapidamente toda avaliação nota 1 a 3 e **levar o problema a quem pode resolvê-lo**: transporte, seller ou atendimento.
 
-**b) Problema resolvido.** **14,7%** das avaliações são nota 1 ou 2, cerca de **11,7 mil por ano**. Quase metade (**47%**) fala de entrega e **18%** de pedido incorreto (item faltando ou produto errado). Hoje não há visão estruturada desses motivos. Sem triagem, o caso grave fica na mesma fila do simples e o seller reincidente não é identificado. A consequência é detrator não recuperado e problema recorrente sem dono.
+**b) Problema resolvido.** **14,7%** das avaliações são nota 1 ou 2, cerca de **11,7 mil por ano**. **47%** falam de entrega e **18%** de pedido incorreto. Sem triagem, o caso grave fica na mesma fila do simples e o seller reincidente não é identificado. A consequência é detrator não recuperado e problema recorrente sem dono.
 
 **c) Usuários envolvidos.** Cliente (recebe resposta), Analista de CX (revisa casos críticos e define compensação), seller (recebe ticket), Gestor de CX (dashboard de motivos).
 
@@ -177,38 +268,34 @@ Todos os fluxos da Seção 7 usam a mesma legenda: **gatilho** (caixa escura), *
 | `orders` | Datas e status do pedido; atraso |
 | `order_items`, `products`, `sellers` | Nº de itens e sellers no pedido, categoria |
 | `order_payments` | Valor do pedido (critério de alçada) |
-| **Externo** | Sistema de tickets, histórico de contatos do cliente, reclamações em canais públicos |
+| **Externo** | Sistema de tickets, histórico de contatos do cliente, canais públicos |
 
 **e) Entradas e saídas.**
 
 | Entrada | Saída |
 |---|---|
-| Avaliação nota 1–3 (com ou sem texto) + dados do pedido | Motivo (taxonomia fixa de 8), severidade, responsável e resumo |
+| Avaliação nota 1–3 (com ou sem texto) + dados do pedido | Motivo (taxonomia de 8), severidade, responsável e resumo |
 | | Resposta ao cliente (até 600 caracteres) ou rascunho para revisão |
 | | Ticket ao seller; sinal ao LogiPredict (entrega) e ao WinBack (pausar) |
 | | Dashboard semanal de motivos por seller e categoria |
 
-**f) Indicadores impactados.** Tempo até a 1ª resposta (baseline a medir), % de detratores com caso resolvido, % de classificação correta em auditoria amostral, reincidência por seller, nota média.
-
-**Faz / não faz.**
+**f) Indicadores impactados.** Tempo até a 1ª resposta (a medir), detratores com caso resolvido, classificação correta em auditoria, reincidência por seller, nota média.
 
 | Faz | Não faz |
 |---|---|
 | Classifica, resume, responde com template seguro, abre ticket, sinaliza outros agentes | Não promete reembolso, troca ou cupom; não penaliza seller; não responde caso crítico sem revisão humana |
 
-**AS-IS → TO-BE** *(presumido)*
-
-| Hoje | Com o SentimentDesk |
+| Hoje *(presumido)* | Com o SentimentDesk |
 |---|---|
 | Avaliação negativa lida manualmente, sem padrão de motivo | Motivo, severidade e responsável em segundos |
 | Casos graves e simples na mesma fila | Casos críticos vão direto ao analista, com resumo |
-| Seller reincidente invisível | Dashboard de motivos por seller alimenta a gestão de sellers |
+| Seller reincidente invisível | Dashboard de motivos por seller |
 
-## 6.3 WinBack · Segunda Compra
+## 8.3 WinBack · Segunda Compra
 
 **a) Objetivo.** Aumentar a conversão da **1ª para a 2ª compra** com contato relevante e no momento certo, dentro da janela de 90 dias.
 
-**b) Problema resolvido.** Só **3,0%** dos 93.358 clientes compram de novo, e só **1,13%** voltam em até 90 dias. Mas quando o cliente volta, volta cedo: **54%** das segundas compras acontecem em até 90 dias. Hoje não há ação estruturada nessa janela. A consequência é custo de aquisição pago para uma única venda.
+**b) Problema resolvido.** Só **3,0%** dos 93.358 clientes compram de novo, e só **1,13%** voltam em até 90 dias. Mas **54%** das segundas compras acontecem em até 90 dias. Hoje não há ação estruturada nessa janela. A consequência é custo de aquisição pago para uma única venda. **Mudança em relação à Fase 1:** o alvo deixou de ser a base inativa há mais de 439 dias, que tem baixa probabilidade de retorno.
 
 **c) Usuários envolvidos.** Cliente (recebe mensagem), Analista de CRM (acompanha campanhas), Gestor de CRM (aprova incentivo acima do teto), Marketing (relatório de uplift).
 
@@ -218,9 +305,8 @@ Todos os fluxos da Seção 7 usam a mesma legenda: **gatilho** (caixa escura), *
 |---|---|
 | `orders`, `customers` | 1ª compra, data de entrega, recorrência (`customer_unique_id`) |
 | `order_items`, `products` | Categoria da 1ª compra; categorias da 2ª compra por perfil |
-| `order_reviews` | Nota da 1ª compra |
-| `order_payments` | Valor da 1ª compra |
-| **Externo** | Opt-in (LGPD), histórico de contatos, catálogo e estoque atuais, teto de incentivo |
+| `order_reviews`, `order_payments` | Nota e valor da 1ª compra |
+| **Externo** | Opt-in (LGPD), histórico de contatos, catálogo e estoque, teto de incentivo |
 
 **e) Entradas e saídas.**
 
@@ -231,48 +317,52 @@ Todos os fluxos da Seção 7 usam a mesma legenda: **gatilho** (caixa escura), *
 | Ticket resolvido | Mensagem de desculpas com incentivo dentro do teto |
 | Fim do ciclo de 90 dias | Relatório de uplift contra o grupo controle (10%) |
 
-**f) Indicadores impactados.** Conversão em 2ª compra em 90 dias (baseline 1,13%), taxa de recompra (3,0%), receita por cliente, uplift contra o controle, taxa de opt-out.
-
-**Faz / não faz.**
+**f) Indicadores impactados.** Conversão em 2ª compra em 90 dias (1,13%), recompra (3,0%), receita por cliente, uplift contra o controle, opt-out.
 
 | Faz | Não faz |
 |---|---|
 | Decide elegibilidade, momento, categoria e mensagem; separa o grupo controle | Não contata sem opt-in, não passa de 2 contatos, não dá incentivo > 10% sem aprovação, não atua na base inativa antiga |
 
-**AS-IS → TO-BE** *(presumido)*
-
-| Hoje | Com o WinBack |
+| Hoje *(presumido)* | Com o WinBack |
 |---|---|
 | Campanhas de massa, sem considerar a experiência da 1ª compra | Contato individual, no tempo certo, que pausa quando a experiência foi ruim |
 | Sem medição de efeito incremental | Grupo controle permanente e uplift medido |
 
+## 8.4 Demais agentes: casos de uso e guardrails da Fase 1 (mantidos)
+
+| Agente | Caso de uso (Fase 1) | Guardrails |
+|---|---|---|
+| SellerCare | Compara o seller com o benchmark e gera coaching ou escalonamento | Critérios transparentes, direito de resposta, revisão humana antes de penalizar |
+| SmartFreight | Analisa preço/frete e sugere mitigação, bundles e alternativas | Piso de margem, regras auditáveis, sem discriminação individual |
+| Maestro | Roteia perguntas, consolida sinais e produz síntese para a liderança | Respostas ancoradas em fontes, trilha de delegações |
+
 <!-- paisagem -->
 
-# 7. Jornadas de Funcionamento dos Agentes
+# 9. Jornadas de Funcionamento dos Agentes (novo na Fase 2)
 
-## 7.1 LogiPredict
+## 9.1 LogiPredict
 ![Fluxo do LogiPredict: dois checkpoints de decisão antes de envolver pessoas e aviso ao cliente apenas quando a projeção estoura o prazo.](fluxos/fluxo_logipredict.png)
 
-**Decisões-chave:** (1) o seller vai estourar o limite de postagem? (2) o risco passou do limiar? (3) a nova data prevista passa do prazo? Só a terceira resposta autoriza contato com o cliente. **Humano no loop:** o analista de operações decide a tratativa com a transportadora.
+**Decisões-chave:** (1) o seller vai estourar o limite de postagem? (2) o risco passou do limiar? (3) a nova data prevista passa do prazo? Só a terceira autoriza contato com o cliente. **Humano no loop:** o analista de operações decide a tratativa com a transportadora.
 
 <!-- pagebreak -->
 
-## 7.2 SentimentDesk
-![Fluxo do SentimentDesk: o agente classifica, mas casos de baixa confiança ou críticos passam por analista antes da resposta.](fluxos/fluxo_sentimentdesk.png)
+## 9.2 SentimentDesk
+![Fluxo do SentimentDesk: casos de baixa confiança ou críticos passam por analista antes da resposta.](fluxos/fluxo_sentimentdesk.png)
 
-**Decisões-chave:** (1) a classificação é confiável? (2) o caso é crítico? (3) o motivo é entrega? **Humano no loop:** classificação manual quando a confiança é baixa; revisão da resposta e definição de compensação nos casos críticos.
+**Decisões-chave:** (1) a classificação é confiável? (2) o caso é crítico? (3) o motivo é entrega? **Humano no loop:** classificação manual quando a confiança é baixa; revisão da resposta e compensação nos casos críticos.
 
 <!-- pagebreak -->
 
-## 7.3 WinBack
+## 9.3 WinBack
 ![Fluxo do WinBack: elegibilidade e experiência anterior são verificadas antes de qualquer oferta.](fluxos/fluxo_winback.png)
 
 **Decisões-chave:** (1) há consentimento e intervalo mínimo? (2) a 1ª experiência foi ruim? (3) o incentivo passa do teto? **Humano no loop:** o Gestor de CRM aprova incentivos acima de 10%.
 
 <!-- pagebreak -->
 
-## 7.4 Jornada multiagente: "o pedido que ia atrasar"
-A jornada abaixo usa um **pedido real do dataset**: compra em 25/02/2018, de MG para MA, postada 4 dias após o limite e entregue em 06/04, **10 dias depois do prazo**. O cliente deu nota 1. Mostramos o que teria acontecido com os três agentes em operação.
+## 9.4 Jornada multiagente: "o pedido que ia atrasar"
+**Pedido real do dataset:** compra em 25/02/2018, de MG para MA, postada 4 dias após o limite e entregue em 06/04, **10 dias depois do prazo**. O cliente deu nota 1. A figura mostra o que teria acontecido com os três agentes em operação.
 
 ![Jornada multiagente com um pedido real.](fluxos/jornada_multiagente.png)
 
@@ -281,30 +371,30 @@ A jornada abaixo usa um **pedido real do dataset**: compra em 25/02/2018, de MG 
 | Dia | O que acontece | Agente / pessoa |
 |---|---|---|
 | D+6 | O limite de postagem se aproxima e o seller recebe lembrete | LogiPredict |
-| D+11 | A postagem sai atrasada para uma rota com 19,7% de atraso; score 80 e alerta a operações | LogiPredict → Analista de Ops |
-| D+27 (D-3 do prazo) | Sem confirmação de entrega, cliente avisado com nova data (03/04) | LogiPredict |
-| D+40 | Entrega atrasada e nota 1 sem comentário; motivo inferido "atraso", resposta e ticket | SentimentDesk |
+| D+11 | Postagem atrasada para rota com 19,7% de atraso; score 80; alerta a operações | LogiPredict → Analista de Ops |
+| D+27 (D-3) | Sem confirmação de entrega, cliente avisado com nova data (03/04) | LogiPredict |
+| D+40 | Entrega atrasada e nota 1 sem comentário; motivo inferido "atraso"; resposta e ticket | SentimentDesk |
 | D+40 | Oferta de 2ª compra pausada | WinBack |
 | D+41 | Analista de CX aprova cupom de desculpas dentro da alçada | Humano |
 | D+55 | Caso resolvido; oferta de 2ª compra na categoria afim | WinBack |
 
-## 7.5 Tratamento de exceções
+## 9.5 Tratamento de exceções
 
 | Situação | LogiPredict | SentimentDesk | WinBack |
 |---|---|---|---|
-| Dado faltante | Sem rastreio: usa só o histórico da rota e marca "confiança baixa" | Sem texto: infere pelo pedido, confiança ≤ 0,7, revisão humana | Sem opt-in conhecido: não contata |
+| Dado faltante | Sem rastreio: usa o histórico da rota e marca "confiança baixa" | Sem texto: infere pelo pedido, confiança ≤ 0,7 | Sem opt-in conhecido: não contata |
 | Baixa confiança | Não avisa o cliente; só alerta operações | Fila do analista de CX | Mensagem sem incentivo |
-| Conflito de dados | Status "entregue" sem comprovante: sinaliza CX | "Entregue" mas cliente diz que não recebeu: severidade CRÍTICA | Pedido em disputa: pausa |
+| Conflito de dados | "Entregue" sem comprovante: sinaliza CX | "Entregue" mas não recebido: CRÍTICA | Pedido em disputa: pausa |
 | Sistema indisponível | Reprocessa na próxima varredura | Mantém a fila; nenhuma resposta automática | Adia o envio; não duplica |
 | Cliente de alto valor | Prioridade no alerta | Revisão humana se valor > R$ 500 | Atendimento consultivo (CRM) |
 
 <!-- pagebreak -->
 
-# 8. Prompts Estruturados v2
+# 10. Prompts Estruturados (atualizado na Fase 2)
 
-Os prompts seguem a estrutura **objetivo · contexto · instrução principal · resultado esperado**. Na Fase 2, cada um ganhou **lista fechada de ações**, **evidência que orienta a decisão**, seção **"não faça"** e **gatilhos de humano no loop**. As versões completas e os dez exemplos com casos reais estão em `fase2/prompts/PROMPTS_V2.md`.
+A estrutura da Fase 1 foi mantida: **objetivo · contexto · instrução principal · resultado esperado**. Na versão 2, os prompts dos agentes priorizados ganharam **lista fechada de ações**, **evidência que orienta a decisão**, uma seção **"não faça"**, **gatilhos de humano no loop** e **exemplos com casos reais do dataset**. As versões completas e os dez exemplos estão em `fase2/prompts/PROMPTS_V2.md`; os prompts dos demais agentes permanecem como na Fase 1 (`fase1/PROMPTS_ESTRUTURADOS.md`).
 
-## 8.1 SentimentDesk
+## 10.1 SentimentDesk
 **a) Objetivo:** classificar a avaliação negativa, responder ao cliente e rotear o caso.
 **b) Contexto:** nota, título e comentário; datas de compra, prazo e entrega; nº de itens e de sellers; categoria; valor; UFs; reclamações do seller em 30 dias.
 **c) Instrução principal (resumo):**
@@ -322,16 +412,16 @@ SAÍDA: JSON (motivo, confiança, severidade, responsável, resumo, resposta, ro
 ```
 **d) Resultado esperado:** JSON que alimenta ticket, dashboard e sinais aos outros agentes.
 
-**Exemplo real.** Avaliação nota 1: *"Só chegou a mochila, estou aguardando a lancheira…"*. Pedido com 2 itens, entregue no prazo.
+**Exemplo real.** Nota 1: *"Só chegou a mochila, estou aguardando a lancheira…"*. Pedido com 2 itens, entregue no prazo.
 
 | Campo | Saída do agente |
 |---|---|
 | Motivo | PEDIDO_ITEM_FALTANDO (confiança 0,90) · severidade ALTA · responsável SELLER |
 | Resposta | "Olá! Sentimos muito: seu pedido deveria ter chegado completo. Já abrimos uma solicitação para localizar a lancheira e confirmar se ela foi enviada separadamente. Em até 2 dias úteis você recebe nosso retorno com a solução." |
 | Roteamento | Ticket ao seller (confirmar envio do 2º item) + dashboard |
-| Por que importa | A regra por palavras-chave classificou como "não recebido". O agente cruzou o texto com os dados do pedido e acertou o responsável. |
+| Por que importa | A regra por palavras-chave classificou como "não recebido". O agente cruzou texto e pedido e acertou o responsável |
 
-## 8.2 LogiPredict
+## 10.2 LogiPredict
 **a) Objetivo:** em cada checkpoint, estimar o risco de atraso e escolher uma única ação.
 **b) Contexto:** compra, limite de postagem, postagem, prazo; rota UF→UF com trânsito mediano, p75 e p90; atraso histórico da UF de destino; histórico de postagem do seller.
 **c) Instrução principal (resumo):**
@@ -357,9 +447,9 @@ SAÍDA: JSON (score, nível, fatores, projeções, ação, mensagem, próximo ch
 | D-3 (24/03) | Sem entrega confirmada → AVISAR_CLIENTE com nova data 03/04 |
 | Desfecho real | Entregue em **06/04**, 10 dias de atraso. O cliente teria sido avisado 10 dias antes |
 
-*Um segundo caso real (SP → BA) mostra o **falso positivo controlado**: o agente alertou operações, mas não avisou o cliente porque a projeção mediana cabia no prazo. O pedido chegou no prazo.*
+*Um segundo caso real (SP → BA) mostra o falso positivo controlado: operações foi alertada, mas o cliente não, porque a projeção mediana cabia no prazo. O pedido chegou no prazo.*
 
-## 8.3 WinBack
+## 10.3 WinBack
 **a) Objetivo:** decidir se e como contatar o cliente de 1ª compra entre D+7 e D+90.
 **b) Contexto:** datas da 1ª compra e da entrega; categoria e valor; nota; atraso; opt-in; último contato; tickets abertos; categorias da 2ª compra por perfil.
 **c) Instrução principal (resumo):**
@@ -375,7 +465,7 @@ SAÍDA: JSON (elegível, ação, motivo, categorias, incentivo, mensagem, próxi
 ```
 **d) Resultado esperado:** decisão auditável, mensagem pronta e grupo controle de 10%.
 
-**Exemplo real.** Cliente do RS, 1ª compra em cama/mesa/banho (R$ 112,44), nota 5, entregue no prazo, D+7.
+**Exemplo real.** Cliente do RS, 1ª compra em cama/mesa/banho (R$ 112,44), nota 5, no prazo, D+7.
 
 | Campo | Saída do agente |
 |---|---|
@@ -386,112 +476,134 @@ SAÍDA: JSON (elegível, ação, motivo, categorias, incentivo, mensagem, próxi
 
 <!-- pagebreak -->
 
-# 9. Indicadores e Business Case
+# 11. Riscos, Governança e Human in the Loop (atualizado na Fase 2)
 
-## 9.1 Indicadores por agente
+## 11.1 Riscos e controles (Fase 1, mantidos e associados aos agentes priorizados)
 
-| Agente | Indicador | Baseline (dataset) | Meta do piloto (90 dias) | Como medir |
-|---|---|---|---|---|
-| LogiPredict | Taxa de atraso nas rotas do piloto | 8,11% (Brasil); 15–24% no Nordeste | −1 p.p. nas rotas piloto | Comparação com rotas controle |
-| LogiPredict | Postagens após o limite | 9,0% | ≤ 6% | `shipping_limit_date` × postagem |
-| LogiPredict | Falso positivo do aviso ao cliente | n/a | ≤ 20% | Avisos × entregas no prazo |
-| SentimentDesk | Tempo até a 1ª resposta | A medir (não existe no dataset) | 90% em < 24h | Log do agente |
-| SentimentDesk | Classificação correta | n/a | ≥ 85% | Auditoria amostral semanal (50 casos) |
-| SentimentDesk | Casos críticos com analista em < 4h | n/a | 95% | Fila de CX |
-| WinBack | Conversão em 2ª compra (90 dias) | 1,13% | 1,63% (+0,5 p.p.) | Uplift contra grupo controle de 10% |
-| WinBack | Opt-out por contato | n/a | < 1% | CRM |
-
-## 9.2 Business case: três cenários
-Janela: set/2017 a ago/2018 (12 meses), **na escala do dataset público**. Como o dataset é uma amostra da operação, os valores servem para **dimensionar a lógica**; o cálculo escala linearmente com o volume real.
-
-| Agente | Lógica do cálculo | Conservador | Base | Otimista |
-|---|---|---|---|---|
-| LogiPredict | 6.689 postagens atrasadas × diferença de atraso (24,4% → 6,5%) × % da diferença eliminada (25/50/75%) | 335 atrasos evitados · 150 notas 1–2 a menos | **670 atrasos · 300 notas 1–2 a menos** | 1.006 atrasos · 451 notas 1–2 a menos |
-| SentimentDesk | 11.711 avaliações 1–2 × % tratada com o agente (50/70/90%) × 9 min poupados × R$ 45/h | 878 h · R$ 39,5 mil | **1.229 h · R$ 55,3 mil** | 1.580 h · R$ 71,1 mil |
-| WinBack | 71.693 novos clientes × aumento da conversão em 90 dias (+0,25/+0,5/+1,0 p.p.) × ticket da 2ª compra (R$ 148,35) | 179 compras · R$ 26,6 mil | **358 compras · R$ 53,2 mil** | 716 compras · R$ 106,4 mil |
-
-**Premissas explícitas:** 12 minutos de triagem manual contra 3 minutos com o agente; custo do analista de R$ 45/hora; incrementos de conversão em pontos percentuais absolutos sobre a base de 1,13%. O efeito indireto (cliente com entrega no prazo recompra mais) **não foi somado**, para manter o cálculo conservador.
-
-> **Leitura executiva.** O maior retorno não está nos valores isolados. Está na combinação: menos atrasos geram menos avaliações negativas, o que reduz a fila do CX e preserva a chance de segunda compra. Os três agentes atacam elos da mesma corrente.
-
-<!-- pagebreak -->
-
-# 10. Governança, Riscos e Humano no Loop
-
-## 10.1 Quem decide o quê (RACI simplificado)
-
-| Decisão | Agente | Analista | Gestor | Observação |
-|---|---|---|---|---|
-| Classificar avaliação / calcular risco | **Executa** | Audita amostra | Informado | Automático com monitoramento |
-| Lembrete ao seller | **Executa** | Informado | n/a | Template aprovado |
-| Aviso ao cliente com nova data | **Executa** | Informado | Aprova o template | Só com projeção de estouro |
-| Resposta padrão a avaliação | **Executa** | Revisa amostra | Aprova os templates | Casos críticos nunca automáticos |
-| Resposta a caso crítico e compensação | Rascunha | **Decide** | Alçada acima do limite | Trilha de auditoria |
-| Tratativa com a transportadora | Recomenda | **Decide** | Informado | n/a |
-| Incentivo ≤ 10% | **Executa** | Informado | Define o teto | n/a |
-| Incentivo > 10% | Recomenda | n/a | **Decide** | n/a |
-
-## 10.2 Riscos e controles
-
-| Risco | Onde aparece | Controle |
+| Risco | Exemplo | Controle |
 |---|---|---|
-| Alarme falso ao cliente | LogiPredict | Aviso só quando a projeção mediana estoura o prazo; meta de falso positivo ≤ 20% |
-| Classificação errada | SentimentDesk | Confiança mínima de 0,8; auditoria semanal; fila humana |
-| Promessa indevida | SentimentDesk, WinBack | Seção "não faça" nos prompts; templates aprovados por CX e Jurídico |
-| Excesso de contato / LGPD | WinBack | Opt-in, intervalo de 15 dias, máximo de 2 contatos, opt-out monitorado |
-| Viés histórico | Todos | Evidências recalculadas com dados atuais antes do piloto |
-| Dependência de dados externos | LogiPredict | Funciona só com o histórico; rastreio é melhoria, não pré-requisito |
+| Alucinação / decisão sem evidência | Agente afirma fato inexistente | Grounding em dados, fonte explícita, validação humana para alto impacto |
+| Falso positivo logístico | Cliente avisado de atraso que não ocorre | Aviso só quando a projeção mediana estoura o prazo; meta de falso positivo ≤ 20% |
+| Classificação errada *(novo)* | SentimentDesk erra o motivo | Confiança mínima de 0,8; auditoria semanal; fila humana |
+| Impacto financeiro | Incentivo excessivo | Teto de 10%; acima disso, aprovação do Gestor de CRM |
+| Penalização indevida | Seller punido injustamente | Agentes não penalizam; revisão humana e direito de resposta |
+| Privacidade / LGPD | Contato sem consentimento | Opt-in, intervalo de 15 dias, máximo de 2 contatos |
+| Viés histórico | Padrões de 2016–2018 | Evidências recalculadas com dados atuais antes do piloto |
+| Automação excessiva | Ação irreversível sem supervisão | Matriz de autonomia (11.2) e lista fechada de ações por agente |
 
-<!-- pagebreak -->
+## 11.2 Matriz de autonomia (Fase 1, mantida)
 
-# 11. Roadmap e Próximos Passos
+| Tipo de ação | Autonomia recomendada |
+|---|---|
+| Classificar, resumir, detectar tema | Automática com monitoramento |
+| Gerar rascunho, alerta ou recomendação | Automática; humano revisa quando sensível |
+| Comunicação padrão de baixo risco | Automática após validação de regras e confiança |
+| Desconto, ressarcimento, alteração de preço | Automática apenas dentro de limites pré-aprovados |
+| Suspensão de seller ou decisão reputacional | Aprovação humana obrigatória |
+| Decisão estratégica executiva | Agente recomenda; liderança decide |
+
+## 11.3 Quem decide o quê nos agentes priorizados (novo na Fase 2)
+
+| Decisão | Agente | Analista | Gestor |
+|---|---|---|---|
+| Classificar avaliação / calcular risco | **Executa** | Audita amostra | Informado |
+| Lembrete ao seller; aviso com nova data | **Executa** | Informado | Aprova o template |
+| Resposta padrão a avaliação | **Executa** | Revisa amostra | Aprova os templates |
+| Resposta a caso crítico e compensação | Rascunha | **Decide** | Alçada acima do limite |
+| Tratativa com a transportadora | Recomenda | **Decide** | Informado |
+| Incentivo ≤ 10% / > 10% | **Executa** / Recomenda | Informado | Define o teto / **Decide** |
+
+# 12. Roadmap de Implantação e Validação (atualizado na Fase 2)
+
+A versão 1.0 trazia duas ordens diferentes de implantação (Seções 5.3 e 11). A versão 2.0 adota um **roadmap único**, coerente com a priorização da Seção 5.3:
 
 | Onda | Agentes | Período | Critério para avançar |
 |---|---|---|---|
 | **Wave 1 · piloto** | LogiPredict + SentimentDesk | Meses 1–3 | Falso positivo ≤ 20%; classificação ≥ 85%; 90% de respostas em < 24h |
-| **Wave 2** | WinBack | Meses 4–6 | Opt-in e grupo controle prontos; sinal de pausa do SentimentDesk em produção |
-| **Wave 3** | SellerCare (coaching com dados dos agentes) e SmartFreight | Meses 7–9 | Uplift comprovado nas Waves 1 e 2 |
+| **Wave 2** | WinBack | Meses 4–6 | Opt-in e grupo controle prontos; sinal de pausa em produção |
+| **Wave 3** | SellerCare e SmartFreight | Meses 7–9 | Uplift comprovado nas Waves 1 e 2 |
 | **Orquestração** | Maestro | Fase 4 do projeto | Três especialistas estáveis em produção |
 
-**Próximos passos (Fase 3, protótipo):**
-1. Prototipar o SentimentDesk e o LogiPredict em ferramenta **low-code**, com os casos reais deste relatório como base de teste.
-2. Medir a acurácia do SentimentDesk contra 30 a 50 avaliações rotuladas pelo grupo.
-3. Calibrar os pesos do score do LogiPredict com o histórico completo (falso positivo × falso negativo).
-
-# 12. Recomendação Executiva
-
-A Fase 1 mostrou que a Olist tem um problema conectado: atraso gera avaliação negativa, e avaliação negativa coincide com menor recompra. A Fase 2 transforma esse diagnóstico em operação. São **três agentes especializados**, cada um com **um papel**, **gatilhos claros**, **lista fechada de ações** e **pessoas decidindo o que tem impacto financeiro ou reputacional**.
-
-**Pedimos a aprovação do piloto da Wave 1 (LogiPredict + SentimentDesk) por 90 dias**, com rotas do Nordeste como foco logístico, grupo controle e as metas da Seção 9.1 como critério de continuidade. Os dois agentes usam dados que a Olist já possui, não executam ações irreversíveis e produzem resultado mensurável dentro do próprio piloto.
-
-> **Mensagem para a diretoria.** Não propomos mais agentes; propomos agentes melhores. Começar pelo prazo de entrega é atacar a origem do problema, e cada passo seguinte só avança com resultado medido.
+**Próximos passos (Fase 3, protótipo):** prototipar SentimentDesk e LogiPredict em ferramenta low-code com os casos reais deste relatório; medir a acurácia do SentimentDesk contra 30 a 50 avaliações rotuladas pelo grupo; calibrar os pesos do score do LogiPredict.
 
 <!-- pagebreak -->
 
-# Apêndice A: Rastreabilidade dos Requisitos da Fase 2
+# 13. Indicadores de Sucesso e Business Case (atualizado na Fase 2)
 
-| Requisito do enunciado | Onde está |
-|---|---|
-| 1. Evolução do relatório da Fase 1 (sem recomeçar do zero) | Seção 2 + estrutura herdada da Fase 1 |
-| 2. Pelo menos 3 agentes detalhados | Seção 6 (LogiPredict, SentimentDesk, WinBack) |
-| 2a. Objetivo do agente | 6.1a, 6.2a, 6.3a |
-| 2b. Problema resolvido (dor, impacto atual, consequências) | 6.1b, 6.2b, 6.3b + Seção 3 |
-| 2c. Usuários envolvidos | 6.1c, 6.2c, 6.3c + 5.1 |
-| 2d. Dados utilizados (tabelas, informações, dados externos) | 6.1d, 6.2d, 6.3d |
-| 2e. Entradas e saídas | 6.1e, 6.2e, 6.3e |
-| 2f. Indicadores impactados | 6.1f, 6.2f, 6.3f + 9.1 |
-| 3. Fluxos com gatilhos, entradas, decisões, ações, interação humana e saída | Seção 7 (3 fluxos + jornada multiagente + exceções) |
-| 4. Prompts com objetivo, contexto, instrução e resultado esperado | Seção 8 + `prompts/PROMPTS_V2.md` |
-| 5. Vídeo executivo (link no relatório) | Sumário Executivo (Seção 1) e capa |
-| Sempre explicar problema, benefício, impacto, usuários e riscos | Seções 6, 9 e 10 |
+## 13.1 Baselines do projeto (Fase 1, revisados)
 
-# Apêndice B: Fontes e Artefatos
+| Categoria | Indicador | Baseline |
+|---|---|---|
+| Financeiro | Receita total · ticket médio · LTV estimado | R$ 16.008.872,12 · R$ 161,00 · R$ 165,20 |
+| Clientes | Taxa de recompra · churn (> 6 meses) · top 10% da base | 3,00% · 58,61% · 38,25% da receita |
+| Clientes *(novo)* | Conversão em 2ª compra em 90 dias | 1,13% |
+| Logística | Tempo médio total · trânsito · processamento | **12,56 dias** · 9,33 dias · 3,23 dias *(revisados)* |
+| Logística | Taxa de atrasos · postagem após o limite *(novo)* | 8,11% · 9,0% |
+| Logística | Frete / valor do pedido | 21,34% |
+| Satisfação | Notas 1 e 2 | 14,7% |
+| Satisfação | Tempo de resposta da Olist a avaliações | **A medir no piloto** *(substitui o "3,15 dias" da v1.0)* |
+| Sellers | Concentração · nota crítica · cluster problemático | Gini 0,792 · 342 com nota < 3,0 · 527 sellers |
+
+## 13.2 Metas do piloto (novo na Fase 2)
+
+| Agente | Indicador | Baseline | Meta (90 dias) | Como medir |
+|---|---|---|---|---|
+| LogiPredict | Atraso nas rotas do piloto | 15–24% no Nordeste | −1 p.p. | Rotas controle |
+| LogiPredict | Postagens após o limite | 9,0% | ≤ 6% | Limite × postagem |
+| LogiPredict | Falso positivo do aviso | n/a | ≤ 20% | Avisos × entregas no prazo |
+| SentimentDesk | Tempo até a 1ª resposta | A medir | 90% em < 24h | Log do agente |
+| SentimentDesk | Classificação correta | n/a | ≥ 85% | Auditoria semanal (50 casos) |
+| WinBack | Conversão em 2ª compra (90 dias) | 1,13% | 1,63% | Uplift contra controle |
+| WinBack | Opt-out por contato | n/a | < 1% | CRM |
+
+## 13.3 Business case em três cenários (novo na Fase 2)
+Janela: set/2017 a ago/2018, **na escala do dataset público**. Como o dataset é uma amostra da operação, os valores **dimensionam a lógica**; o cálculo escala linearmente com o volume real.
+
+| Agente | Lógica do cálculo | Conservador | Base | Otimista |
+|---|---|---|---|---|
+| LogiPredict | 6.689 postagens atrasadas × diferença de atraso (24,4% → 6,5%) × % eliminada (25/50/75%) | 335 atrasos · 150 notas 1–2 a menos | **670 atrasos · 300 notas 1–2 a menos** | 1.006 atrasos · 451 notas 1–2 a menos |
+| SentimentDesk | 11.711 avaliações 1–2 × % tratada (50/70/90%) × 9 min poupados × R$ 45/h | 878 h · R$ 39,5 mil | **1.229 h · R$ 55,3 mil** | 1.580 h · R$ 71,1 mil |
+| WinBack | 71.693 novos clientes × aumento da conversão (+0,25/+0,5/+1,0 p.p.) × ticket da 2ª compra (R$ 148,35) | 179 compras · R$ 26,6 mil | **358 compras · R$ 53,2 mil** | 716 compras · R$ 106,4 mil |
+
+**Premissas:** 12 minutos de triagem manual contra 3 com o agente; analista a R$ 45/hora; incrementos de conversão em pontos percentuais sobre a base de 1,13%. O efeito indireto (cliente com entrega no prazo recompra mais) **não foi somado**.
+
+> **Leitura executiva.** O maior retorno está na combinação: menos atrasos geram menos avaliações negativas, o que reduz a fila do CX e preserva a chance de segunda compra. Os três agentes atacam elos da mesma corrente.
+
+# 14. Recomendação Executiva (atualizado na Fase 2)
+
+Na Fase 1, os dados mostraram um conjunto conectado de fricções. Na Fase 2, esse diagnóstico virou operação. São **três agentes especializados**, cada um com **um papel**, **gatilhos claros**, **lista fechada de ações** e **pessoas decidindo o que tem impacto financeiro ou reputacional**. A visão de seis agentes e orquestrador da Fase 1 continua como destino; o caminho até ela agora tem ordem, critério e metas.
+
+**Pedimos a aprovação do piloto da Wave 1 (LogiPredict + SentimentDesk) por 90 dias**, com rotas do Nordeste como foco, grupo controle e as metas da Seção 13.2 como critério de continuidade.
+
+> **Mensagem para a diretoria.** A IA Agêntica deve ser tratada como uma capacidade de negócio, não como uma coleção de chatbots. Não propomos mais agentes; propomos agentes melhores, começando pela origem do problema, e cada passo seguinte só avança com resultado medido.
+
+<!-- pagebreak -->
+
+# 15. Fontes do Projeto
 
 | Artefato | Conteúdo |
 |---|---|
+| Enunciados oficiais FIAP | Tech Challenge Agentic AI, Fases 1 e 2 |
+| `fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf` | Versão 1.0 deste relatório (preservada) |
+| Notebooks 01–07 | Diagnóstico da Fase 1 |
 | `notebooks/08_fase2_evidencias_business_case.ipynb` | Cadeia de evidência, priorização, business case, casos reais |
-| `fase2/dados/numeros_fase2.json` | Fonte única de números (valor, definição, tabela de origem) |
+| `fase2/NUMEROS_OFICIAIS.md` | Fonte única dos números da Fase 2 (valor, definição, tabela de origem) |
 | `fase2/prompts/PROMPTS_V2.md` | Prompts completos e 10 exemplos com casos reais |
-| `fase2/fluxos/` | Fluxos em PNG e o script que os gera |
-| Notebooks 01–07 e Relatório da Fase 1 | Diagnóstico original (preservado em `fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf`) |
+| `fase2/fluxos/` | Fluxos e o script que os gera |
 | Dataset | Brazilian E-Commerce Public Dataset by Olist (Kaggle), 2016–2018 |
+
+# Apêndice A: Rastreabilidade dos Entregáveis
+
+| Requisito | Fase | Onde está |
+|---|---|---|
+| Principais problemas e oportunidades | 1 | Seções 1, 2 e 4 |
+| Análises do dataset | 1 | Seções 3, 4 e 5 |
+| Mapa de agentes | 1 | Seção 6 |
+| Arquitetura conceitual | 1 | Seção 7 |
+| Riscos | 1 e 2 | Seção 11 |
+| Evolução do relatório da Fase 1 | 2 | Histórico do Documento + marcas "atualizado/novo" em cada seção |
+| ≥ 3 agentes com a) a f) | 2 | Seção 8 (8.1 a 8.3) |
+| Jornadas: gatilhos, entradas, decisões, ações, interação humana e saída | 2 | Seção 9 |
+| Prompts: objetivo, contexto, instrução e resultado esperado | 1 e 2 | Seção 10 + `fase2/prompts/PROMPTS_V2.md` |
+| Vídeo executivo (link no relatório) | 1 e 2 | Seção 1 e capa |
+| Problema, benefício, impacto, usuários e riscos | 1 e 2 | Seções 8, 11 e 13 |

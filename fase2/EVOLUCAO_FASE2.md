@@ -9,11 +9,16 @@
 
 | Entregável do enunciado | Status | Arquivo |
 |---|---|---|
-| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **21 páginas** | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
-| 2. Casos de uso de ≥ 3 agentes (a–f) | ✅ No relatório, Seção 6 | idem |
-| 3. Jornadas / fluxos | ✅ 3 fluxos + jornada multiagente, Seção 7 | [fluxos/](fluxos/) |
-| 4. Prompts estruturados | ✅ Resumo no relatório (Seção 8) + versão completa com 10 casos reais | [prompts/PROMPTS_V2.md](prompts/PROMPTS_V2.md) |
+| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **26 páginas**: é a **versão 2.0 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
+| 2. Casos de uso de ≥ 3 agentes (a–f) | ✅ No relatório, Seção 8 | idem |
+| 3. Jornadas / fluxos | ✅ 3 fluxos + jornada multiagente, Seção 9 | [fluxos/](fluxos/) |
+| 4. Prompts estruturados | ✅ Resumo no relatório (Seção 10) + versão completa com 10 casos reais | [prompts/PROMPTS_V2.md](prompts/PROMPTS_V2.md) |
 | 5. Vídeo executivo (≤ 5 min) | 🟨 Roteiro e slides prontos; **falta gravar** | [video/ROTEIRO_VIDEO_FASE2.md](video/ROTEIRO_VIDEO_FASE2.md) · [video/Apresentacao_Fase2_Olist.pptx](video/Apresentacao_Fase2_Olist.pptx) |
+
+**Documentos de apoio para a reunião (Word):**
+- [Alteracoes_Relatorio_v1_para_v2.docx](Alteracoes_Relatorio_v1_para_v2.docx): tudo que mudou, seção por seção, do relatório da Fase 1 (v1.0) para o da Fase 2 (v2.0)
+- [Entregaveis_Fase2.docx](Entregaveis_Fase2.docx): cada entregável com a seção/página do relatório e o caminho na árvore de arquivos
+- Para regenerar depois de mudar o relatório: `python fase2/gerar_docs_apoio.py`
 
 **O que falta para entregar:** (1) revisão do grupo, (2) gravar o vídeo, (3) colar o link e gerar a versão FINAL (um comando), (4) submeter.
 
@@ -33,9 +38,9 @@
 
 | Feedback | Resposta na Fase 2 | Onde |
 |---|---|---|
-| Racional dos achados | **Cadeia de evidência** E1–E6: pergunta → tabela/coluna → método → resultado → decisão de desenho | Relatório §3; notebook 08 |
-| Ações amplas, sem especialização | Cada agente com **1 objetivo**, **gatilhos**, **lista fechada de ações**, quadro **faz / não faz** e escopo escrito no próprio fluxo | Relatório §5–§7; prompts |
-| Muitos objetivos; priorizar | **Matriz de priorização** ponderada: de 6 para **3 agentes**, todos na jornada do pedido | Relatório §4 |
+| Racional dos achados | **Cadeia de evidência** E1–E6: pergunta → tabela/coluna → método → resultado → decisão de desenho | Relatório §4.5; notebook 08 |
+| Ações amplas, sem especialização | Cada agente com **1 objetivo**, **gatilhos**, **lista fechada de ações**, quadro **faz / não faz** e escopo escrito no próprio fluxo | Relatório §8–§10; prompts |
+| Muitos objetivos; priorizar | **Matriz de priorização** ponderada: de 6 para **3 agentes**, todos na jornada do pedido | Relatório §5.3 |
 | Falha de revisão | **Fonte única de números** gerada pelo notebook; **QA automático** no gerador do PDF; apêndice de rastreabilidade | [NUMEROS_OFICIAIS.md](NUMEROS_OFICIAIS.md); `gerar_relatorio.py` |
 
 ---
@@ -60,7 +65,7 @@
 | D1 | **3 agentes detalhados** (o enunciado pede ≥ 3), não 4–6 | Feedback pediu priorização; os 3 formam uma cadeia na mesma jornada | Detalhar também o SellerCare (mais trabalho, contradiz o feedback) |
 | D2 | **WinBack reposicionado** para a 2ª compra (D+7 a D+90), deixando de mirar os 38.655 inativos | 54% das 2ªs compras ocorrem em até 90 dias; inativo antigo raramente volta | Manter o público da Fase 1 (fraco nos dados) |
 | D3 | **SellerCare absorvido** (lembrete de postagem → LogiPredict; ticket ao seller → SentimentDesk) | Mantém as ações de maior evidência sem criar um 4º agente | Mantê-lo como agente próprio na Wave 3 (já está no roadmap) |
-| D4 | **Correções de números da Fase 1** declaradas no relatório (12,47 → 12,56 dias; "tempo de resposta 3,15 dias" retirado) | Rigor: `review_answer_timestamp` é a resposta do **cliente** à pesquisa, não da Olist | Não mencionar (arriscado se a banca perceber) |
+| D4 | **Correções de números da Fase 1** declaradas no relatório (12,47 → 12,56 dias; "tempo de resposta 3,15 dias" retirado) | Rigor: `review_answer_timestamp` é a resposta do **cliente** à pesquisa, não da Olist. As correções ficam no "Histórico do Documento" do relatório; os arquivos de `fase1/` **não são alterados** (registro do que foi entregue) | Não mencionar (arriscado se a banca perceber) |
 | D5 | **Premissas do business case:** R$ 45/h de analista; 12 → 3 min por avaliação; +0,25/+0,5/+1,0 p.p. de conversão | Conservadoras e explícitas | Ajustar se alguém tiver referência de mercado |
 | D6 | **Saídas dos prompts** geradas com Claude (Opus 5.5) sobre casos reais | Garante formato consistente | **Reproduzir no claude.ai/ChatGPT** antes da gravação (ver §5, Lucas) |
 | D7 | Fluxos gerados por script (matplotlib), não Draw.io | Reproduzível e versionado; padrão visual único | Redesenhar no Draw.io/Figma se o grupo quiser outro estilo |
@@ -73,10 +78,10 @@ Critério da divisão: **Leonardo** (perfil de negócio) fica com leitura, narra
 
 | Pessoa | Revisa no relatório | Revisa nos artefatos | Prepara para o vídeo |
 |---|---|---|---|
-| **Leonardo** (negócio) | **Dono do §1 Sumário Executivo** (como na Fase 1) + leitura executiva do relatório inteiro, com foco em §2 Evolução, §4 Priorização, §11 Roadmap e §12 Recomendação | **Dono da apresentação** (como na Fase 1): slides (`.pptx`) e roteiro do vídeo; premissas de negócio D5 (junto com o Jorge) | Slides 3, 4, 10; condução do ensaio geral (o "olhar do executivo") |
-| **Jorge** (técnico) | §9 Business case | Rodar `gerar_relatorio.py` e `gerar_slides.py`; aplicar nas fontes os comentários do Leonardo; `config_relatorio.json` e versão FINAL | Slides 1, 2, 11, 12; edição final; submissão |
-| **Caio** (técnico) | §3 Evidências, §5 Visão operacional, §6.1 LogiPredict, §7.1, §10 Governança | **Rodar o notebook 08** e conferir [NUMEROS_OFICIAIS.md](NUMEROS_OFICIAIS.md); `gerar_fluxos.py`; prompts do LogiPredict (casos L1–L3) | Slides 5, 6 |
-| **Lucas** (técnico) | §6.2 SentimentDesk, §6.3 WinBack, §7.2–7.5, §8 Prompts | [PROMPTS_V2.md](prompts/PROMPTS_V2.md): reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Slides 7, 8, 9 |
+| **Leonardo** (negócio) | **Dono do §1 Sumário Executivo** (como na Fase 1) + leitura executiva do relatório inteiro, com foco em Histórico do Documento, §2 Contexto, §5.3 Priorização, §12 Roadmap e §14 Recomendação | **Dono da apresentação** (como na Fase 1): slides (`.pptx`) e roteiro do vídeo; premissas de negócio D5 (junto com o Jorge) | Slides 3, 4, 10; condução do ensaio geral (o "olhar do executivo") |
+| **Jorge** (técnico) | §13 Indicadores e Business case | Rodar `gerar_relatorio.py` e `gerar_slides.py`; aplicar nas fontes os comentários do Leonardo; `config_relatorio.json` e versão FINAL | Slides 1, 2, 11, 12; edição final; submissão |
+| **Caio** (técnico) | §3 Abordagem, §4 Achados e evidências, §6 Mapa, §7 Arquitetura, §8.1 LogiPredict, §9.1, §11 Governança | **Rodar o notebook 08** e conferir [NUMEROS_OFICIAIS.md](NUMEROS_OFICIAIS.md); `gerar_fluxos.py`; prompts do LogiPredict (casos L1–L3) | Slides 5, 6 |
+| **Lucas** (técnico) | §8.2 SentimentDesk, §8.3 WinBack, §8.4, §9.2–9.5, §10 Prompts | [PROMPTS_V2.md](prompts/PROMPTS_V2.md): reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Slides 7, 8, 9 |
 
 **Regra de revisão:**
 - **Leonardo** comenta direto no Word ([Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx](Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx), com Revisão → Novo comentário) e no PowerPoint. Não precisa mexer em arquivo-fonte.
