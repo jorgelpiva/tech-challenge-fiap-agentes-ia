@@ -1,7 +1,7 @@
 """Gera os slides de apoio do vídeo da Fase 2 (16:9) com notas do apresentador.
 
-Uso (na raiz do repo):  python docs/fase2/video/gerar_slides.py
-Saída: docs/fase2/video/Apresentacao_Fase2_Olist.pptx
+Uso (na raiz do repo):  python fase2/video/gerar_slides.py
+Saída: fase2/video/Apresentacao_Fase2_Olist.pptx
 As falas (notas) seguem o ROTEIRO_VIDEO_FASE2.md; se mudar um, mude o outro.
 """
 from pathlib import Path

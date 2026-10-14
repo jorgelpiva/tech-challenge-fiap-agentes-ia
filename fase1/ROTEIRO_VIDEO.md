@@ -148,13 +148,13 @@
 - ⏱️ Respeitar os tempos para não ultrapassar 5 min
 - 🎞️ Usar transição simples (fade) entre cenas
 - 📹 Resolução mínima recomendada: 1080p (Full HD)
-- 🎯 O diagrama de arquitetura está pronto em `docs/ARQUITETURA.html` — abrir no navegador e capturar tela
+- 🎯 O diagrama de arquitetura está pronto em `fase1/ARQUITETURA.html` — abrir no navegador e capturar tela
 
 ### Ferramentas Sugeridas
 - **Gravação de tela:** OBS Studio (gratuito) ou Loom
 - **Slides:** Google Slides, Canva ou PowerPoint
 - **Edição:** DaVinci Resolve (gratuito) ou CapCut
-- **Diagrama de arquitetura:** abrir o `docs/ARQUITETURA.html` no navegador e capturar tela
+- **Diagrama de arquitetura:** abrir o `fase1/ARQUITETURA.html` no navegador e capturar tela
 
 ---
 
@@ -163,6 +163,6 @@
 - [ ] Cada apresentador ensaiou sua parte ao menos 2×
 - [ ] Slides revisados e alinhados com o roteiro
 - [ ] Microfone testado (sem ruído de fundo)
-- [ ] `docs/ARQUITETURA.html` aberto e pronto para captura de tela
+- [ ] `fase1/ARQUITETURA.html` aberto e pronto para captura de tela
 - [ ] Gráficos dos notebooks abertos nos momentos certos (Cluster RFM, Gráfico logístico)
 - [ ] Cronometrar o ensaio completo para garantir ≤ 5 min

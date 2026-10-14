@@ -14,10 +14,10 @@ A Fase 2 detalha três agentes priorizados na jornada do pedido: **LogiPredict**
 
 | Documento | Descrição |
 |---|---|
-| [docs/fase2/EVOLUCAO_FASE2.md](docs/fase2/EVOLUCAO_FASE2.md) | **Comece aqui:** evolução Fase 1 → 2, entregáveis e decisões |
-| [docs/fase2/RELATORIO_EXECUTIVO_FASE2.md](docs/fase2/RELATORIO_EXECUTIVO_FASE2.md) | Relatório Executivo v2 (fonte; o PDF é gerado a partir dele) |
-| [docs/fase2/prompts/PROMPTS_V2.md](docs/fase2/prompts/PROMPTS_V2.md) | Prompts estruturados v2 com 10 casos reais |
-| [docs/fase2/NUMEROS_OFICIAIS.md](docs/fase2/NUMEROS_OFICIAIS.md) | Fonte única de números (notebook 08) |
+| [fase2/EVOLUCAO_FASE2.md](fase2/EVOLUCAO_FASE2.md) | **Comece aqui:** evolução Fase 1 → 2, entregáveis e decisões |
+| [fase2/RELATORIO_EXECUTIVO_FASE2.md](fase2/RELATORIO_EXECUTIVO_FASE2.md) | Relatório Executivo v2 (fonte; o PDF é gerado a partir dele) |
+| [fase2/prompts/PROMPTS_V2.md](fase2/prompts/PROMPTS_V2.md) | Prompts estruturados v2 com 10 casos reais |
+| [fase2/NUMEROS_OFICIAIS.md](fase2/NUMEROS_OFICIAIS.md) | Fonte única de números (notebook 08) |
 | [notebooks/08_fase2_evidencias_business_case.ipynb](notebooks/08_fase2_evidencias_business_case.ipynb) | Cadeia de evidência, priorização e business case |
 
 > O conteúdo abaixo documenta a **Fase 1** (preservado).
@@ -48,16 +48,34 @@ A Olist é um marketplace brasileiro que conecta pequenos lojistas a grandes can
 
 ## 📂 Estrutura do Projeto
 
+Uma pasta por fase na raiz; dados e notebooks são compartilhados entre as fases.
+
 ```
 tech-challenge-agentes-ia/
 │
 ├── 📄 README.md                    # Este arquivo
-├── 📄 CONTEXTO.md                  # Contexto e referência rápida do projeto
-├── 📄 BRAINSTORMING.md             # Achados, insights e ideias de agentes IA
+├── 📄 CONTEXTO.md                  # Contexto e referência rápida do projeto (todas as fases)
 ├── 🔧 setup_data.sh                # Script para baixar o dataset automaticamente
-├── 🔧 build_notebooks.py           # Script auxiliar de geração dos notebooks
+├── 🔧 build_notebooks.py           # Script auxiliar de geração dos notebooks 01–07
 ├── 📄 .gitignore                   # Arquivos ignorados pelo Git
-├── 📄 TECH_CHALLENGE_AGENTIC_AI-FASE_1.pdf  # Enunciado do desafio
+│
+├── 📁 fase1/                       # Fase 1 — entregue (80/90)
+│   ├── TECH_CHALLENGE_AGENTIC_AI-FASE_1.pdf   # Enunciado
+│   ├── Relatorio_Executivo_Fase1_Olist_FINAL.pdf (+ .docx)  # Relatório entregue
+│   ├── RELATORIO_EXECUTIVO.md      # Relatório executivo (versão markdown)
+│   ├── MAPA_AGENTES.md / .html     # Mapa de agentes
+│   ├── ARQUITETURA.html            # Arquitetura conceitual
+│   ├── PROMPTS_ESTRUTURADOS.md     # Prompts dos agentes
+│   ├── ROTEIRO_VIDEO.md · APRESENTACAO.html
+│   ├── BRAINSTORMING.md            # Achados e ideias de agentes
+│   └── 📁 apresentacao/            # PPT e roteiro do vídeo da Fase 1
+│
+├── 📁 fase2/                       # Fase 2 — em andamento (ver EVOLUCAO_FASE2.md)
+│   ├── POSTECH - Tech Challenge - Fase 2.pdf  # Enunciado
+│   ├── EVOLUCAO_FASE2.md · PLANO_FASE2.md
+│   ├── RELATORIO_EXECUTIVO_FASE2.md + gerar_relatorio.py
+│   ├── NUMEROS_OFICIAIS.md · 📁 dados/ · 📁 img/
+│   ├── 📁 fluxos/ · 📁 prompts/ · 📁 video/
 │
 ├── 📁 data/olist/                  # Dataset Olist (baixado via setup_data.sh, fora do Git)
 │       ├── olist_customers_dataset.csv
@@ -78,16 +96,9 @@ tech-challenge-agentes-ia/
 │   ├── 05_analise_logistica.ipynb  # Análise logística e performance de entrega
 │   ├── 06_analise_vendedores.ipynb # Análise e segmentação de vendedores
 │   ├── 07_clustering_segmentacao.ipynb # K-Means, clustering hierárquico, RFM
+│   ├── 08_fase2_evidencias_business_case.ipynb # Fase 2: evidências, priorização, business case
+│   ├── build_notebook_08.py        # Gera/executa o notebook 08
 │   └── 📁 outputs/                 # Gráficos (*.png) e resumos (*_summary.txt)
-│
-└── 📁 docs/                        # Entregáveis da Fase 1
-    ├── RELATORIO_EXECUTIVO.md      # Relatório executivo (documento principal)
-    ├── MAPA_AGENTES.md             # Mapa de agentes (texto)
-    ├── MAPA_AGENTES.html           # Mapa de agentes (diagrama visual)
-    ├── ARQUITETURA.html            # Arquitetura conceitual (diagrama visual)
-    ├── PROMPTS_ESTRUTURADOS.md     # Estruturação de prompts dos agentes
-    ├── ROTEIRO_VIDEO.md            # Roteiro do vídeo executivo
-    └── APRESENTACAO.html           # Slides de apoio da apresentação
 ```
 
 ---
@@ -190,7 +201,7 @@ Com base nas análises, foram identificadas oportunidades para os seguintes agen
 | **Precificação & Frete (SmartFreight)** | Frete = 21% do valor do pedido | Conversão +12% |
 | **Orquestrador Executivo — BI (Maestro)** | Dados fragmentados atrasam a decisão | −40h/semana em relatórios |
 
-> Detalhes completos no [Mapa de Agentes](docs/MAPA_AGENTES.md) e nos [Prompts Estruturados](docs/PROMPTS_ESTRUTURADOS.md).
+> Detalhes completos no [Mapa de Agentes](fase1/MAPA_AGENTES.md) e nos [Prompts Estruturados](fase1/PROMPTS_ESTRUTURADOS.md).
 
 ---
 
@@ -263,12 +274,12 @@ Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderiz
 
 | Documento | Descrição |
 |-----------|-----------|
-| [docs/RELATORIO_EXECUTIVO.md](docs/RELATORIO_EXECUTIVO.md) | Relatório executivo — documento principal da Fase 1 |
-| [docs/MAPA_AGENTES.md](docs/MAPA_AGENTES.md) · [.html](docs/MAPA_AGENTES.html) | Mapa de agentes (texto + diagrama visual) |
-| [docs/ARQUITETURA.html](docs/ARQUITETURA.html) | Arquitetura conceitual (diagrama visual) |
-| [docs/PROMPTS_ESTRUTURADOS.md](docs/PROMPTS_ESTRUTURADOS.md) | Estruturação de prompts dos agentes |
-| [docs/ROTEIRO_VIDEO.md](docs/ROTEIRO_VIDEO.md) · [APRESENTACAO.html](docs/APRESENTACAO.html) | Roteiro e slides do vídeo executivo |
-| [CONTEXTO.md](CONTEXTO.md) · [BRAINSTORMING.md](BRAINSTORMING.md) | Referência rápida e achados/insights de apoio |
+| [fase1/RELATORIO_EXECUTIVO.md](fase1/RELATORIO_EXECUTIVO.md) | Relatório executivo — documento principal da Fase 1 |
+| [fase1/MAPA_AGENTES.md](fase1/MAPA_AGENTES.md) · [.html](fase1/MAPA_AGENTES.html) | Mapa de agentes (texto + diagrama visual) |
+| [fase1/ARQUITETURA.html](fase1/ARQUITETURA.html) | Arquitetura conceitual (diagrama visual) |
+| [fase1/PROMPTS_ESTRUTURADOS.md](fase1/PROMPTS_ESTRUTURADOS.md) | Estruturação de prompts dos agentes |
+| [fase1/ROTEIRO_VIDEO.md](fase1/ROTEIRO_VIDEO.md) · [APRESENTACAO.html](fase1/APRESENTACAO.html) | Roteiro e slides do vídeo executivo |
+| [CONTEXTO.md](CONTEXTO.md) · [BRAINSTORMING.md](fase1/BRAINSTORMING.md) | Referência rápida e achados/insights de apoio |
 
 ---
 
@@ -277,7 +288,7 @@ Todos os notebooks já possuem suas **saídas, tabelas e gráficos pré-renderiz
 | Fase | Status | Foco |
 |------|--------|------|
 | **Fase 1** | ✅ Entregue (80/90) | Fundamentos, EDA, visão estratégica |
-| **Fase 2** | 🔄 Em andamento ([plano](docs/fase2/PLANO_FASE2.md)) | Casos de uso e desenho de agentes |
+| **Fase 2** | 🔄 Em andamento ([plano](fase2/PLANO_FASE2.md)) | Casos de uso e desenho de agentes |
 | Fase 3 | ⏳ Futuro | Protótipos e validação |
 | Fase 4 | ⏳ Futuro | Orquestração multiagentes |
 | Fase 5 | ⏳ Futuro | Governança e escala corporativa |

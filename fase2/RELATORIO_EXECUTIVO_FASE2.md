@@ -1,8 +1,8 @@
 <!--
 FONTE ÚNICA do Relatório Executivo da Fase 2.
-Gerar .docx/.pdf:  python docs/fase2/gerar_relatorio.py
-Números: docs/fase2/dados/numeros_fase2.json (notebook 08). Não digitar número que não esteja lá.
-A capa é montada pelo script (equipe, links); o link do vídeo fica em docs/fase2/config_relatorio.json.
+Gerar .docx/.pdf:  python fase2/gerar_relatorio.py
+Números: fase2/dados/numeros_fase2.json (notebook 08). Não digitar número que não esteja lá.
+A capa é montada pelo script (equipe, links); o link do vídeo fica em fase2/config_relatorio.json.
 -->
 
 # 1. Sumário Executivo
@@ -302,7 +302,7 @@ A jornada abaixo usa um **pedido real do dataset**: compra em 25/02/2018, de MG 
 
 # 8. Prompts Estruturados v2
 
-Os prompts seguem a estrutura **objetivo · contexto · instrução principal · resultado esperado**. Na Fase 2, cada um ganhou **lista fechada de ações**, **evidência que orienta a decisão**, seção **"não faça"** e **gatilhos de humano no loop**. As versões completas e os dez exemplos com casos reais estão em `docs/fase2/prompts/PROMPTS_V2.md`.
+Os prompts seguem a estrutura **objetivo · contexto · instrução principal · resultado esperado**. Na Fase 2, cada um ganhou **lista fechada de ações**, **evidência que orienta a decisão**, seção **"não faça"** e **gatilhos de humano no loop**. As versões completas e os dez exemplos com casos reais estão em `fase2/prompts/PROMPTS_V2.md`.
 
 ## 8.1 SentimentDesk
 **a) Objetivo:** classificar a avaliação negativa, responder ao cliente e rotear o caso.
@@ -490,8 +490,8 @@ A Fase 1 mostrou que a Olist tem um problema conectado: atraso gera avaliação 
 | Artefato | Conteúdo |
 |---|---|
 | `notebooks/08_fase2_evidencias_business_case.ipynb` | Cadeia de evidência, priorização, business case, casos reais |
-| `docs/fase2/dados/numeros_fase2.json` | Fonte única de números (valor, definição, tabela de origem) |
-| `docs/fase2/prompts/PROMPTS_V2.md` | Prompts completos e 10 exemplos com casos reais |
-| `docs/fase2/fluxos/` | Fluxos em PNG e o script que os gera |
-| Notebooks 01–07 e Relatório da Fase 1 | Diagnóstico original (preservado em `docs/Relatorio_Executivo_Fase1_Olist_FINAL.pdf`) |
+| `fase2/dados/numeros_fase2.json` | Fonte única de números (valor, definição, tabela de origem) |
+| `fase2/prompts/PROMPTS_V2.md` | Prompts completos e 10 exemplos com casos reais |
+| `fase2/fluxos/` | Fluxos em PNG e o script que os gera |
+| Notebooks 01–07 e Relatório da Fase 1 | Diagnóstico original (preservado em `fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf`) |
 | Dataset | Brazilian E-Commerce Public Dataset by Olist (Kaggle), 2016–2018 |

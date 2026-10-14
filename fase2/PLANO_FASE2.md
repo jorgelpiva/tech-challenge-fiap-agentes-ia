@@ -2,7 +2,7 @@
 
 > **Arquivo-mestre da Fase 2.** Comece qualquer sessão de trabalho por aqui.
 > Guia da reunião e mapa dos entregáveis: [EVOLUCAO_FASE2.md](EVOLUCAO_FASE2.md)
-> Enunciado: [`POSTECH - Tech Challenge - Fase 2.pdf`](../../POSTECH%20-%20Tech%20Challenge%20-%20Fase%202.pdf) · Fase 1 entregue: [`Relatorio_Executivo_Fase1_Olist_FINAL.pdf`](../Relatorio_Executivo_Fase1_Olist_FINAL.pdf)
+> Enunciado: [`POSTECH - Tech Challenge - Fase 2.pdf`](POSTECH%20-%20Tech%20Challenge%20-%20Fase%202.pdf) · Fase 1 entregue: [`Relatorio_Executivo_Fase1_Olist_FINAL.pdf`](../fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf)
 > **Prazo: 27/10/2026** · Nota da Fase 1: 80/90 (inicialmente 60; ver §3) · Meta: superar a Fase 1
 
 ---

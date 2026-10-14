@@ -33,7 +33,7 @@
 
 ## Demo ao vivo (opcional, substitui o slide 9 se couber no tempo)
 1. Abrir claude.ai ou ChatGPT.
-2. Colar o **prompt de sistema** do SentimentDesk (`docs/fase2/prompts/PROMPTS_V2.md`, seção 1c).
+2. Colar o **prompt de sistema** do SentimentDesk (`fase2/prompts/PROMPTS_V2.md`, seção 1c).
 3. Colar a mensagem do **Caso S1** (mochila/lancheira) e mostrar a saída em JSON.
 4. Gravar a tela em ~25 s (acelerar 1,5× na edição se precisar).
 
@@ -43,4 +43,4 @@
 - [ ] Duração final **≤ 5:00**
 - [ ] Publicar no Drive com "qualquer pessoa com o link pode ver"
 - [ ] **Testar o link em aba anônima**
-- [ ] Colar o link em `docs/fase2/config_relatorio.json` → `LINK_VIDEO` e rodar `python docs/fase2/gerar_relatorio.py` (gera a versão FINAL)
+- [ ] Colar o link em `fase2/config_relatorio.json` → `LINK_VIDEO` e rodar `python fase2/gerar_relatorio.py` (gera a versão FINAL)

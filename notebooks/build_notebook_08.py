@@ -1,8 +1,8 @@
 """Gera e executa notebooks/08_fase2_evidencias_business_case.ipynb.
 
 Uso (na raiz do repo):  python notebooks/build_notebook_08.py
-Saídas: docs/fase2/img/*.png, docs/fase2/dados/numeros_fase2.json,
-        docs/fase2/prompts/exemplos/casos_reais.json
+Saídas: fase2/img/*.png, fase2/dados/numeros_fase2.json,
+        fase2/prompts/exemplos/casos_reais.json
 """
 import nbformat as nbf
 from pathlib import Path
@@ -25,7 +25,7 @@ Este notebook responde diretamente ao feedback da Fase 1:
 | *"Detalhar o racional de onde partiram os achados"* | **Cadeia de evidência**: pergunta → dado (tabela/coluna) → método → resultado → decisão |
 | *"Ações dos agentes muito amplas, carecendo de especialização"* | Evidências que **estreitam o escopo** de cada agente (gatilhos e públicos específicos) |
 | *"Múltiplos objetivos — priorizar o que tem maior proximidade com o negócio"* | **Matriz de priorização** dos 6 agentes → 3 selecionados |
-| *"Falha de revisão"* | **Fonte única de números** (`docs/fase2/dados/numeros_fase2.json`) com definições |
+| *"Falha de revisão"* | **Fonte única de números** (`fase2/dados/numeros_fase2.json`) com definições |
 
 Todos os números do Relatório Fase 2 saem daqui.
 """)
@@ -38,9 +38,9 @@ warnings.filterwarnings('ignore')
 
 ROOT = Path.cwd().parent if Path.cwd().name == 'notebooks' else Path.cwd()
 D = ROOT / 'data' / 'olist'
-IMG = ROOT / 'docs' / 'fase2' / 'img'; IMG.mkdir(parents=True, exist_ok=True)
-DADOS = ROOT / 'docs' / 'fase2' / 'dados'; DADOS.mkdir(parents=True, exist_ok=True)
-EXEMPLOS = ROOT / 'docs' / 'fase2' / 'prompts' / 'exemplos'; EXEMPLOS.mkdir(parents=True, exist_ok=True)
+IMG = ROOT / 'fase2' / 'img'; IMG.mkdir(parents=True, exist_ok=True)
+DADOS = ROOT / 'fase2' / 'dados'; DADOS.mkdir(parents=True, exist_ok=True)
+EXEMPLOS = ROOT / 'fase2' / 'prompts' / 'exemplos'; EXEMPLOS.mkdir(parents=True, exist_ok=True)
 
 # Paleta (validada, modo claro, impressão): azul = série principal, laranja = destaque
 AZUL, LARANJA, CINZA = '#2a78d6', '#eb6834', '#b9b8b2'
@@ -435,7 +435,7 @@ md_linhas = ['# 🔢 Números Oficiais — Fase 2', '',
              '> Todo número do relatório, dos slides e do vídeo deve estar nesta tabela.', '',
              '| Chave | Valor | Definição | Fonte |', '|---|---|---|---|']
 md_linhas += [f"| `{k}` | {fmt(conv(v['valor']))} | {v['definicao']} | {v['fonte']} |" for k, v in N.items()]
-(ROOT/'docs'/'fase2'/'NUMEROS_OFICIAIS.md').write_text('\n'.join(md_linhas) + '\n', encoding='utf-8')
+(ROOT/'fase2'/'NUMEROS_OFICIAIS.md').write_text('\n'.join(md_linhas) + '\n', encoding='utf-8')
 pd.DataFrame({k: [v['valor'] if not isinstance(v['valor'], dict) else '(ver JSON)', v['definicao']] for k,v in N.items()}, index=['valor','definição']).T
 """)
 

@@ -1,6 +1,6 @@
 """Gera os fluxos (swimlanes) dos agentes da Fase 2 em PNG.
 
-Uso (na raiz do repo):  python docs/fase2/fluxos/gerar_fluxos.py
+Uso (na raiz do repo):  python fase2/fluxos/gerar_fluxos.py
 Cada fluxo é declarado como dados (raias, nós, arestas): para alterar um texto
 ou uma decisão, edite a definição e rode de novo.
 

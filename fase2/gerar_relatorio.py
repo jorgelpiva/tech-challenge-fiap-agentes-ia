@@ -1,10 +1,10 @@
 """Gera o Relatório Executivo da Fase 2 (.docx e .pdf) a partir do Markdown.
 
-Uso (na raiz do repo):  python docs/fase2/gerar_relatorio.py
-  - Fonte: docs/fase2/RELATORIO_EXECUTIVO_FASE2.md
-  - Links/equipe: docs/fase2/config_relatorio.json
+Uso (na raiz do repo):  python fase2/gerar_relatorio.py
+  - Fonte: fase2/RELATORIO_EXECUTIVO_FASE2.md
+  - Links/equipe: fase2/config_relatorio.json
   - Sem LINK_VIDEO preenchido → gera *_RASCUNHO (com marca "RASCUNHO").
-  - Com LINK_VIDEO → gera docs/Relatorio_Executivo_Fase2_Olist_FINAL.(docx|pdf)
+  - Com LINK_VIDEO → gera fase2/Relatorio_Executivo_Fase2_Olist_FINAL.(docx|pdf)
   - Ao final roda o QA: falha se sobrar placeholder, TODO etc. no texto.
 PDF via Microsoft Word (docx2pdf).
 """
@@ -19,11 +19,11 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 AQUI = Path(__file__).resolve().parent
-ROOT = AQUI.parent.parent
+ROOT = AQUI.parent
 MD = AQUI / 'RELATORIO_EXECUTIVO_FASE2.md'
 CFG = json.loads((AQUI / 'config_relatorio.json').read_text(encoding='utf-8'))
 FINAL = bool(CFG.get('LINK_VIDEO'))
-SAIDA = (ROOT / 'docs' / 'Relatorio_Executivo_Fase2_Olist_FINAL') if FINAL else (AQUI / 'Relatorio_Executivo_Fase2_Olist_RASCUNHO')
+SAIDA = (AQUI / 'Relatorio_Executivo_Fase2_Olist_FINAL') if FINAL else (AQUI / 'Relatorio_Executivo_Fase2_Olist_RASCUNHO')
 
 AZUL_ESC = RGBColor(0x1F, 0x3A, 0x5F)
 AZUL = RGBColor(0x2A, 0x78, 0xD6)
@@ -308,4 +308,4 @@ achados = [w for w in proibidos if (w in texto if w.isupper() else w.lower() in 
 print(f'Páginas: {len(pdf)}  (meta do enunciado: 15–30)')
 print('QA placeholders:', 'OK' if not achados else f'ATENÇÃO → {achados}')
 if not FINAL:
-    print('Modo RASCUNHO: preencha LINK_VIDEO em docs/fase2/config_relatorio.json para gerar a versão FINAL.')
+    print('Modo RASCUNHO: preencha LINK_VIDEO em fase2/config_relatorio.json para gerar a versão FINAL.')

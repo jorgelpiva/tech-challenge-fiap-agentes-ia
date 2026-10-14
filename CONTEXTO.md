@@ -3,14 +3,15 @@
 > Arquivo de referência para manter contexto entre conversas e sessões de trabalho.
 
 > ## ▶️ FASE ATUAL: FASE 2 (iniciada em 2026-10-12 · prazo **27/10/2026**)
-> **Guia dos entregáveis e da reunião:** [docs/fase2/EVOLUCAO_FASE2.md](docs/fase2/EVOLUCAO_FASE2.md)
-> **Plano mestre, backlog e log de sessões:** [docs/fase2/PLANO_FASE2.md](docs/fase2/PLANO_FASE2.md)
-> - Enunciado: `POSTECH - Tech Challenge - Fase 2.pdf`
+> **Guia dos entregáveis e da reunião:** [fase2/EVOLUCAO_FASE2.md](fase2/EVOLUCAO_FASE2.md)
+> **Plano mestre, backlog e log de sessões:** [fase2/PLANO_FASE2.md](fase2/PLANO_FASE2.md)
+> - Enunciado: `fase2/POSTECH - Tech Challenge - Fase 2.pdf`
+> - **Organização do repositório:** uma pasta por fase na raiz (`fase1/`, `fase2/`, `fase3/`…); `notebooks/` e `data/` são compartilhados
 > - Pergunta: *"Como os agentes de IA irão interagir com usuários, dados e processos da Olist para gerar valor real ao negócio?"*
 > - Entregáveis: (1) Relatório Executivo evoluído, 15–30 págs., contendo (2) Casos de uso de ≥ 3 agentes, (3) Fluxos/jornadas, (4) Prompts e o link de (5) Vídeo ≤ 5 min
 > - Escopo da Fase 2: **LogiPredict, SentimentDesk e WinBack** (2ª compra), priorizados entre os 6 da Fase 1
-> - Números oficiais: [docs/fase2/NUMEROS_OFICIAIS.md](docs/fase2/NUMEROS_OFICIAIS.md) (gerados pelo notebook 08)
-> - Fase 1 entregue: `docs/Relatorio_Executivo_Fase1_Olist_FINAL.pdf`, nota **80/90** (60 revisada); feedback em PLANO_FASE2 §3
+> - Números oficiais: [fase2/NUMEROS_OFICIAIS.md](fase2/NUMEROS_OFICIAIS.md) (gerados pelo notebook 08)
+> - Fase 1 entregue: `fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf`, nota **80/90** (60 revisada); feedback em PLANO_FASE2 §3
 >
 > O restante deste arquivo documenta a Fase 1 (histórico).
 

@@ -108,15 +108,15 @@ Critério da divisão: **Leonardo** (perfil de negócio) fica com leitura, narra
 python notebooks/build_notebook_08.py
 
 # 2) Fluxos (PNG)
-python docs/fase2/fluxos/gerar_fluxos.py
+python fase2/fluxos/gerar_fluxos.py
 
 # 3) Relatório (.docx + .pdf). Precisa do Microsoft Word instalado (conversão para PDF)
-python docs/fase2/gerar_relatorio.py
-#    Sem LINK_VIDEO no config → docs/fase2/..._RASCUNHO.pdf
-#    Com LINK_VIDEO           → docs/Relatorio_Executivo_Fase2_Olist_FINAL.pdf
+python fase2/gerar_relatorio.py
+#    Sem LINK_VIDEO no config → fase2/..._RASCUNHO.pdf
+#    Com LINK_VIDEO           → fase2/Relatorio_Executivo_Fase2_Olist_FINAL.pdf
 
 # 4) Slides do vídeo
-python docs/fase2/video/gerar_slides.py
+python fase2/video/gerar_slides.py
 ```
 Dependências: `pandas matplotlib scipy scikit-learn nbformat nbconvert python-docx docx2pdf python-pptx pymupdf`.
 
@@ -124,21 +124,24 @@ Dependências: `pandas matplotlib scipy scikit-learn nbformat nbconvert python-d
 
 ## 8. Mapa de arquivos da Fase 2
 
+O repositório tem **uma pasta por fase na raiz**; `notebooks/` e `data/` são compartilhados.
+
 ```
-docs/
-├── Relatorio_Executivo_Fase1_Olist_FINAL.pdf   ← Fase 1 preservada (não alterar)
-├── Relatorio_Executivo_Fase2_Olist_FINAL.pdf   ← gerado quando o vídeo existir
-└── fase2/
-    ├── EVOLUCAO_FASE2.md            ← ESTE ARQUIVO (guia da reunião)
-    ├── PLANO_FASE2.md               ← plano, backlog e log de sessões
-    ├── RELATORIO_EXECUTIVO_FASE2.md ← FONTE do relatório
-    ├── gerar_relatorio.py · config_relatorio.json
-    ├── Relatorio_Executivo_Fase2_Olist_RASCUNHO.(pdf|docx)
-    ├── NUMEROS_OFICIAIS.md · dados/numeros_fase2.json
-    ├── img/        ← gráficos (gerados pelo notebook 08)
-    ├── fluxos/     ← fluxos PNG + gerar_fluxos.py
-    ├── prompts/    ← PROMPTS_V2.md + exemplos/casos_reais.json
-    └── video/      ← roteiro + slides (+ gerar_slides.py)
+fase1/                               ← Fase 1 entregue (não alterar)
+└── Relatorio_Executivo_Fase1_Olist_FINAL.pdf, mapa de agentes, prompts, apresentacao/ …
+fase2/
+├── POSTECH - Tech Challenge - Fase 2.pdf  ← enunciado
+├── EVOLUCAO_FASE2.md            ← ESTE ARQUIVO (guia da reunião)
+├── PLANO_FASE2.md               ← plano, backlog e log de sessões
+├── RELATORIO_EXECUTIVO_FASE2.md ← FONTE do relatório
+├── gerar_relatorio.py · config_relatorio.json
+├── Relatorio_Executivo_Fase2_Olist_RASCUNHO.(pdf|docx)
+├── Relatorio_Executivo_Fase2_Olist_FINAL.(pdf|docx)   ← gerado quando o vídeo existir
+├── NUMEROS_OFICIAIS.md · dados/numeros_fase2.json
+├── img/        ← gráficos (gerados pelo notebook 08)
+├── fluxos/     ← fluxos PNG + gerar_fluxos.py
+├── prompts/    ← PROMPTS_V2.md + exemplos/casos_reais.json
+└── video/      ← roteiro + slides (+ gerar_slides.py)
 notebooks/
 ├── 08_fase2_evidencias_business_case.ipynb
 └── build_notebook_08.py
