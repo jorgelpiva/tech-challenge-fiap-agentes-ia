@@ -384,8 +384,8 @@
       },
       "beleza_saude": {
         "beleza_saude": 50.7,
-        "perfumaria": 4.6,
-        "esporte_lazer": 4.6
+        "esporte_lazer": 4.6,
+        "perfumaria": 4.6
       }
     },
     "definicao": "Categorias mais comuns da 2ª compra por categoria da 1ª (exemplos do WinBack)",
