@@ -6,11 +6,13 @@
 
 ---
 
+> **Consolidação executiva V5 + revisão técnica de Lucas (20/10/2026):** fontes canônicas em `fase2/`; exemplos são ilustrativos, sujeitos a validação. Vídeo em blocos contínuos; Lucas apresenta os slides 10–12.
+
 ## ▶️ Fase 2 (em andamento, entrega em 27/10/2026)
 
 **"Como os agentes de IA irão interagir com usuários, dados e processos da Olist para gerar valor real ao negócio?"**
 
-A Fase 2 detalha três agentes priorizados na jornada do pedido: **LogiPredict** (guardião do prazo), **SentimentDesk** (triagem de avaliações negativas) e **WinBack** (segunda compra), com casos de uso, fluxos operacionais, prompts testados com casos reais e business case.
+A Fase 2 detalha três agentes priorizados na jornada do pedido: **LogiPredict** (guardião do prazo), **SentimentDesk** (triagem de avaliações negativas) e **WinBack** (segunda compra), com casos de uso, fluxos operacionais, prompts estruturados com exemplos ilustrativos de casos reais e business case.
 
 | Documento | Descrição |
 |---|---|
