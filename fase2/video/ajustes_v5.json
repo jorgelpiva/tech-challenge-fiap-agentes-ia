@@ -1,0 +1,20 @@
+{
+  "7": {
+    "Texto, pedido, motivo e severidade": "Texto + pedido; sem texto: OUTROS",
+    "Confiança ≥ 0,8? Caso crítico?": "Revisão necessária?",
+    "Resposta permitida ou encaminhamento": "Rascunho; execução confirmada",
+    "Crítico ou confiança < 0,8: analista": "Crítica / incerta / > R$500: revisão",
+    "Consentimento, histórico e pendências": "Consentimento, 2ª compra e pendências",
+    "Contatar, aguardar ou suspender?": "Controle ou bloqueio? Pausar?",
+    "Comunicação permitida": "Resolução permite reavaliar"
+  },
+  "8": {
+    "Interpreta a nota, responde e abre ticket. WinBack suspende a oferta": "Sem texto: revisão humana e ticket proposto. WinBack pausa ofertas",
+    "APÓS A ENTREGA": "AVALIAÇÃO REGISTRADA"
+  },
+  "9": {
+    "Encaminhado ao responsável": "Encaminhamento proposto",
+    "04 AÇÃO": "04 PROPOSTA",
+    "ticket ao seller": "ticket a confirmar"
+  }
+}

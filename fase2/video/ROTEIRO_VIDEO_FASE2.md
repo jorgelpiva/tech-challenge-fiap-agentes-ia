@@ -1,46 +1,126 @@
-# 🎬 Roteiro do Vídeo Executivo — Fase 2 (≤ 5 min)
+# Roteiro executivo do vídeo | Tech Challenge Fase 2
 
-> **Slides:** [`Apresentacao_Fase2_Olist.pptx`](Apresentacao_Fase2_Olist.pptx). As falas abaixo também estão nas **notas do apresentador** de cada slide.
-> **Público imaginado (enunciado):** executivos que vão aprovar o investimento. Linguagem de negócio, sem jargão técnico.
-> **Divisão sugerida:** 4 falas, uma por integrante. Ajustem na reunião; a soma não pode passar de **5:00**.
+**Projeto:** Olist Intelligent Marketplace
+**Apresentação de referência:** V5 FINAL (12 slides)
+**Formato:** quatro apresentadores, cada um em um bloco contínuo
+**Duração máxima:** 5 minutos. **Atenção:** os tempos abaixo são estimativas e precisam ser confirmados em ensaio; esta versão prioriza uma fala mais natural e pode exigir cortes para respeitar o limite.
 
-## Requisitos do enunciado que o vídeo precisa cobrir
-| Requisito | Slide(s) |
-|---|---|
-| Evolução do projeto | 2 |
-| Detalhamento dos agentes | 4, 5 |
-| Fluxos construídos | 6, 7, 8 |
-| Funcionamento esperado | 10 (jornada com pedido real) |
-| Exemplos de interação | 9 (+ demo ao vivo opcional) |
-| Evolução clara vs. Fase 1 | 2 e 3 |
+## Bloco 1 | Leonardo | Slides 1 a 3
 
-## Falas
+### Slide 1 | Abertura
 
-| Tempo | Slide | Quem | Fala |
-|---|---|---|---|
-| 0:00–0:20 | 1 · Capa | Jorge | Na Fase 1 mostramos onde a Olist perde valor. A diretoria aprovou a continuidade, e hoje respondemos à pergunta seguinte: como os agentes vão funcionar dentro da operação e gerar valor real. |
-| 0:20–0:50 | 2 · O que mudou | Jorge | Ouvimos a avaliação da Fase 1: faltava mostrar de onde vinham os achados, os agentes estavam amplos demais e havia objetivos demais. Respondemos com três mudanças: cada achado agora tem uma cadeia de evidência, priorizamos três agentes e cada agente ganhou um objetivo único, gatilhos e uma lista fechada de ações. |
-| 0:50–1:20 | 3 · Evidência | Leonardo | Os dados mostram por onde começar. Quando o pedido atrasa, 54% dos clientes dão nota 1 ou 2, contra 9% no prazo. E um quarto dos atrasos começa antes da transportadora, com o seller postando depois do limite: aí o atraso sobe de 6,5% para 24,4%. Quem teve a primeira compra atrasada volta menos. |
-| 1:20–1:40 | 4 · Priorização | Leonardo | Pontuamos os seis agentes em impacto, proximidade do core, evidência, viabilidade e risco. Três ficaram claramente à frente, e os três atuam em sequência na mesma jornada. SellerCare foi absorvido, SmartFreight foi para o backlog e o Maestro fica para a fase de orquestração. |
-| 1:40–2:10 | 5 · Três agentes | Caio | O LogiPredict é o guardião do prazo: age no limite de postagem, na postagem e no D-3. O SentimentDesk faz a triagem de toda avaliação 1 a 3, responde e leva o problema a quem resolve. O WinBack trabalha só a janela da segunda compra, de 7 a 90 dias. Nenhum deles concede reembolso, troca transportadora ou dá incentivo alto sozinho. |
-| 2:10–2:35 | 6 · Fluxo LogiPredict | Caio | No LogiPredict, três decisões: o seller vai estourar o limite? O risco passou do limiar? A nova data passa do prazo? Só a última autoriza falar com o cliente; o analista de operações decide a tratativa. |
-| 2:35–2:55 | 7 · Fluxo SentimentDesk | Lucas | No SentimentDesk, o agente classifica com texto e dados do pedido. Confiança baixa ou caso crítico vai para o analista antes da resposta; motivo de entrega vira sinal para o LogiPredict. |
-| 2:55–3:10 | 8 · Fluxo WinBack | Lucas | O WinBack checa consentimento e intervalo e pausa a oferta se a primeira experiência foi ruim. Incentivo acima de 10% precisa de aprovação, e 10% dos clientes ficam como grupo controle. |
-| 3:10–3:40 | 9 · Exemplo real | Lucas | Um caso real. O cliente deu nota 1: "Só chegou a mochila, estou aguardando a lancheira". Uma regra de palavras-chave classificaria como "não recebido". O agente cruza com o pedido: 2 itens, entregue no prazo. Classifica como item faltando, responsabiliza o seller, abre ticket e responde ao cliente sem prometer o que não pode cumprir. |
-| 3:40–4:10 | 10 · Jornada | Leonardo | Juntando tudo num pedido real: o LogiPredict lembra o seller, detecta o risco 19 dias antes do prazo e avisa o cliente com nova data. Na avaliação nota 1, o SentimentDesk responde e o WinBack pausa a oferta. Resolvido o caso, a oferta de segunda compra volta, no momento certo. |
-| 4:10–4:35 | 11 · Valor | Jorge | No cenário base: 672 atrasos evitados e 302 avaliações negativas a menos, 1.230 horas de triagem poupadas e 358 segundas compras adicionais. O ganho maior vem da combinação: menos atraso gera menos detrator e preserva a recompra. |
-| 4:35–5:00 | 12 · Recomendação | Jorge | Pedimos a aprovação de um piloto de 90 dias com LogiPredict e SentimentDesk, focado nas rotas do Nordeste, com grupo controle e as metas que mostramos. Não propomos mais agentes; propomos agentes melhores, começando pela origem do problema. Obrigado. |
+Olá, pessoal! Nós somos o grupo responsável pelo projeto Olist Intelligent Marketplace e, neste vídeo, vamos apresentar a evolução do nosso trabalho para a segunda fase do Tech Challenge.
 
-## Demo ao vivo (opcional, substitui o slide 9 se couber no tempo)
-1. Abrir claude.ai ou ChatGPT.
-2. Colar o **prompt de sistema** do SentimentDesk (`fase2/prompts/PROMPTS_V2.md`, seção 1c).
-3. Colar a mensagem do **Caso S1** (mochila/lancheira) e mostrar a saída em JSON.
-4. Gravar a tela em ~25 s (acelerar 1,5× na edição se precisar).
+Na primeira etapa, analisamos os dados da Olist e identificamos algumas oportunidades importantes para o uso de inteligência artificial. Agora, nosso desafio é mostrar como essas oportunidades podem se transformar em soluções práticas para o negócio.
 
-## Checklist de gravação
-- [ ] Ensaiar com cronômetro; cada fala no tempo da tabela
-- [ ] Gravar em 1080p, áudio sem eco (microfone de fone serve)
-- [ ] Duração final **≤ 5:00**
-- [ ] Publicar no Drive com "qualquer pessoa com o link pode ver"
-- [ ] **Testar o link em aba anônima**
-- [ ] Colar o link em `fase2/config_relatorio.json` → `LINK_VIDEO` e rodar `python fase2/gerar_relatorio.py` (gera a versão FINAL)
+### Slide 2 | Nossa recomendação
+
+E a nossa proposta é começar de forma bem objetiva: com dois agentes, o LogiPredict e o SentimentDesk, em um piloto controlado de 90 dias.
+
+A ideia é testar essas soluções em rotas selecionadas do Nordeste, comparar os resultados com um grupo de controle e manter a supervisão humana nas decisões mais sensíveis.
+
+### Slide 3 | Evolução da Fase 1
+
+Para chegar até aqui, partimos das seis oportunidades identificadas na primeira fase e priorizamos três agentes.
+
+Mais do que definir o que cada um faz, detalhamos quais dados utilizam, como tomam decisões, quando devem agir e quais são seus limites.
+
+Ou seja, saímos de um mapa de oportunidades para uma proposta que pode ser testada e medida.
+
+## Bloco 2 | Jorge | Slides 4 a 6
+
+### Slide 4 | Evidências
+
+Mas por que começar justamente por esses agentes?
+
+Quando olhamos os dados históricos da Olist, encontramos alguns sinais importantes.
+
+Cerca de 8% das entregas chegaram atrasadas. E, entre esses pedidos, mais da metade recebeu avaliações negativas, contra apenas 9% dos pedidos entregues no prazo.
+
+Outro ponto interessante é que aproximadamente 27% dos atrasos estão associados à postagem tardia dos vendedores.
+
+Esses números não provam uma relação de causa e efeito, mas mostram onde temos oportunidades relevantes de intervenção.
+
+### Slide 5 | Priorização
+
+Com essas evidências, avaliamos os seis agentes considerando impacto, proximidade com o negócio, qualidade das evidências, viabilidade e risco.
+
+E três se destacaram: o LogiPredict, que atua antes da entrega; o SentimentDesk, que entra na etapa de avaliação; e o WinBack, que busca estimular uma segunda compra.
+
+São agentes diferentes, mas que trabalham em momentos complementares da mesma jornada.
+
+### Slide 6 | Responsabilidades
+
+E aqui existe um ponto importante: não estamos falando de chatbots que simplesmente respondem perguntas.
+
+Cada agente tem uma missão específica, utiliza informações para tomar decisões e possui limites claros de atuação.
+
+Quando existe algum risco maior, como uma compensação financeira ou uma decisão operacional sensível, a responsabilidade continua sendo humana.
+
+## Bloco 3 | Caio | Slides 7 a 9
+
+### Slide 7 | Funcionamento
+
+Na prática, como isso funciona?
+
+Os agentes seguem uma sequência de eventos, análise e decisão.
+
+O LogiPredict acompanha os principais marcos da entrega, identifica possíveis atrasos e pode acionar a operação antes que o problema aconteça.
+
+O SentimentDesk analisa as avaliações considerando não apenas o texto, mas também os dados do pedido.
+
+Já o WinBack verifica se o cliente está elegível para uma nova abordagem, respeitando consentimento, prazo e eventuais problemas ainda não resolvidos.
+
+Tudo isso com regras claras sobre o que pode ser automatizado e o que precisa passar por uma pessoa.
+
+### Slide 8 | Caso real
+
+Para ilustrar, usamos um pedido real do dataset, enviado de Minas Gerais para o Maranhão.
+
+Nesse caso, o vendedor postou o produto quatro dias depois do limite, a entrega aconteceu dez dias após o prazo e o cliente deu nota um.
+
+Com o LogiPredict, seria possível identificar antecipadamente alguns sinais de risco. Depois, o SentimentDesk poderia tratar a avaliação, enquanto o WinBack evitaria uma oferta comercial antes da resolução do problema.
+
+É importante lembrar que essas intervenções são simulações. O que estamos mostrando é como os agentes poderiam atuar.
+
+### Slide 9 | Exemplo do SentimentDesk
+
+Outro exemplo interessante é uma avaliação em que o cliente diz: “Só chegou a mochila, estou aguardando a lancheira”.
+
+Uma análise superficial poderia interpretar que o pedido inteiro não foi entregue.
+
+Mas, ao cruzar a mensagem com os dados do pedido, o SentimentDesk deve identificar que existe um item faltante e encaminhar o caso para o responsável.
+
+É esse contexto que permite uma decisão mais adequada.
+
+## Bloco 4 | Lucas | Slides 10 a 12
+
+### Slide 10 | Impacto esperado
+
+No cenário base anual, estimamos 672 atrasos evitados, 302 avaliações negativas a menos e cerca de 1.230 horas de triagem liberadas. Na expansão futura, o WinBack poderia gerar 358 segundas compras adicionais.
+
+São projeções sobre a amostra histórica, não resultados comprovados nem metas para os 90 dias. Horas liberadas representam capacidade operacional; compras adicionais representam receita bruta, não lucro.
+
+### Slide 11 | Próximos passos
+
+O piloto de 90 dias começa com LogiPredict e SentimentDesk. Vamos comparar qualidade, segurança e benefício incremental com o controle, além da viabilidade econômica. Os resultados orientarão escalar, ajustar ou encerrar.
+
+Na Fase 3 acadêmica, desenvolveremos os protótipos low-code para testar esse funcionamento.
+
+### Slide 12 | Encerramento
+
+Queremos agentes com objetivos claros, decisões responsáveis e impacto mensurável. O próximo passo é validar. Muito obrigado!
+
+---
+
+## Orientações de gravação
+
+- Cada integrante grava seu bloco sem alternar falas: Leonardo (1–3), Jorge (4–6), Caio (7–9), Lucas (10–12).
+- As passagens de apresentador ocorrem antes dos slides 4, 7 e 10, com cortes simples na edição.
+- O texto foi escrito para soar como uma apresentação conversada, não como leitura dos títulos.
+- Os dados percentuais são arredondados na fala; os valores exatos permanecem na apresentação e no relatório.
+- As ações dos agentes nos casos históricos são simulações; os benefícios financeiros e operacionais são projeções, não resultados medidos.
+- **Ensaio obrigatório:** esta versão expandida ainda não foi cronometrada. Se ultrapassar cinco minutos, encurtar frases antes de acelerar a leitura.
+
+## Apoio técnico à gravação
+As falas foram mantidas nos blocos V5: Leonardo1–3, Jorge4–6, Caio7–9 e Lucas10–12. A revisão técnica está em `fase2/prompts/VALIDACAO_LUCAS.md`. Executar S1/W1/W2 com modelo e data registrados antes de apresentar qualquer saída como execução. Os exemplos do material são ilustrativos. O tempo depende de ensaio real, ainda não realizado nesta revisão.
