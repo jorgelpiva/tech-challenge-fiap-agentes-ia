@@ -40,7 +40,7 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | D3 | SellerCare absorvido; SmartFreight no backlog; Maestro na Fase 4 | Proposta |
 | D4 | Correções de rigor declaradas (12,56 dias; `review_answer_timestamp`) | Proposta |
 | D5 | Premissas do business case (R$ 45/h; 12 → 3 min; +0,25/0,5/1,0 p.p.) | Proposta |
-| D6 | Saídas dos prompts geradas com Claude; reproduzir antes do vídeo | Proposta |
+| D6 | Saídas ilustrativas revisadas; reproduzir com modelo/data antes do vídeo | Proposta |
 | D7 | Fluxos por script (matplotlib) com legenda única | Proposta |
 | D8 | Roadmap: Wave 1 LogiPredict + SentimentDesk · Wave 2 WinBack · Wave 3 SellerCare/SmartFreight · Fase 4 Maestro | Proposta |
 
@@ -97,3 +97,8 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 
 ### 2026-10-12 — Sessão 1: planejamento
 - Leitura do enunciado da Fase 2 e revisão do PDF da Fase 1; primeira versão deste plano.
+
+### 2026-10-20 — Consolidação da narrativa V5 e revisão técnica
+- Material executivo V5 de Leonardo adotado, mantendo observado/premissa/projeção e piloto de dois agentes.
+- Revisão técnica de Lucas incorporada a relatório, prompts, fluxos e cenários. Sem recalcular indicadores.
+- Vídeo em blocos: Leonardo 1–3, Jorge 4–6, Caio 7–9, Lucas 10–12. Reprodução de S1/W1/W2, ensaio, gravação e link continuam pendentes.

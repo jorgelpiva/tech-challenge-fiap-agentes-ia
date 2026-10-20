@@ -9,7 +9,7 @@
 
 | Entregável do enunciado | Status | Arquivo |
 |---|---|---|
-| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **26 páginas**: é a **versão 2.0 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
+| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **29 páginas**: é a **versão 2.0 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
 | 2. Casos de uso de ≥ 3 agentes (a–f) | ✅ No relatório, Seção 8 | idem |
 | 3. Jornadas / fluxos | ✅ 3 fluxos + jornada multiagente, Seção 9 | [fluxos/](fluxos/) |
 | 4. Prompts estruturados | ✅ Resumo no relatório (Seção 10) + versão completa com 10 casos reais | [prompts/PROMPTS_V2.md](prompts/PROMPTS_V2.md) |
@@ -67,7 +67,7 @@
 | D3 | **SellerCare absorvido** (lembrete de postagem → LogiPredict; ticket ao seller → SentimentDesk) | Mantém as ações de maior evidência sem criar um 4º agente | Mantê-lo como agente próprio na Wave 3 (já está no roadmap) |
 | D4 | **Correções de números da Fase 1** declaradas no relatório (12,47 → 12,56 dias; "tempo de resposta 3,15 dias" retirado) | Rigor: `review_answer_timestamp` é a resposta do **cliente** à pesquisa, não da Olist. As correções ficam no "Histórico do Documento" do relatório; os arquivos de `fase1/` **não são alterados** (registro do que foi entregue) | Não mencionar (arriscado se a banca perceber) |
 | D5 | **Premissas do business case:** R$ 45/h de analista; 12 → 3 min por avaliação; +0,25/+0,5/+1,0 p.p. de conversão | Conservadoras e explícitas | Ajustar se alguém tiver referência de mercado |
-| D6 | **Saídas dos prompts** geradas com Claude (Opus 5.5) sobre casos reais | Garante formato consistente | **Reproduzir no claude.ai/ChatGPT** antes da gravação (ver §5, Lucas) |
+| D6 | **Saídas dos prompts**: o rascunho original registra Claude; SentimentDesk/WinBack revisados editorialmente sobre casos reais | Saídas ilustrativas não comprovam execução ou acurácia | **Reproduzir no claude.ai/ChatGPT** antes da gravação (ver §5, Lucas) |
 | D7 | Fluxos gerados por script (matplotlib), não Draw.io | Reproduzível e versionado; padrão visual único | Redesenhar no Draw.io/Figma se o grupo quiser outro estilo |
 
 ---
@@ -78,10 +78,10 @@ Critério da divisão: **Leonardo** (perfil de negócio) fica com leitura, narra
 
 | Pessoa | Revisa no relatório | Revisa nos artefatos | Prepara para o vídeo |
 |---|---|---|---|
-| **Leonardo** (negócio) | **Dono do §1 Sumário Executivo** (como na Fase 1) + leitura executiva do relatório inteiro, com foco em Histórico do Documento, §2 Contexto, §5.3 Priorização, §12 Roadmap e §14 Recomendação | **Dono da apresentação** (como na Fase 1): slides (`.pptx`) e roteiro do vídeo; premissas de negócio D5 (junto com o Jorge) | Slides 3, 4, 10; condução do ensaio geral (o "olhar do executivo") |
-| **Jorge** (técnico) | §13 Indicadores e Business case | Rodar `gerar_relatorio.py` e `gerar_slides.py`; aplicar nas fontes os comentários do Leonardo; `config_relatorio.json` e versão FINAL | Slides 1, 2, 11, 12; edição final; submissão |
-| **Caio** (técnico) | §3 Abordagem, §4 Achados e evidências, §6 Mapa, §7 Arquitetura, §8.1 LogiPredict, §9.1, §11 Governança | **Rodar o notebook 08** e conferir [NUMEROS_OFICIAIS.md](NUMEROS_OFICIAIS.md); `gerar_fluxos.py`; prompts do LogiPredict (casos L1–L3) | Slides 5, 6 |
-| **Lucas** (técnico) | §8.2 SentimentDesk, §8.3 WinBack, §8.4, §9.2–9.5, §10 Prompts | [PROMPTS_V2.md](prompts/PROMPTS_V2.md): reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Slides 7, 8, 9 |
+| **Leonardo** (negócio) | **Dono do §1 Sumário Executivo** (como na Fase 1) + leitura executiva do relatório inteiro, com foco em Histórico do Documento, §2 Contexto, §5.3 Priorização, §12 Roadmap e §14 Recomendação | **Dono da apresentação** (como na Fase 1): slides (`.pptx`) e roteiro do vídeo; premissas de negócio D5 (junto com o Jorge) | Vídeo V5: slides 1–3; condução do ensaio geral (o "olhar do executivo") |
+| **Jorge** (técnico) | §13 Indicadores e Business case | Rodar `gerar_relatorio.py` e `gerar_slides.py`; aplicar nas fontes os comentários do Leonardo; `config_relatorio.json` e versão FINAL | Vídeo V5: slides 4–6; edição final; submissão |
+| **Caio** (técnico) | §3 Abordagem, §4 Achados e evidências, §6 Mapa, §7 Arquitetura, §8.1 LogiPredict, §9.1, §11 Governança | **Rodar o notebook 08** e conferir [NUMEROS_OFICIAIS.md](NUMEROS_OFICIAIS.md); `gerar_fluxos.py`; prompts do LogiPredict (casos L1–L3) | Vídeo V5: slides 7–9 |
+| **Lucas** (técnico) | §8.2 SentimentDesk, §8.3 WinBack, §8.4, §9.2–9.5, §10 Prompts | [PROMPTS_V2.md](prompts/PROMPTS_V2.md): reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Vídeo V5: slides 10–12 (impacto, piloto, encerramento); apoio à demo técnica |
 
 **Regra de revisão:**
 - **Leonardo** comenta direto no Word ([Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx](Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx), com Revisão → Novo comentário) e no PowerPoint. Não precisa mexer em arquivo-fonte.
@@ -162,3 +162,6 @@ notebooks/
 - [ ] `LINK_VIDEO` preenchido e versão FINAL gerada (QA do script = OK, 15–30 páginas)
 - [ ] Leitura completa do PDF FINAL por pelo menos 2 pessoas
 - [ ] Commit, PR e merge na `master`; submissão na plataforma
+
+## Consolidação Leo + Lucas (20/10/2026)
+A narrativa e o desenho dos slides seguem a V5 de Leonardo. A divisão de revisão técnica permanece, mas as falas foram reorganizadas em quatro blocos contínuos. Regras SentimentDesk/WinBack e tratamento de exceções incorporam a revisão de Lucas. O relatório canônico é `RELATORIO_EXECUTIVO_FASE2.md`; o roteiro é `video/ROTEIRO_VIDEO_FASE2.md`; o PPT é `video/Apresentacao_Fase2_Olist.pptx`. Não aplicar o patch antigo sobre a V5: a seção de exceções passou  a 9.6. Exemplos ilustrativos não substituem reprodução dos testes.

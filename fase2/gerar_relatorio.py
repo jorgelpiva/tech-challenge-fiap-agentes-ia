@@ -6,7 +6,7 @@ Uso (na raiz do repo):  python fase2/gerar_relatorio.py
   - Sem LINK_VIDEO preenchido → gera *_RASCUNHO (com marca "RASCUNHO").
   - Com LINK_VIDEO → gera fase2/Relatorio_Executivo_Fase2_Olist_FINAL.(docx|pdf)
   - Ao final roda o QA: falha se sobrar placeholder, TODO etc. no texto.
-PDF via Microsoft Word (docx2pdf).
+PDF via Microsoft Word (docx2pdf) no macOS/Windows ou LibreOffice no Linux.
 """
 import json, re, sys
 from pathlib import Path
@@ -132,10 +132,10 @@ def campo_pagina(par):
 doc = Document()
 st = doc.styles['Normal']; st.font.name = 'Calibri'; st.font.size = Pt(10)
 st.element.rPr.rFonts.set(qn('w:eastAsia'), 'Calibri')
-st.paragraph_format.space_after = Pt(5); st.paragraph_format.line_spacing = 1.12
+st.paragraph_format.space_after = Pt(4); st.paragraph_format.line_spacing = 1.08
 for nome, tam, cor, antes in (('Heading 1', 17, AZUL_ESC, 0), ('Heading 2', 12.5, AZUL, 10), ('Heading 3', 11, AZUL_ESC, 8)):
     h = doc.styles[nome]; h.font.name = 'Calibri'; h.font.size = Pt(tam); h.font.bold = True; h.font.color.rgb = cor
-    h.paragraph_format.space_before = Pt(antes); h.paragraph_format.space_after = Pt(6); h.paragraph_format.keep_with_next = True
+    h.paragraph_format.space_before = Pt(antes); h.paragraph_format.space_after = Pt(4); h.paragraph_format.keep_with_next = True
 
 sec = doc.sections[0]
 sec.page_width, sec.page_height = Cm(21.59), Cm(27.94)
@@ -165,7 +165,7 @@ def p(texto='', tam=10, cor=None, negrito=False, alinh=None, depois=None, antes=
 p('TECH CHALLENGE · FASE 2', 13, AZUL, True, antes=60)
 p('Olist Intelligent Marketplace', 28, AZUL_ESC, True, depois=2)
 p('Relatório Executivo e Visão Estratégica de IA Agêntica', 17, CINZA, depois=4)
-p('Versão 2.0 · evolução do relatório da Fase 1 com os entregáveis da Fase 2', 12, AZUL, True, depois=26)
+p('Versão 2.1 · consolidação executiva V5 e revisão técnica da Fase 2', 12, AZUL, True, depois=26)
 p('Pós-graduação em IA Agêntica · FIAP', 10)
 p('Base: Brazilian E-Commerce Public Dataset by Olist (2016–2018) · 99.441 pedidos · R$ 16 milhões', 10)
 p(f"Versão {'final' if FINAL else 'rascunho para revisão do grupo'} · {CFG['DATA_VERSAO']}", 10, CINZA, depois=26)
@@ -297,8 +297,25 @@ docx_path = SAIDA.with_suffix('.docx')
 doc.save(docx_path)
 print('DOCX:', docx_path)
 
-from docx2pdf import convert
-convert(str(docx_path), str(SAIDA.with_suffix('.pdf')))
+if sys.platform == 'linux':
+    import os, shutil, subprocess, tempfile
+    runtime_bin = Path(os.environ.get('CODEX_PRIMARY_RUNTIME', '')) / 'dependencies/bin/override/soffice'
+    soffice = shutil.which('soffice') or (str(runtime_bin) if runtime_bin.is_file() else None)
+    if not soffice:
+        raise RuntimeError('Instale LibreOffice/soffice para gerar PDF no Linux. O DOCX foi salvo.')
+    with tempfile.TemporaryDirectory(prefix='olist-docx-') as pasta:
+        perfil = Path(pasta) / 'perfil'
+        destino_pdf = Path(pasta) / docx_path.with_suffix('.pdf').name
+        subprocess.run([soffice, '-env:UserInstallation=' + perfil.as_uri(), '--headless',
+                        '--convert-to', 'pdf', '--outdir', pasta, str(docx_path)], check=True)
+        if not destino_pdf.is_file():
+            raise RuntimeError('LibreOffice não gerou o PDF esperado.')
+        destino_pdf.replace(SAIDA.with_suffix('.pdf'))
+    if not SAIDA.with_suffix('.pdf').is_file():
+        raise RuntimeError('LibreOffice não gerou o PDF esperado.')
+else:
+    from docx2pdf import convert
+    convert(str(docx_path), str(SAIDA.with_suffix('.pdf')))
 print('PDF :', SAIDA.with_suffix('.pdf'))
 
 # ----------------------------------------------------------------------------- QA automático
@@ -309,7 +326,7 @@ proibidos = ['INSERIR', 'TODO', 'XXX', '{{', 'antes da submissão', 'deve ser co
 if FINAL:
     proibidos += ['pendente', 'RASCUNHO']
 achados = [w for w in proibidos if (w in texto if w.isupper() else w.lower() in texto.lower())]
-print(f'Páginas: {len(pdf)}  (meta do enunciado: 15–30)')
+print(f'Páginas: {len(pdf)}  (sugestão do enunciado: 15–30)')
 print('QA placeholders:', 'OK' if not achados else f'ATENÇÃO → {achados}')
 if not FINAL:
     print('Modo RASCUNHO: preencha LINK_VIDEO em fase2/config_relatorio.json para gerar a versão FINAL.')
