@@ -134,40 +134,42 @@ desenhar('fluxo_logipredict', 'LogiPredict · Guardião do Prazo de Entrega', 'L
     ncols=6, subtitulo='Escopo: só pedidos entre a aprovação e a entrega. Não negocia frete nem troca transportadora sozinho.')
 
 # --------------------------------------------------------------------------- SentimentDesk
-desenhar('fluxo_sentimentdesk', 'SentimentDesk · Triagem e Resposta de Avaliações Negativas', 'SentimentDesk', RAIAS,
+desenhar('fluxo_sentimentdesk', 'SentimentDesk · Triagem, Revisão e Execução Confirmada', 'SentimentDesk', RAIAS,
     nos=[
-        ('t1', 'Gatilho', 0, 'gatilho', 'Avaliação nota 1–3\npublicada (com ou\nsem comentário)'),
-        ('a1', 'Agente', 0, 'agente', 'Classifica motivo\n(texto + dados do\npedido), severidade'),
-        ('d1', 'Agente', 1, 'decisao', 'Confiança da\nclassificação\n≥ 80%?'),
-        ('h0', 'Humano', 1, 'humano', 'Analista CX\nclassifica\nmanualmente'),
-        ('d2', 'Agente', 2, 'decisao', 'Caso crítico?\n(Procon, fraude,\nnão recebido)'),
-        ('h1', 'Humano', 3, 'humano', 'Analista CX revisa\nresposta e define\ncompensação (alçada)'),
-        ('a2', 'Agente', 4, 'agente', 'Envia resposta\naprovada + abre ticket\nao responsável'),
-        ('d3', 'Agente', 5, 'decisao', 'Motivo =\nentrega?'),
-        ('o1', 'Saída', 5, 'saida', 'Sinal ao LogiPredict\n+ pausa no WinBack'),
-        ('o2', 'Saída', 6, 'saida', 'Ticket ao seller +\ndashboard semanal\nde motivos'),
+        ('t1', 'Gatilho', 0, 'gatilho', 'Avaliação nota 1–3\n(contexto conhecido\nnaquele instante)'),
+        ('a1', 'Agente', 0, 'agente', 'Classifica relato;\nsem texto: OUTROS\n(causa a apurar)'),
+        ('d1', 'Agente', 1, 'decisao', 'Revisão\nnecessária? (*)'),
+        ('h1', 'Humano', 1, 'humano', 'CX apura contexto\ne aprova decisão\ne rascunho'),
+        ('a2', 'Agente', 2, 'agente', 'Processo solicita\nticket/atualização\n(sem duplicar)'),
+        ('d2', 'Agente', 3, 'decisao', 'Execução\nconfirmada?'),
+        ('h2', 'Humano', 3, 'humano', 'Falha: manter fila,\nsem alegar sucesso;\nreprocessar'),
+        ('a3', 'Agente', 4, 'agente', 'Envia resposta\nautorizada; SLA só\nse fornecido'),
+        ('o1', 'Saída', 4, 'saida', 'Registra ticket,\nresposta e motivos\nno dashboard'),
+        ('o2', 'Saída', 2, 'saida', 'Problema aberto: pausa\nWinBack; motivo de\nentrega: LogiPredict'),
     ],
-    arestas=[('t1', 'a1'), ('a1', 'd1'), ('d1', 'h0', 'não'), ('h0', 'h1'), ('d1', 'd2', 'sim'),
-             ('d2', 'h1', 'sim', 'vh'), ('d2', 'a2', 'não'), ('h1', 'a2', '', 'hv'), ('a2', 'd3'), ('d3', 'o1', 'sim'), ('d3', 'o2', 'não', 'hv')],
-    ncols=7, subtitulo='Escopo: só avaliações negativas/neutras. Não concede reembolso nem penaliza seller; responde e roteia.')
+    arestas=[('t1', 'a1'), ('a1', 'd1'), ('d1', 'h1', 'sim'), ('d1', 'a2', 'não'),
+             ('h1', 'a2', '', 'hv'), ('a2', 'd2'), ('d2', 'h2', 'não'), ('d2', 'a3', 'sim'),
+             ('a3', 'o1'), ('a2', 'o2')],
+    ncols=5, subtitulo='(*) Crítica, confiança < 0,8, valor > R$500/ausente ou contexto incerto. Pausa vale para qualquer problema aberto.')
 
 # --------------------------------------------------------------------------- WinBack
-desenhar('fluxo_winback', 'WinBack · Conversão da 1ª para a 2ª Compra (janela de 90 dias)', 'WinBack', RAIAS,
+desenhar('fluxo_winback', 'WinBack · Elegibilidade, Pausa e Retomada', 'WinBack', RAIAS,
     nos=[
-        ('t1', 'Gatilho', 0, 'gatilho', '7 dias após a\nentrega do\n1º pedido'),
-        ('d1', 'Agente', 0, 'decisao', 'Opt-in LGPD e\nsem contato nos\núltimos 15 dias?'),
-        ('f1', 'Saída', 0, 'fim', 'Não contata\n(registra motivo)'),
-        ('d2', 'Agente', 1, 'decisao', '1ª experiência\nnegativa? (nota ≤2,\natraso, ticket)'),
-        ('a0', 'Saída', 1, 'saida', 'Pausa: aguarda\nresolução do\nSentimentDesk'),
-        ('a1', 'Agente', 2, 'agente', 'Escolhe categoria,\nmomento e mensagem\n(grupo controle 10%)'),
-        ('d3', 'Agente', 3, 'decisao', 'Incentivo acima\ndo teto (cupom\n> 10%)?'),
-        ('h1', 'Humano', 3, 'humano', 'Gestor de CRM\naprova ou ajusta\na oferta'),
-        ('a2', 'Agente', 4, 'agente', 'Dispara mensagem;\n2ª tentativa em D+45\n(máx. 2 contatos)'),
-        ('o1', 'Saída', 5, 'saida', 'Relatório de uplift\nvs. grupo controle'),
+        ('t1', 'Gatilho', 0, 'gatilho', 'D+7, D+45 ou\nresolução confirmada\n(verificação diária)'),
+        ('d1', 'Agente', 0, 'decisao', 'Bloqueio ou\ngrupo controle? (*)'),
+        ('f1', 'Saída', 0, 'fim', 'Não contata;\nregistra motivo\n(contexto incerto: CX)'),
+        ('d2', 'Agente', 1, 'decisao', 'Problema aberto /\nexperiência ruim\nsem resolução?'),
+        ('a0', 'Saída', 1, 'saida', 'Pausa e aguarda\natendimento confirmar;\ndepois reavalia tudo'),
+        ('a1', 'Agente', 2, 'agente', 'Valida catálogo,\nprepara mensagem\nsem incentivo padrão'),
+        ('d3', 'Agente', 3, 'decisao', 'Incentivo exige\naprovação >10%? (**)'),
+        ('h1', 'Humano', 3, 'humano', 'Gestor: >10% requer\naprovação específica;\nsem ela, sem desconto'),
+        ('a2', 'Agente', 4, 'agente', 'Processo revalida\ne envia sem duplicar;\nconfirma contato'),
+        ('o1', 'Saída', 4, 'saida', 'Registra envio/compra;\nuplift com janela\ncompleta nos grupos'),
     ],
-    arestas=[('t1', 'd1'), ('d1', 'f1', 'não'), ('d1', 'd2', 'sim'), ('d2', 'a0', 'sim'), ('d2', 'a1', 'não'),
-             ('a1', 'd3'), ('d3', 'h1', 'sim'), ('d3', 'a2', 'não'), ('h1', 'a2', '', 'hv'), ('a2', 'o1', '', 'hv')],
-    ncols=6, subtitulo='Escopo: só clientes de 1ª compra, até 90 dias. Não reativa base inativa antiga nem cria campanhas de massa.')
+    arestas=[('t1', 'd1'), ('d1', 'f1', 'sim'), ('d1', 'd2', 'não'), ('d2', 'a0', 'sim'),
+             ('d2', 'a1', 'não'), ('a1', 'd3'), ('d3', 'h1', 'sim'), ('d3', 'a2', 'não'),
+             ('h1', 'a2', '', 'hv'), ('a2', 'o1')],
+    ncols=5, subtitulo='(*) 2ª compra, janela, consentimento, contatos e controle fixo 10%. (**) Só no 2º contato ≥D+45, com política/orçamento.')
 
 
 # --------------------------------------------------------------------------- Jornada multiagente
@@ -180,12 +182,12 @@ def jornada():
         (1, 'LogiPredict', 'D+6', 'Seller perto do\nlimite: lembrete'),
         (2, 'LogiPredict', 'D+11', 'Postou atrasado +\nrota MA: risco alto'),
         (2, 'Humano', 'D+11', 'Ops prioriza\ncom transportadora'),
-        (3, 'Cliente', 'D+27', 'D-3: recebe aviso\ncom nova data (03/04)'),
-        (4, 'Cliente', 'D+40', 'Entrega com\natraso; nota 1'),
-        (5, 'SentimentDesk', 'D+40', 'Sem texto: motivo\ninferido = atraso;\nresposta + ticket'),
-        (5, 'WinBack', 'D+40', 'Pausa oferta\n(experiência ruim)'),
-        (6, 'Humano', 'D+41', 'CX aprova\ncupom de desculpas'),
-        (7, 'WinBack', 'D+55', 'Oferta de 2ª compra\n(categoria afim)'),
+        (3, 'Cliente', 'D+27', 'D-3: Ops verifica\nprevisão antes\nde eventual aviso'),
+        (4, 'Cliente', 'D+40', 'Entrega com atraso;\navaliação nota 1\n(data não verificada)'),
+        (5, 'SentimentDesk', 'Após avaliação', 'Após avaliação:\nOUTROS, sem texto;\nrevisão humana'),
+        (5, 'WinBack', 'Problema aberto', 'Registra bloqueio;\njanela comercial só\napós D+7 da entrega'),
+        (6, 'Humano', 'Após apuração', 'Simulação: CX apura\ne confirma resolução\nquando comprovada'),
+        (7, 'WinBack', 'Após resolução', 'Simulação: reavalia\nelegibilidade; oferta\nsó se permitida'),
     ]
     ncols = 8
     L = len(raias)
@@ -193,7 +195,7 @@ def jornada():
     fig, ax = plt.subplots(figsize=(largura * 0.98, L * 1.05 + 1.1))
     ax.set_xlim(0, largura); ax.set_ylim(-0.55, L * 1.05 + 0.75); ax.axis('off')
     ax.text(0.02, L * 1.05 + 0.5, 'Jornada multiagente · "O pedido que ia atrasar"', fontsize=13, fontweight='bold', color=INK)
-    ax.text(0.02, L * 1.05 + 0.15, 'Pedido real do dataset (MG → MA, postagem 4 dias após o limite, entregue 10 dias após o prazo). Linha do tempo com os agentes atuando.',
+    ax.text(0.02, L * 1.05 + 0.15, 'Pedido real do dataset (MG → MA, postagem 4 dias após o limite, entregue 10 dias após o prazo). Ações dos agentes e resolução são simulações, não eventos observados.',
             fontsize=9, color=INK2)
     for i, r in enumerate(raias):
         y0 = (L - 1 - i) * 1.05
@@ -201,6 +203,7 @@ def jornada():
         ax.add_patch(Rectangle((0, y0), 1.1, 1.05, facecolor=cores[r][0], edgecolor=LANE_LINE, lw=0.8))
         ax.text(0.55, y0 + 0.525, r, ha='center', va='center', fontsize=9.5 if len(r) <= 11 else 8.2, fontweight='bold', color='white')
     prev = None
+    cols_rotuladas = set()
     for col, r, dia, txt in eventos:
         i = raias.index(r)
         cx, cy = 1.25 + col * 1.75 + 0.85, (L - 1 - i) * 1.05 + 0.525
@@ -208,7 +211,9 @@ def jornada():
         ax.add_patch(FancyBboxPatch((cx - 0.78, cy - 0.38), 1.56, 0.76, boxstyle='round,pad=0.02,rounding_size=0.1',
                                     facecolor=cores[r][1], edgecolor=ec, lw=2.0 if r == 'Humano' else 1.2, zorder=3))
         ax.text(cx, cy, txt, ha='center', va='center', fontsize=8.4, color=INK, zorder=4, linespacing=1.12)
-        ax.text(cx, -0.35, dia, ha='center', va='center', fontsize=8, color=INK2, fontweight='bold')
+        if col not in cols_rotuladas:
+            ax.text(cx, -0.35, dia, ha='center', va='center', fontsize=8, color=INK2, fontweight='bold')
+            cols_rotuladas.add(col)
         if prev is not None:
             px, py = prev
             if abs(px - cx) < 0.1:      # mesma coluna: seta vertical
