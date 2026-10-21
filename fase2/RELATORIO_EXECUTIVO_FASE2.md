@@ -532,6 +532,7 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Privacidade / LGPD | Contato sem consentimento | Opt-in, intervalo de 15 dias, máximo de 2 contatos |
 | Viés histórico | Padrões de 2016–2018 | Evidências recalculadas com dados atuais antes do piloto |
 | Automação excessiva | Ação irreversível sem supervisão | Matriz de autonomia (11.2) e lista fechada de ações por agente |
+| Gargalo de aprovação *(novo)* | IA rápida esbarra em fila humana lenta | SLA rígido para revisão humana (ver 11.4) |
 
 ## 11.2 Matriz de autonomia (Fase 1, mantida)
 
@@ -544,11 +545,7 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Suspensão de seller ou decisão reputacional | Aprovação humana obrigatória |
 | Decisão estratégica executiva | Agente recomenda; liderança decide |
 
-## 11.3 Política econômica dos incentivos (novo na revisão executiva)
-
-O limite de 10% para incentivos do WinBack é uma **regra proposta**, não um teto economicamente validado. Mesmo incentivos de até 10% exigem elegibilidade, consentimento, disponibilidade orçamentária, margem incremental não negativa e política comercial aprovada. Acima de 10%, exige-se adicionalmente autorização do gestor; a aprovação **não dispensa** a análise econômica. Custos de mídia, desconto, atendimento e eventuais devoluções devem entrar na avaliação de valor líquido.
-
-## 11.4 Quem decide o quê nos agentes priorizados (novo na Fase 2)
+## 11.3 Quem decide o quê nos agentes priorizados (novo na Fase 2)
 
 | Decisão | Agente | Analista | Gestor |
 |---|---|---|---|
@@ -558,6 +555,13 @@ O limite de 10% para incentivos do WinBack é uma **regra proposta**, não um te
 | Resposta a caso crítico e compensação | Rascunha | **Decide** | Alçada acima do limite |
 | Tratativa com a transportadora | Recomenda | **Decide** | Informado |
 | Incentivo ≤ 10% / > 10% | **Executa** / Recomenda | Informado | Define o teto / **Decide** |
+
+## 11.4 Feedback Loop e Gestão de Filas Humanas (novo na Fase 2)
+
+A governança protege o negócio, mas não deve engessar a operação. Para que a IA evolua continuamente e não esbarre em gargalos processuais, dois mecanismos operacionais foram estabelecidos:
+
+*   **Feedback Loop de Aprendizado:** O analista não é apenas um "aprovador". As revisões e correções feitas pelos humanos (ex: reclassificação de um motivo no *SentimentDesk* ou ajuste de rota logística no *LogiPredict*) retroalimentam o modelo. Esses acertos alimentam um banco de *few-shot examples* (exemplos de calibração), garantindo que o agente corrija seu viés e não repita o mesmo erro nas iterações futuras.
+*   **SLA de Revisão Humana:** Para que a velocidade da IA não seja anulada por uma fila de pendências no *Human in the Loop*, as etapas marcadas como "Decide" (respostas a casos críticos, compensações, tratativas logísticas) possuem um **SLA máximo de resposta humana de 4 horas úteis**. Casos não atendidos nesse prazo acionam alertas de escalonamento gerencial.
 
 # 12. Roadmap de Implantação e Validação (atualizado na Fase 2)
 
