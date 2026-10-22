@@ -100,6 +100,24 @@
     "definicao": "UFs de destino com maior taxa de atraso",
     "fonte": "orders+customers"
   },
+  "atraso_nordeste": {
+    "valor": 14.3,
+    "definicao": "Taxa de atraso agregada dos pedidos com destino no Nordeste (9 UFs)",
+    "fonte": "orders+customers"
+  },
+  "atraso_nordeste_faixa_uf": {
+    "valor": {
+      "min": 10.8,
+      "max": 23.9
+    },
+    "definicao": "Menor e maior taxa de atraso entre as UFs do Nordeste",
+    "fonte": "orders+customers"
+  },
+  "pedidos_nordeste": {
+    "valor": 9044,
+    "definicao": "Pedidos entregues com destino no Nordeste (dataset inteiro)",
+    "fonte": "orders+customers"
+  },
   "reviews_total": {
     "valor": 99224,
     "definicao": "Avaliações no dataset",
@@ -225,6 +243,31 @@
     },
     "definicao": "Categorias da 1ª compra com maior recompra (≥1.000 clientes)",
     "fonte": "orders+items+products"
+  },
+  "wb_baseline_90d_compra_janela_completa": {
+    "valor": 1.28,
+    "definicao": "2ª compra em 1–90 dias após a 1ª COMPRA, só clientes com 90 dias observáveis",
+    "fonte": "orders+customers"
+  },
+  "wb_baseline_janela_agente": {
+    "valor": 0.9,
+    "definicao": "Baseline do WinBack: 2ª compra de D+7 a D+90 após a ENTREGA da 1ª, só clientes com janela completa",
+    "fonte": "orders+customers"
+  },
+  "wb_clientes_janela_completa": {
+    "valor": 73042,
+    "definicao": "Clientes com 90 dias observáveis após a 1ª entrega",
+    "fonte": "orders+customers"
+  },
+  "wb_pct_recompras_na_janela_agente": {
+    "valor": 36.9,
+    "definicao": "Entre quem fez 2ª compra: % que ocorreu de D+7 a D+90 após a entrega da 1ª",
+    "fonte": "orders+customers"
+  },
+  "wb_pct_recompras_antes_d7": {
+    "valor": 20.7,
+    "definicao": "Entre quem fez 2ª compra: % que ocorreu antes de D+7 após a entrega (fora do alcance do agente)",
+    "fonte": "orders+customers"
   },
   "priorizacao": {
     "valor": {

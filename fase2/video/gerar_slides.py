@@ -32,7 +32,7 @@ def xml_bytes(root):
 def gerar(saida):
     ajustes = json.loads((AQUI / 'ajustes_v5.json').read_text(encoding='utf-8'))
     notas = falas()
-    encontrados = {str(i): set() for i in (7,8,9)}
+    encontrados = {str(i): set() for i in ajustes}
     with zipfile.ZipFile(BASE) as zin, zipfile.ZipFile(saida, 'w', zipfile.ZIP_DEFLATED) as zout:
         for item in zin.infolist():
             data = zin.read(item.filename)

@@ -9,7 +9,7 @@
 
 | Entregável do enunciado | Status | Arquivo |
 |---|---|---|
-| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **29 páginas**: é a **versão 2.0 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
+| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **29 páginas**: é a **versão 2.1 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
 | 2. Casos de uso de ≥ 3 agentes (a–f) | ✅ No relatório, Seção 8 | idem |
 | 3. Jornadas / fluxos | ✅ 3 fluxos + jornada multiagente, Seção 9 | [fluxos/](fluxos/) |
 | 4. Prompts estruturados | ✅ Resumo no relatório (Seção 10) + versão completa com 10 casos reais | [prompts/PROMPTS_V2.md](prompts/PROMPTS_V2.md) |

@@ -99,19 +99,19 @@ def tabela(doc, cab, linhas, larguras, tam=8.5, col_tipo=None, mono_col=None):
 # ============================================================================= 1. ALTERAÇÕES v1 → v2
 ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2, [(tipo, item, v1.0, v2.0)])
     ('Capa', None, [
-        ('Corrigido', 'Fase e versão', 'TECH CHALLENGE · FASE 1 · versão final 26/08/2026', 'TECH CHALLENGE · FASE 2 · **versão 2.0**, evolução do relatório da Fase 1'),
+        ('Corrigido', 'Fase e versão', 'TECH CHALLENGE · FASE 1 · versão final 26/08/2026', 'TECH CHALLENGE · FASE 2 · **versão 2.1**, evolução do relatório da Fase 1'),
         ('Acrescentado', 'Perguntas', 'Só a pergunta central da Fase 1', 'Pergunta da Fase 1 **e** pergunta da Fase 2'),
         ('Acrescentado', 'Links', 'Sem links na capa', 'Vídeo da Fase 2 e repositório'),
     ]),
     ('(novo) Histórico do Documento', 'Histórico do Documento', [
-        ('Acrescentado', 'Controle de versões', '—', 'Tabela v1.0 → v2.0, resposta a cada ponto do feedback e lista das correções'),
+        ('Acrescentado', 'Controle de versões', '—', 'Tabela v1.0 → v2.0 → v2.1, resposta a cada ponto do feedback e lista das correções'),
     ]),
     ('1. Sumário Executivo', '1. Sumário Executivo', [
         ('Mantido', 'Diagnóstico de abertura', 'Recompra 3,00%; atraso 8,11%; frete 21,34%; 14,7% notas 1–2', 'Mesmos números'),
-        ('Substituído', 'Tabela de desafios', 'Desafio · Evidência · Resposta agêntica · KPI (6 agentes)', 'Mesmos 6 desafios + coluna **"Situação na Fase 2"** (3 detalhados, 3 absorvidos/backlog/Fase 4)'),
-        ('Substituído', 'Recomendação', '"Jornada progressiva com cinco agentes especialistas e um orquestrador"', '**3 agentes priorizados** na jornada do pedido + **piloto de 90 dias da Wave 1**'),
+        ('Retirado', 'Tabela de desafios', 'Desafio · Evidência · Resposta agêntica · KPI (6 agentes)', 'Substituída por texto: destino de cada um dos 6 agentes (3 priorizados, SellerCare absorvido, SmartFreight no backlog, Maestro na Fase 4)'),
+        ('Substituído', 'Recomendação', '"Jornada progressiva com cinco agentes especialistas e um orquestrador"', '**Abre com o pedido:** piloto de 90 dias de LogiPredict + SentimentDesk no Nordeste, condicionado a volume elegível, controle e orçamento'),
         ('Acrescentado', 'Pergunta e resposta da Fase 2', '—', 'Atraso → 54% de notas 1–2; 27% dos atrasos nascem na postagem; atraso reduz recompra'),
-        ('Acrescentado', 'Valor esperado', '—', 'Cenário base: 672 atrasos evitados, 1.230 h poupadas (R$ 55 mil), 358 2ªs compras (R$ 53 mil), com memória de cálculo na Seção 13.4'),
+        ('Acrescentado', 'Valor esperado', '—', 'Piloto: 672 atrasos evitados e 1.230 h poupadas (≈ R$ 55 mil de capacidade); expansão futura: WinBack 358 2ªs compras (≈ R$ 53 mil de receita bruta); memória de cálculo na Seção 13.4'),
         ('Corrigido', 'Links', 'Vídeo da Fase 1 + GitHub', 'Vídeo da Fase 2 + vídeo da Fase 1 + GitHub'),
     ]),
     ('2. Contexto e Problema de Negócio', '2. Contexto e Problema', [
@@ -123,16 +123,18 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
     ('3. Abordagem Analítica', '3. Abordagem Analítica', [
         ('Corrigido', 'Frentes de análise', 'Sete dimensões', '**Oito frentes**: nova linha "Evidências para desenho dos agentes (notebook 08)"'),
         ('Mantido', '3.1 Nota estatística', 'Associação, não causalidade', 'Mantida + grupo controle no piloto'),
-        ('Acrescentado', '3.2 Limitações', '3 limitações', '+ "o dataset não contém o tempo de resposta da Olist às avaliações"'),
+        ('Acrescentado', '3.2 Evidência, premissa e validação', '—', 'Cada número classificado como **observado**, **premissa** ou **projeção**'),
+        ('Acrescentado', '3.3 Limitações', '3 limitações', '+ "o dataset não contém o tempo de resposta da Olist às avaliações"'),
     ]),
     ('4. Principais Achados', '4. Principais Achados', [
         ('Mantido', '4.1 a 4.4', 'Retenção, logística, reviews, sellers', 'Texto da Fase 1 mantido'),
         ('Corrigido', '4.2 Tempo de entrega e etapas', '~12,5 dias; trânsito 9,19 dias; processamento 3,28 dias', '**12,56** dias; trânsito **9,33** dias (74%); processamento **3,23** dias'),
-        ('Acrescentado', 'Achados novos em 4.1 a 4.3', '—', 'Janela da 2ª compra (54% em 90 dias); postagem atrasada (24,4% vs 6,5%); 54,1% notas 1–2 com atraso; 47% dos comentários sobre entrega'),
+        ('Acrescentado', 'Achados novos em 4.1 a 4.3', '—', 'Janela da 2ª compra (54% em 90 dias; 37% na janela do WinBack); postagem atrasada (24,4% vs 6,5%); 54,1% notas 1–2 com atraso; 47% dos comentários sobre entrega'),
         ('Acrescentado', '4.5 Da evidência à decisão', '—', 'Tabela E1–E6 (pergunta → dado → método → resultado → decisão) + 3 gráficos'),
     ]),
     ('5. Segmentação e Priorização', '5. Segmentação e Priorização', [
         ('Mantido', '5.1 RFM e 5.2 sellers', 'Tabelas K=4 e K=3', 'Mesmas tabelas; leitura de "Novos" e "Em Risco" ligada ao WinBack'),
+        ('Acrescentado', '5.2.1 Por que o Nordeste', '—', '**14,3%** de atraso no agregado dos 9 estados (10,8% a 23,9% por UF) + desenho de medição'),
         ('Substituído', '5.3 Critério de priorização', 'Critério qualitativo + ondas (Wave 1 SentimentDesk + LogiPredict; Wave 2 WinBack + SellerCare; Wave 3 SmartFreight + Maestro)', '**Matriz ponderada** (5 critérios, pesos 30/25/20/15/10) + gráfico; ondas movidas para a Seção 12'),
     ]),
     ('6. Mapa de Agentes de IA', '6. Mapa de Agentes', [
@@ -152,7 +154,8 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
         ('Mantido', '8.4 Demais agentes', 'SellerCare, SmartFreight, Maestro', 'Caso de uso e guardrails da Fase 1 em tabela'),
     ]),
     ('(novo) 9. Jornadas de Funcionamento', '9. Jornadas de Funcionamento', [
-        ('Acrescentado', 'Fluxos', '—', '3 fluxos (raias, gatilhos, decisões, humano no loop, saídas) + jornada multiagente com pedido real + tabela de exceções'),
+        ('Acrescentado', 'Fluxos', '—', '3 fluxos (raias, gatilhos, decisões, humano no loop, saídas) + jornada multiagente com pedido real (caso observado × atuação simulada)'),
+        ('Acrescentado', '9.5 e 9.6', '—', 'Natureza das decisões (regras, score heurístico, IA generativa, agentes) + tabela de exceções'),
     ]),
     ('9. Prompts → 10. Prompts Estruturados', '10. Prompts Estruturados', [
         ('Mantido', 'Estrutura', 'Objetivo · contexto · instrução · resultado', 'Mesma estrutura'),
@@ -162,9 +165,11 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
     ]),
     ('10. Riscos → 11. Riscos, Governança e HITL', '11. Riscos, Governança', [
         ('Mantido', 'Tabela de riscos', '7 riscos', 'Mesmos 7, com controles concretos dos agentes priorizados'),
-        ('Acrescentado', 'Novo risco', '—', '"Classificação errada" (SentimentDesk)'),
+        ('Acrescentado', 'Novos riscos', '—', '"Classificação errada" (SentimentDesk) e "Gargalo de aprovação" (fila humana)'),
         ('Mantido', 'Matriz de autonomia', '6 tipos de ação', 'Idêntica'),
-        ('Acrescentado', '11.3 Quem decide o quê', '—', 'Tabela agente × analista × gestor'),
+        ('Acrescentado', '11.3 Política econômica dos incentivos', '—', 'Teto de 10% é regra proposta; exige margem, orçamento e política aprovada'),
+        ('Acrescentado', '11.4 Quem decide o quê', '—', 'Tabela agente × analista × gestor'),
+        ('Acrescentado', '11.5 Feedback loop e filas humanas', '—', 'Correções humanas recalibram os agentes; **SLA de 4 horas úteis** para decisões humanas'),
     ]),
     ('11. Roadmap → 12. Roadmap', '12. Roadmap', [
         ('Corrigido', 'Ordem de implantação', 'Fase A: SentimentDesk + WinBack + SellerCare; Fase B: LogiPredict + SmartFreight; Fase C: Maestro (contradizia a Seção 5.3)', '**Roadmap único**: Wave 1 LogiPredict + SentimentDesk; Wave 2 WinBack; Wave 3 SellerCare + SmartFreight; Maestro na Fase 4'),
@@ -177,8 +182,8 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
         ('Corrigido', 'Processamento', '3,28 dias', '**3,23 dias**'),
         ('Corrigido', 'Tempo de resposta a reviews', '3,15 dias', '**A medir no piloto** (a coluna era a resposta do cliente à pesquisa)'),
         ('Retirado', 'Nota sobre divergência', '"essa divergência deve ser conferida antes da submissão"', 'Divergência resolvida'),
-        ('Acrescentado', 'Novos baselines', '—', 'Conversão em 2ª compra em 90 dias (1,13%); postagem após o limite (9,0%)'),
-        ('Acrescentado', '13.2 a 13.4', '—', 'Metas do piloto + business case em 3 cenários + **memória de cálculo** (cada entrada, fórmula e conta)'),
+        ('Acrescentado', 'Novos baselines', '—', 'Conversão em 2ª compra de D+7 a D+90 após a entrega (**0,90%**); postagem após o limite (9,0%)'),
+        ('Acrescentado', '13.2 a 13.4', '—', 'Metas do piloto (Nordeste 14,3% → 13,3%; SLA humano 4h; WinBack 0,90% → 1,40% na Wave 2) + protocolo do piloto + business case em 3 cenários + **memória de cálculo**'),
     ]),
     ('13. Recomendação → 14. Recomendação Executiva', '14. Recomendação Executiva', [
         ('Substituído', 'Recomendação', 'Começar por experiência e logística; depois retenção e sellers; depois frete e orquestração', '**Aprovar piloto de 90 dias da Wave 1** com grupo controle e metas'),
@@ -187,17 +192,17 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
     ('14. Fontes → 15. Fontes · Apêndices', '15. Fontes do Projeto', [
         ('Corrigido', 'Fontes', 'Enunciado Fase 1 + artefatos da Fase 1', 'Enunciados das 2 fases + notebook 08 + NUMEROS_OFICIAIS + PROMPTS_V2 + fluxos'),
         ('Corrigido', 'Apêndice A', 'Requisitos da Fase 1, com "Inserir link final nesta seção"', 'Requisitos das Fases 1 **e** 2, **sem placeholder**'),
-        ('Retirado', 'Apêndice B', 'Lista de materiais com "[INSERIR LINK APÓS PUBLICAÇÃO]"', 'Incorporado às Fontes'),
+        ('Substituído', 'Apêndice B', 'Lista de materiais com "[INSERIR LINK APÓS PUBLICAÇÃO]"', '**Limitações e próximos passos de validação** (materiais incorporados às Fontes)'),
     ]),
     ('Formato geral', None, [
-        ('Corrigido', 'Imagens', '**0 imagens** em 17 páginas', '**9 imagens** (4 gráficos, arquitetura, 3 fluxos, jornada) em 26 páginas'),
+        ('Corrigido', 'Imagens', '**0 imagens** em 17 páginas', f'**9 imagens** (4 gráficos, arquitetura, 3 fluxos, jornada) em {len(PAGINAS_V2)} páginas'),
         ('Acrescentado', 'Sinalização de evolução', '—', 'Títulos marcados "(atualizado na Fase 2)" ou "(novo na Fase 2)"'),
     ]),
 ]
 
-doc = novo_doc('Tech Challenge · Fase 2 · Alterações do relatório v1.0 → v2.0')
-doc.add_heading('Alterações do Relatório Executivo: versão 1.0 (Fase 1) → versão 2.0 (Fase 2)', 1)
-par(doc, f'Documento de apoio ao grupo. Compara o relatório entregue na Fase 1 (fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf, 17 páginas) com a versão 2.0 (fase2/{PDF.name}, {len(PAGINAS_V2)} páginas). A coluna "pág. v2" indica onde a seção está na versão 2.0.', 9.5, CINZA)
+doc = novo_doc('Tech Challenge · Fase 2 · Alterações do relatório v1.0 → v2.1')
+doc.add_heading('Alterações do Relatório Executivo: versão 1.0 (Fase 1) → versão 2.1 (Fase 2)', 1)
+par(doc, f'Documento de apoio ao grupo. Compara o relatório entregue na Fase 1 (fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf, 17 páginas) com a versão 2.1 (fase2/{PDF.name}, {len(PAGINAS_V2)} páginas). A coluna "pág. v2" indica onde a seção está na versão 2.1.', 9.5, CINZA)
 
 contagem = {}
 for _, _, itens in ALTERACOES:
@@ -221,6 +226,8 @@ tabela(doc, ['Indicador', 'v1.0', 'v2.0', 'Motivo'], [
     ['Tempo de resposta a reviews', '3,15 dias', '**A medir no piloto**', 'A coluna review_answer_timestamp é a resposta do cliente à pesquisa, não da Olist'],
     ['Público do WinBack', '38.655 inativos (+439 dias)', '**1ª compra, D+7 a D+90**', '54% das 2ªs compras ocorrem em até 90 dias'],
     ['Ordem de implantação', 'Duas ordens diferentes (Seções 5.3 e 11)', '**Roadmap único**', 'Inconsistência interna'],
+    ['Baseline do WinBack', '— (na v2.0: 1,13%)', '**0,90%** (D+7 a D+90 após a entrega)', 'Medido na janela em que o agente atua, só clientes com janela completa; business case inalterado'],
+    ['Atraso no Nordeste (piloto)', '— (na v2.0: "15–24%")', '**14,3%** (10,8% a 23,9% por UF)', 'Agregado dos 9 estados calculado no notebook 08; meta −1 p.p. (13,3%)'],
 ], [3.6, 4.2, 3.6, 6.5])
 
 doc.add_heading('Alterações seção por seção', 2)
@@ -252,10 +259,13 @@ DESCR = {  # caminho relativo a fase2/ → descrição (ordem = ordem da árvore
     'img/': 'Gráficos do relatório (gerados pelo notebook 08)',
     'fluxos/': '**ENTREGÁVEL 3** · fluxos PNG + gerar_fluxos.py',
     'prompts/PROMPTS_V2.md': '**ENTREGÁVEL 4** · prompts completos + 10 casos reais',
+    'prompts/VALIDACAO_LUCAS.md': 'Critérios e 22 cenários de validação dos prompts',
     'prompts/exemplos/casos_reais.json': 'Casos reais usados nos exemplos',
     'video/ROTEIRO_VIDEO_FASE2.md': '**ENTREGÁVEL 5** · roteiro com falas e tempos',
     'video/Apresentacao_Fase2_Olist.pptx': '**ENTREGÁVEL 5** · slides de apoio (falas nas notas)',
-    'video/gerar_slides.py': 'Gera os slides',
+    'video/gerar_slides.py': 'Aplica ajustes e falas sobre o modelo da apresentação',
+    'video/ajustes_v5.json': 'Ajustes de texto aplicados aos slides',
+    'video/modelos/Apresentacao_Fase2_Olist_V5_BASE.pptx': 'Modelo visual da apresentação',
 }
 
 ENTREGAVEIS = [
@@ -266,11 +276,11 @@ ENTREGAVEIS = [
      [('8.1 LogiPredict', '8.1 LogiPredict'), ('8.2 SentimentDesk', '8.2 SentimentDesk'), ('8.3 WinBack', '8.3 WinBack'), ('5.3 Priorização (por que estes 3)', '5.3 Priorização dos agentes')],
      ['fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 8)']),
     ('3. Jornada de Funcionamento dos Agentes', 'Fluxos com gatilhos, entradas, decisões, ações, interação humana e saída',
-     [('9.1 a 9.3 Fluxos', '9.1 LogiPredict'), ('9.4 Jornada multiagente', '9.4 Jornada multiagente'), ('9.5 Exceções', '9.5 Tratamento de exceções')],
+     [('9.1 a 9.3 Fluxos', '9.1 LogiPredict'), ('9.4 Jornada multiagente', '9.4 Jornada multiagente'), ('9.6 Exceções', '9.6 Tratamento de exceções')],
      ['fase2/fluxos/fluxo_logipredict.png', 'fase2/fluxos/fluxo_sentimentdesk.png', 'fase2/fluxos/fluxo_winback.png', 'fase2/fluxos/jornada_multiagente.png']),
     ('4. Estruturação Inicial de Prompts', 'a) objetivo, b) contexto, c) instrução principal, d) resultado esperado',
      [('10.1 a 10.3 Prompts com exemplo real', '10. Prompts Estruturados')],
-     ['fase2/prompts/PROMPTS_V2.md', 'fase2/prompts/exemplos/casos_reais.json']),
+     ['fase2/prompts/PROMPTS_V2.md', 'fase2/prompts/VALIDACAO_LUCAS.md', 'fase2/prompts/exemplos/casos_reais.json']),
     ('5. Vídeo Executivo (≤ 5 min)', 'Evolução, agentes, fluxos, funcionamento e exemplos de interação; link no relatório',
      [('Link na capa e no Sumário', '1. Sumário Executivo')],
      ['fase2/video/ROTEIRO_VIDEO_FASE2.md', 'fase2/video/Apresentacao_Fase2_Olist.pptx', 'fase2/config_relatorio.json (LINK_VIDEO)']),
@@ -280,7 +290,8 @@ APOIO = [
     ('Fonte única de números', '15. Fontes do Projeto', 'fase2/NUMEROS_OFICIAIS.md'),
     ('Business case e metas do piloto', '13.3 Business case', 'notebooks/08_fase2_evidencias_business_case.ipynb'),
     ('Memória de cálculo (conta passo a passo)', '13.4 Memória de cálculo', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 13.4)'),
-    ('Governança e humano no loop', '11.3 Quem decide', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 11)'),
+    ('Governança e humano no loop', '11.4 Quem decide', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Seção 11)'),
+    ('Validação dos prompts (22 cenários)', '10. Prompts Estruturados', 'fase2/prompts/VALIDACAO_LUCAS.md'),
     ('Rastreabilidade dos requisitos', 'Apêndice A', 'fase2/RELATORIO_EXECUTIVO_FASE2.md (Apêndice A)'),
 ]
 

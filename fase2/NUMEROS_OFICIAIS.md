@@ -24,6 +24,9 @@
 | `pct_atrasos_com_postagem_atrasada` | 27,20 | % dos pedidos atrasados que tiveram postagem atrasada pelo seller | orders+order_items |
 | `mediana_dias_postagem_ate_prazo_atrasados` | 17,50 | Nos pedidos que atrasaram: mediana de dias entre a postagem e o prazo prometido (janela para agir) | orders |
 | `atraso_top_uf` | AL: 23,90; MA: 19,70; PI: 16,00; CE: 15,30; SE: 15,20 | UFs de destino com maior taxa de atraso | orders+customers |
+| `atraso_nordeste` | 14,30 | Taxa de atraso agregada dos pedidos com destino no Nordeste (9 UFs) | orders+customers |
+| `atraso_nordeste_faixa_uf` | min: 10,80; max: 23,90 | Menor e maior taxa de atraso entre as UFs do Nordeste | orders+customers |
+| `pedidos_nordeste` | 9.044 | Pedidos entregues com destino no Nordeste (dataset inteiro) | orders+customers |
 | `reviews_total` | 99.224 | Avaliações no dataset | order_reviews |
 | `pct_nota_1` | 11,50 | % de avaliações nota 1 | order_reviews |
 | `pct_nota_1_2` | 14,70 | % de avaliações nota 1 ou 2 | order_reviews |
@@ -45,6 +48,11 @@
 | `recompra_1a_atrasada` | 1,56 | Recompra quando a 1ª compra atrasou | orders+reviews |
 | `recompra_1a_no_prazo` | 2,13 | Recompra quando a 1ª compra chegou no prazo | orders+reviews |
 | `recompra_top_categorias` | fashion_bolsas_e_acessorios: 3,60; moveis_decoracao: 2,70; esporte_lazer: 2,70; cama_mesa_banho: 2,60; pet_shop: 2,50 | Categorias da 1ª compra com maior recompra (≥1.000 clientes) | orders+items+products |
+| `wb_baseline_90d_compra_janela_completa` | 1,28 | 2ª compra em 1–90 dias após a 1ª COMPRA, só clientes com 90 dias observáveis | orders+customers |
+| `wb_baseline_janela_agente` | 0,90 | Baseline do WinBack: 2ª compra de D+7 a D+90 após a ENTREGA da 1ª, só clientes com janela completa | orders+customers |
+| `wb_clientes_janela_completa` | 73.042 | Clientes com 90 dias observáveis após a 1ª entrega | orders+customers |
+| `wb_pct_recompras_na_janela_agente` | 36,90 | Entre quem fez 2ª compra: % que ocorreu de D+7 a D+90 após a entrega da 1ª | orders+customers |
+| `wb_pct_recompras_antes_d7` | 20,70 | Entre quem fez 2ª compra: % que ocorreu antes de D+7 após a entrega (fora do alcance do agente) | orders+customers |
 | `priorizacao` | LogiPredict: 4,75; SentimentDesk: 4,60; WinBack: 4,20; SellerCare: 3,40; SmartFreight: 2,75; Maestro: 2,40 | Score ponderado (pesos 30/25/20/15/10) | avaliação do grupo |
 | `bc_atraso_se_postagem_atrasada_12m` | 27,60 | Janela set/17–ago/18: atraso quando a postagem foi após o limite | orders+order_items |
 | `bc_atraso_se_postagem_no_prazo_12m` | 7,50 | Janela set/17–ago/18: atraso quando a postagem foi no prazo | orders+order_items |

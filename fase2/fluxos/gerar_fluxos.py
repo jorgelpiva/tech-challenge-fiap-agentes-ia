@@ -127,11 +127,10 @@ desenhar('fluxo_logipredict', 'LogiPredict · Guardião do Prazo de Entrega', 'L
         ('h1', 'Humano', 3, 'humano', 'Analista de Operações:\naciona transportadora,\nprioriza tratativa'),
         ('d3', 'Agente', 4, 'decisao', 'Nova data\nprevista ultrapassa\no prazo?'),
         ('a4', 'Agente', 5, 'agente', 'Calcula nova data\nde entrega e prepara\naviso proativo'),
-        ('d4', 'Agente', 6, 'decisao', 'Confiança do\nmodelo alta (≥ 0,80)\ne dentro da alçada?'),
+        ('d4', 'Agente', 6, 'decisao', 'Projeção consistente\ne aviso dentro\nda alçada?'),
         ('h2', 'Humano', 6, 'humano', 'Revisão e envio\nmanual pelo\nAnalista de Operações'),
         ('a5', 'Agente', 7, 'agente', 'Avisa cliente com a\nnova data (template\naprovado)'),
-        ('o1', 'Saída', 6, 'saida', 'Registro no histórico\n+ sinal "pedido em risco"\nao SentimentDesk'),
-        ('o2', 'Saída', 7, 'saida', 'Atualização do painel\nde risco por rota e UF'),
+        ('o1', 'Saída', 7, 'saida', 'Registro + sinal\n"pedido em risco" ao\nSentimentDesk + painel'),
     ],
     arestas=[
         ('t1', 'a1'), 
@@ -146,8 +145,8 @@ desenhar('fluxo_logipredict', 'LogiPredict · Guardião do Prazo de Entrega', 'L
         ('a4', 'd4'),
         ('d4', 'h2', 'não'),
         ('d4', 'a5', 'sim'),
-        ('h2', 'o1'),
-        ('a5', 'o2')
+        ('h2', 'o1', '', 'vh'),
+        ('a5', 'o1')
     ],
     ncols=8, subtitulo='Escopo: só pedidos entre a aprovação e a entrega. Não negocia frete nem troca transportadora sozinho.')
 

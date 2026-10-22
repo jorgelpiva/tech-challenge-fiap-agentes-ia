@@ -38,3 +38,6 @@ Thumbs.db
 
 # PDF original (versionado separadamente se necessário)
 # *.pdf
+
+# Análises locais de versão (não versionar)
+analise_versao/

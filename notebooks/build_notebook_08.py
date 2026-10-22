@@ -130,6 +130,12 @@ reg('mediana_dias_postagem_ate_prazo_atrasados', round(float(antec.median()),1),
     'Nos pedidos que atrasaram: mediana de dias entre a postagem e o prazo prometido (janela para agir)', 'orders')
 uf = d.groupby('customer_state').atrasado.agg(['mean','size']).sort_values('mean', ascending=False)
 reg('atraso_top_uf', {k: round(float(v*100),1) for k,v in uf['mean'].head(5).items()}, 'UFs de destino com maior taxa de atraso', 'orders+customers')
+NE = ['AL','BA','CE','MA','PB','PE','PI','RN','SE']
+ne = d[d.customer_state.isin(NE)]
+reg('atraso_nordeste', round(float(ne.atrasado.mean()*100),1), 'Taxa de atraso agregada dos pedidos com destino no Nordeste (9 UFs)', 'orders+customers')
+reg('atraso_nordeste_faixa_uf', {'min': round(float(uf.loc[NE,'mean'].min()*100),1), 'max': round(float(uf.loc[NE,'mean'].max()*100),1)},
+    'Menor e maior taxa de atraso entre as UFs do Nordeste', 'orders+customers')
+reg('pedidos_nordeste', int(len(ne)), 'Pedidos entregues com destino no Nordeste (dataset inteiro)', 'orders+customers')
 print(f'Atrasado: nota {nota_atr:.2f} | {neg_atr:.1%} notas 1-2   ·   No prazo: nota {nota_ok:.2f} | {neg_ok:.1%} notas 1-2')
 print(f'Postagem atrasada em {pa:.1%} dos pedidos → atraso {atr_pa:.1%} vs {atr_po:.1%} ({atr_pa/atr_po:.1f}x)')
 uf.head(10)
@@ -275,6 +281,37 @@ ax.axvspan(0, 90, color=LARANJA, alpha=0.06)
 ax.set_xlim(0, 365); ax.set_ylim(0, 100)
 ax.set_title('Quando o cliente volta, volta cedo'); ax.set_xlabel('Dias desde a 1ª compra'); ax.set_ylabel('% acumulado das 2ªs compras')
 salvar(fig, 'f2_janela_2a_compra.png')
+""")
+
+md("""
+### 4.1 Baseline do WinBack com janela completa (revisão de 21/10)
+O baseline de 1,13% (seção 6) conta 2ª compra em 1–90 dias **após a compra**, sobre **todos** os clientes — inclusive os que compraram
+perto do fim do dataset e ainda não tiveram 90 dias para voltar. O WinBack, porém, atua **de D+7 a D+90 após a entrega**.
+Aqui medimos o baseline na janela em que o agente realmente atua, só com clientes que tiveram os 90 dias observáveis.
+""")
+code(r"""
+FIM = oe.order_purchase_timestamp.max()
+p1 = oe.drop_duplicates('customer_unique_id')[['customer_unique_id','order_purchase_timestamp','order_delivered_customer_date']]
+p2 = (oe.merge(p1[['customer_unique_id','order_purchase_timestamp']].rename(columns={'order_purchase_timestamp':'t1'}), on='customer_unique_id')
+        .query('(order_purchase_timestamp - t1).dt.days >= 1', engine='python')
+        .drop_duplicates('customer_unique_id')[['customer_unique_id','order_purchase_timestamp']].rename(columns={'order_purchase_timestamp':'t2'}))
+jb = p1.merge(p2, on='customer_unique_id', how='left')
+jb['dias_apos_compra']  = (jb.t2 - jb.order_purchase_timestamp).dt.days
+jb['dias_apos_entrega'] = (jb.t2 - jb.order_delivered_customer_date).dt.total_seconds()/86400
+compra_ok  = jb[jb.order_purchase_timestamp <= FIM - pd.Timedelta(days=90)]
+entrega_ok = jb[jb.order_delivered_customer_date.notna() & (jb.order_delivered_customer_date <= FIM - pd.Timedelta(days=90))]
+voltaram   = jb[jb.t2.notna() & jb.order_delivered_customer_date.notna()]
+reg('wb_baseline_90d_compra_janela_completa', round(float(compra_ok.dias_apos_compra.between(1,90).mean()*100),2),
+    '2ª compra em 1–90 dias após a 1ª COMPRA, só clientes com 90 dias observáveis', 'orders+customers')
+reg('wb_baseline_janela_agente', round(float(entrega_ok.dias_apos_entrega.between(7,90).mean()*100),2),
+    'Baseline do WinBack: 2ª compra de D+7 a D+90 após a ENTREGA da 1ª, só clientes com janela completa', 'orders+customers')
+reg('wb_clientes_janela_completa', int(len(entrega_ok)), 'Clientes com 90 dias observáveis após a 1ª entrega', 'orders+customers')
+reg('wb_pct_recompras_na_janela_agente', round(float(voltaram.dias_apos_entrega.between(7,90).mean()*100),1),
+    'Entre quem fez 2ª compra: % que ocorreu de D+7 a D+90 após a entrega da 1ª', 'orders+customers')
+reg('wb_pct_recompras_antes_d7', round(float((voltaram.dias_apos_entrega < 7).mean()*100),1),
+    'Entre quem fez 2ª compra: % que ocorreu antes de D+7 após a entrega (fora do alcance do agente)', 'orders+customers')
+{k: N[k]['valor'] for k in ['wb_baseline_90d_compra_janela_completa','wb_baseline_janela_agente','wb_clientes_janela_completa',
+                            'wb_pct_recompras_na_janela_agente','wb_pct_recompras_antes_d7']}
 """)
 
 md("""

@@ -396,7 +396,7 @@ Rota SP→SP: trânsito mediano 3,6 d, p75 6,1 d | atraso UF SP: 5,9%
 ## 3. WinBack: conversão da 1ª para a 2ª compra
 
 ### (a) Objetivo: contato relevante após a primeira entrega
-Entre D+7 e D+90 após a primeira entrega, propor contato para quem ainda não fez a segunda compra. A janela é hipótese operacional: os 54% históricos usam intervalo entre compras, não entre entrega e compra. O baseline de 1,13% depende de revisão de acompanhamento completo por Caio; não recalculado nesta revisão de Lucas.
+Entre D+7 e D+90 após a primeira entrega, propor contato para quem ainda não fez a segunda compra. A janela é hipótese operacional: os 54% históricos usam intervalo entre compras, não entre entrega e compra. Medido no marco do agente (D+7 a D+90 após a entrega, só clientes com janela completa), o baseline é **0,90%**; 37% das segundas compras caem nessa janela e 21% acontecem antes de D+7 (notebook 08, revisão de 21/10).
 
 ### (b) Contexto: regras verificáveis e dados comerciais
 | Campo | Origem / tratamento |

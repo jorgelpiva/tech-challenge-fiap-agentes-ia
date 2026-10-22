@@ -61,7 +61,7 @@ Registro mínimo por execução: caso, origem (histórico/sintético), versão d
 5. Lucas ensaia o bloco final (slides 10–12): projeções anuais, critérios do piloto e encerramento. Cada integrante grava um bloco contínuo; cronometrar o vídeo completo até 5 min.
 
 ## Dependências com os demais responsáveis
-- **Caio:** confirmar instantes das reviews e evitar eventos futuros no contexto; revisar baseline de recompra com janela completa e marco compra/entrega; conferir eventual previsão LogiPredict D−3. Nenhuma dessas contas foi alterada por Lucas.
+- **Caio:** confirmar instantes das reviews e evitar eventos futuros no contexto; ~~revisar baseline de recompra com janela completa e marco compra/entrega~~ **feito em 21/10: 0,90% na janela D+7–D+90 após a entrega (antes 1,13%)**; conferir eventual previsão LogiPredict D−3. Nenhuma dessas contas foi alterada por Lucas.
 - **Jorge:** conferir a consolidação das fontes e arquivos gerados, verificar paginação/legibilidade, inserir o link do vídeo e realizar submissão. As saídas editoriais não devem ser chamadas de nova execução medida.
 - **Leonardo:** aprovar narrativa V5 e duração do roteiro com o grupo. A jornada é apresentada por Caio no slide8; os dados históricos e intervenções simuladas ficam separados.
 
@@ -77,4 +77,4 @@ Registro mínimo por execução: caso, origem (histórico/sintético), versão d
 - 672 atrasos: 6.689 postagens tardias × diferença arredondada de 20,1 p.p. × 50% eliminado (premissa). 302 avaliações: resultado × 44,9 p.p. São associações usadas em projeção, não efeito causal observado.
 - 1.230 h: 11.711 avaliações × 70% tratado × 9 min poupados ÷ 60. A R$ 45/h, capacidade equivalente a cerca de R$ 55 mil; não economia de caixa garantida.
 - 358 segundas compras: 71.693 clientes × 0,5 p.p. (premissa). Receita bruta de cerca de R$ 53 mil usa ticket de R$ 148,35; não lucro e não resultado do piloto inicial.
-- São cenários anuais na escala histórica, nunca promessas de entrega integral em 90 dias. Nenhum indicador foi recalculado nesta consolidação. A revisão do baseline de 90 dias segue dependente de Caio/Jorge.
+- São cenários anuais na escala histórica, nunca promessas de entrega integral em 90 dias. Nenhum indicador foi recalculado nesta consolidação. Baseline de 90 dias revisado em 21/10: 0,90% na janela do agente; meta da Wave 2 = 1,40% (+0,5 p.p.); projeção de 358 compras inalterada.

@@ -43,6 +43,10 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | D6 | Saídas ilustrativas revisadas; reproduzir com modelo/data antes do vídeo | Proposta |
 | D7 | Fluxos por script (matplotlib) com legenda única | Proposta |
 | D8 | Roadmap: Wave 1 LogiPredict + SentimentDesk · Wave 2 WinBack · Wave 3 SellerCare/SmartFreight · Fase 4 Maestro | Proposta |
+| D9 | Baseline do WinBack = **0,90%** (D+7 a D+90 após a entrega, janela completa); meta Wave 2 = 1,40% (+0,5 p.p.); business case inalterado | ✅ Jorge, 21/10 |
+| D10 | Baseline do piloto no Nordeste = **14,3%** (10,8% a 23,9% por UF); meta −1 p.p. (13,3%) | ✅ Jorge, 21/10 |
+| D11 | SLA de 4h úteis para decisões humanas (11.5) vira meta do piloto: 95% dentro do prazo | ✅ Jorge, 21/10 |
+| D12 | Tom: manter as ressalvas da revisão técnica como estão | ✅ Jorge, 21/10 |
 
 ## 5. Backlog
 > ✅ feito · 🟨 em andamento · ⬜ a fazer. Resp. = quem executa (ver divisão em EVOLUCAO §5).
@@ -68,9 +72,11 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | ID | Tarefa | Resp. | Status |
 |---|---|---|---|
 | R1 | Reunião: validar D1–D8 e dividir a revisão | Grupo | ⬜ |
-| R2 | Revisão por seção (divisão em EVOLUCAO §5): Leonardo comenta no Word/PPT, técnicos aplicam nas fontes | Todos | ⬜ |
-| R2b | Leitura executiva do relatório inteiro + revisão dos slides e do roteiro | Leonardo | ⬜ |
-| R3 | Rodar o notebook 08 em outra máquina e conferir números | Caio | ⬜ |
+| R2 | Revisão por seção (divisão em EVOLUCAO §5): Leonardo comenta no Word/PPT, técnicos aplicam nas fontes | Todos | ✅ 20–21/10 |
+| R2b | Leitura executiva do relatório inteiro + revisão dos slides e do roteiro | Leonardo | ✅ 20/10 (apresentação executiva) |
+| R3 | Rodar o notebook 08 em outra máquina e conferir números | Caio | ✅ 19/10 (números conferem) |
+| J1 | Revisar §13 (indicadores e business case) e baseline do WinBack com janela completa | Jorge | ✅ 21/10 |
+| J2 | Corrigir os gaps da análise de versão (11.3 restaurada, fluxo LogiPredict, Apêndice B, jargão, datas, QA) e regerar relatório, slides e docs | Jorge | ✅ 21/10 |
 | R4 | Reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Lucas | ⬜ |
 | R5 | (Opcional, diferencial) mini-avaliação: 30 a 50 avaliações rotuladas × agente | Lucas/Caio | ⬜ |
 | V1 | Ensaiar e gravar o vídeo (≤ 5:00); publicar e testar o link em aba anônima | Todos / Jorge | ⬜ |
@@ -97,6 +103,15 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 
 ### 2026-10-12 — Sessão 1: planejamento
 - Leitura do enunciado da Fase 2 e revisão do PDF da Fase 1; primeira versão deste plano.
+
+### 2026-10-21 — Revisão do Jorge e correções de consistência
+- §13 revisada: números conferem com a fonte única; tabela de metas tinha WinBack (Wave 2) dentro do piloto e faixa "15–24% no Nordeste" sem cálculo.
+- Baseline do WinBack medido na janela do agente (notebook 08): **0,90%** (antes 1,13%); 37% das 2ªs compras caem em D+7–D+90 e 21% antes de D+7. Business case inalterado.
+- Nordeste: **14,3%** de atraso no agregado (10,8%–23,9% por UF); meta 13,3%.
+- Seção 11.3 (política econômica, do Lucas) restaurada após remoção acidental no PR #3; RACI → 11.4; feedback loop/SLA → 11.5; SLA 4h virou meta do piloto (13.2) e entrou no slide 11.
+- Fluxo do LogiPredict: "confiança do modelo" → "projeção consistente e dentro da alçada" (score é heurístico); os dois caminhos agora registram e sinalizam o SentimentDesk.
+- Apêndice B renomeado ("Limitações e próximos passos"), jargão interno removido, datas corrigidas (v2.0 = 14/10, v2.1 = 27/10), QA do gerador passou a comparar palavra inteira.
+- Regerados: relatório (29 págs., QA OK), fluxos, slides e documentos Word de apoio.
 
 ### 2026-10-20 — Consolidação da narrativa V5 e revisão técnica
 - Material executivo V5 de Leonardo adotado, mantendo observado/premissa/projeção e piloto de dois agentes.

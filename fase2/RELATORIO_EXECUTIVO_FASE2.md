@@ -1,11 +1,10 @@
 <!--
-FONTE ÚNICA do Relatório Executivo — versão 2.1 (Fase 2), revisão de consistência com a apresentação V5.
+FONTE ÚNICA do Relatório Executivo — versão 2.1 (Fase 2).
 É a EVOLUÇÃO do relatório entregue na Fase 1 (fase1/Relatorio_Executivo_Fase1_Olist_FINAL.pdf):
 mesma estrutura de seções; conteúdo da Fase 1 mantido e corrigido; itens da Fase 2 inseridos.
 Marcas nos títulos: "(atualizado na Fase 2)" e "(novo na Fase 2)".
 Gerar .docx/.pdf:  python fase2/gerar_relatorio.py
 Números: fase2/dados/numeros_fase2.json (notebook 08) e, para os números herdados da Fase 1, notebooks 01–07.
-Consolidado Leo + Lucas em 20/10/2026; fonte canônica neste caminho.
 -->
 
 # Histórico do Documento
@@ -13,8 +12,8 @@ Consolidado Leo + Lucas em 20/10/2026; fonte canônica neste caminho.
 | Versão | Data | Fase | Conteúdo |
 |---|---|---|---|
 | 1.0 | 26/08/2026 | Fase 1 · Identificar oportunidades | Diagnóstico do dataset, mapa de 6 agentes, arquitetura conceitual, prompts iniciais, riscos e roadmap |
-| **2.0** | **19/10/2026** | **Fase 2 · Estruturar casos de uso e desenho dos agentes** | Fase 1 revisada + priorização, casos de uso detalhados, jornadas, prompts v2 e business case |
-| **2.1** | **19/10/2026** | **Fase 2 · Revisão final de consistência** | Alinhamento à apresentação V5; qualificação de saídas ilustrativas; separação entre histórico e simulação; revisão de promessas operacionais e referências internas, sem recalcular indicadores |
+| **2.0** | **14/10/2026** | **Fase 2 · Estruturar casos de uso e desenho dos agentes** | Fase 1 revisada + priorização, casos de uso detalhados, jornadas, prompts v2 e business case |
+| **2.1** | **27/10/2026** | **Fase 2 · Revisão final de consistência** | Alinhamento com a apresentação executiva; qualificação de saídas ilustrativas; separação entre histórico e simulação; governança das filas humanas; baseline do WinBack medido na janela de atuação do agente; meta do Nordeste recalculada |
 
 **O que mudou da versão 1.0 para a 2.0**
 
@@ -25,9 +24,7 @@ Consolidado Leo + Lucas em 20/10/2026; fonte canônica neste caminho.
 | Muitos objetivos; priorizar o mais próximo do negócio | **Matriz de priorização** ponderada: dos 6 agentes, **3 detalhados**, todos na jornada do pedido | Seção 5.3 |
 | Falha de revisão | Fonte única de números gerada por notebook, revisão de consistência e apêndice de rastreabilidade | Apêndice A |
 
-**Consolidação de 20/10/2026:** preserva a narrativa executiva V5 do Leonardo e incorpora a revisão técnica de Lucas nas Seções 8.2–8.3, 9.2–9.3, 9.6, 10.1 e 10.3. Regras de contato, revisão humana e execução confirmada foram alinhadas; os indicadores não foram recalculados. A divisão de falas segue os blocos V5 (Lucas, slides 10–12).
-
-**Ajustes da versão 2.1 em relação à 2.0:** alinhamento com a apresentação V5, sem alterar números; exemplos de prompts qualificados como ilustrativos; caso multiagente separado em evidências e intervenções hipotéticas; comunicação condicionada a políticas operacionais; integração pós-entrega tratada como sinal histórico; numeração de subseções corrigida.
+**Ajustes da versão 2.1 em relação à 2.0:** alinhamento com a apresentação executiva; exemplos de prompts qualificados como ilustrativos; caso multiagente separado em evidências e intervenções hipotéticas; comunicação condicionada a políticas operacionais; integração pós-entrega tratada como sinal histórico; feedback loop e SLA de 4 horas úteis para as filas humanas (11.5); **baseline do WinBack recalculado na janela em que o agente atua** (0,90%, antes 1,13%; business case inalterado); **baseline do piloto no Nordeste corrigido** para 14,3% (antes "15–24%").
 
 **Correções em relação à versão 1.0:** tempo médio de entrega padronizado em **12,56 dias**, com trânsito de 9,33 dias e processamento de 3,23 dias (recalculados no notebook 08). O "tempo de resposta a reviews de 3,15 dias" foi reinterpretado: a coluna `review_answer_timestamp` registra quando o **cliente respondeu a pesquisa**, não quando a Olist respondeu. O roadmap, que tinha duas ordens diferentes na versão 1.0, foi unificado.
 
@@ -96,7 +93,7 @@ Para evitar confusão entre diagnóstico e resultado futuro, este relatório ado
 # 4. Principais Achados (atualizado na Fase 2)
 
 ## 4.1 Retenção: a maior oportunidade econômica
-A recompra de 3,00% indica que 97 em cada 100 clientes não fazem uma segunda compra. A segmentação RFM identifica 40% da base no grupo "Em Risco", e o Top 10% dos clientes concentra 38,25% da receita. **Novo na Fase 2:** quando o cliente volta, volta cedo. A mediana até a 2ª compra é de 76 dias, e **54%** das segundas compras ocorrem em até 90 dias.
+A recompra de 3,00% indica que 97 em cada 100 clientes não fazem uma segunda compra. A segmentação RFM identifica 40% da base no grupo "Em Risco", e o Top 10% dos clientes concentra 38,25% da receita. **Novo na Fase 2:** quando o cliente volta, volta cedo. A mediana até a 2ª compra é de 76 dias, e **54%** das segundas compras ocorrem em até 90 dias (37% entre D+7 e D+90 após a entrega, a janela do WinBack).
 
 ## 4.2 Logística: o principal ponto de atrito operacional
 O tempo médio total de entrega é de **12,56 dias**. O trânsito responde por **9,33 dias (74%)** e o processamento do seller por 3,23 dias. A taxa de atraso é de 8,11%, mais alta em AL (23,9%), MA (19,7%) e PI (16,0%). **Novo na Fase 2:** quando o seller posta depois do limite (9,0% dos pedidos), o atraso sobe para **24,4%**, contra 6,5% quando posta no prazo.
@@ -148,7 +145,7 @@ Para responder à pergunta *"de onde partiram os achados?"*, cada evidência que
 
 ## 5.2.1 Por que iniciar no Nordeste? (novo na revisão executiva)
 
-AL (23,9%), MA (19,7%) e PI (16,0%) apresentam taxas históricas de atraso acima da média do dataset (8,11%), justificando a **hipótese de priorização** das rotas da região. **Isso não basta para comprovar que o Nordeste maximiza retorno ou é operacionalmente viável.** Antes do piloto, a equipe deverá apurar: (1) volume de pedidos elegíveis por rota e seller; (2) concentração de atrasos evitáveis, especialmente na postagem; (3) disponibilidade e qualidade de rastreio e canais de contato; (4) capacidade de intervenção de Operações/CX; (5) custos por pedido e risco de contaminação entre grupos. As rotas definitivas devem ser selecionadas com esses critérios, não somente pelo percentual de atraso.
+No agregado, os pedidos com destino aos 9 estados do Nordeste (9.044 entregas) tiveram **14,3%** de atraso, contra 8,11% na média do dataset, variando de 10,8% a 23,9% por UF; AL (23,9%), MA (19,7%) e PI (16,0%) são os mais altos, justificando a **hipótese de priorização** das rotas da região. **Isso não basta para comprovar que o Nordeste maximiza retorno ou é operacionalmente viável.** Antes do piloto, a equipe deverá apurar: (1) volume de pedidos elegíveis por rota e seller; (2) concentração de atrasos evitáveis, especialmente na postagem; (3) disponibilidade e qualidade de rastreio e canais de contato; (4) capacidade de intervenção de Operações/CX; (5) custos por pedido e risco de contaminação entre grupos. As rotas definitivas devem ser selecionadas com esses critérios, não somente pelo percentual de atraso.
 
 **Desenho de medição proposto:** estabelecer baseline recente; alocar unidades comparáveis entre tratamento e controle (preferencialmente aleatorização por seller/rota, conforme risco de contaminação); definir previamente janela, métricas, exclusões e tamanho de amostra; comparar diferenças ajustadas por mix de rota, seller e sazonalidade. A forma final de alocação e o tamanho de amostra **ainda dependem dos volumes reais**, não disponíveis no material fornecido.
 
@@ -176,7 +173,7 @@ O ecossistema da Fase 1 é mantido como visão de longo prazo. A coluna "Fase 2"
 |---|---|---|---|---|
 | **LogiPredict** | Proteger o prazo prometido, agindo antes do vencimento | 8,11% de atrasos; 27% começam na postagem | Operações, sellers, clientes | **Detalhado** (Seções 8 a 10) |
 | **SentimentDesk** | Classificar, responder e rotear avaliações 1–3 | 14,7% notas 1–2; motivos não estruturados | CX, sellers, clientes | **Detalhado** |
-| **WinBack** | Converter a 1ª compra em 2ª na janela de 90 dias *(antes: reativar a base inativa)* | Recompra de 3%; 1,13% voltam em 90 dias | CRM, Marketing, clientes | **Detalhado** e reposicionado |
+| **WinBack** | Converter a 1ª compra em 2ª na janela de 90 dias *(antes: reativar a base inativa)* | Recompra de 3%; 0,90% voltam entre D+7 e D+90 após a entrega | CRM, Marketing, clientes | **Detalhado** e reposicionado |
 | SellerCare | Diagnosticar sellers e gerar coaching | 527 sellers problemáticos | Comercial, KAMs | Lembrete de postagem → LogiPredict; ticket ao seller → SentimentDesk; coaching na Wave 3 |
 | SmartFreight | Otimizar frete e precificação | Frete = 21% do pedido | Financeiro, Comercial | Backlog |
 | Maestro | Orquestrar especialistas e apoiar decisões | Dados fragmentados | C-Level, diretores | Fase 4 (orquestração) |
@@ -308,7 +305,7 @@ O prompt isolado não abre tickets nem envia mensagens. Expressões como “já 
 
 **a) Objetivo: favorecer a segunda compra.** Aumentar a conversão da **1ª para a 2ª compra** com contato relevante e no momento certo, dentro da janela de 90 dias.
 
-**b) Problema: baixa recorrência observada.** Só **3,0%** dos 93.358 clientes compram de novo, e só **1,13%** voltam em até 90 dias. Mas **54%** das segundas compras acontecem em até 90 dias. A ausência de ação estruturada nessa janela é hipótese do case, não informação comprovada pelo dataset. A consequência é custo de aquisição pago para uma única venda. **Mudança em relação à Fase 1:** o alvo deixou de ser a base inativa há mais de 439 dias, que tem baixa probabilidade de retorno.
+**b) Problema: baixa recorrência observada.** Só **3,0%** dos 93.358 clientes compram de novo, e só **0,90%** fazem a 2ª compra na janela em que o agente atua (D+7 a D+90 após a entrega). Quando o cliente volta, volta cedo: **54%** das segundas compras acontecem em até 90 dias após a 1ª compra, e **37%** caem exatamente na janela do agente. A ausência de ação estruturada nessa janela é hipótese do case, não informação comprovada pelo dataset. A consequência é custo de aquisição pago para uma única venda. **Mudança em relação à Fase 1:** o alvo deixou de ser a base inativa há mais de 439 dias, que tem baixa probabilidade de retorno.
 
 **c) Usuários: cliente e equipe de CRM.** Cliente (recebe mensagem), Analista de CRM (acompanha campanhas), Gestor de CRM (aprova incentivo acima do teto), Marketing (relatório de uplift).
 
@@ -330,7 +327,7 @@ O prompt isolado não abre tickets nem envia mensagens. Expressões como “já 
 | Resolução confirmada pelo atendimento | Reavaliar todos os bloqueios; sem oferta ou cupom automático |
 | Fim do ciclo de 90 dias | Relatório de uplift contra o grupo controle (10%) |
 
-**f) Indicadores: conversão e efeito incremental.** Conversão em 2ª compra em 90 dias (1,13%), recompra (3,0%), receita por cliente, uplift contra o controle, opt-out e margem incremental após incentivos e custos de contato.
+**f) Indicadores: conversão e efeito incremental.** Conversão em 2ª compra de D+7 a D+90 após a entrega (0,90%), recompra (3,0%), receita por cliente, uplift contra o controle, opt-out e margem incremental após incentivos e custos de contato.
 
 | Faz | Não faz |
 |---|---|
@@ -351,8 +348,8 @@ Problema aberto pausa. Nota baixa/atraso sem resolução confirmada também paus
 ### Controle e medição: grupo fixo por cliente
 O processo atribui 10% dos clientes elegíveis ao controle antes de gerar oferta e mantém o grupo até o fim do ciclo. Controle não recebe mensagens comerciais deste agente, mas recebe atendimento normal. O uplift compara conversão entre grupos com acompanhamento completo; não se calcula efeito causal com os dois exemplos. Segunda compra encerra o ciclo e envio duplicado é bloqueado.
 
-### Limitação analítica: compra e entrega são marcos diferentes
-Os 54% históricos usam dias entre compras; D+7–D+90 após a entrega é uma hipótese operacional a validar. O baseline de 1,13% precisa ser conferido com clientes que tiveram janela completa e marco temporal compatível (dependência de Caio/Jorge). Esta revisão não altera os cálculos nem as metas da Seção 13.
+### Baseline: medido na janela em que o agente atua
+Os 54% históricos contam dias entre compras, mas o WinBack conta a partir da **entrega**. Por isso, o baseline foi medido no marco certo: entre os **73.042 clientes** que tiveram os 90 dias observáveis após a 1ª entrega, **0,90%** fizeram a 2ª compra de D+7 a D+90. Das segundas compras, **37%** caem nessa janela e **21%** acontecem antes de D+7, fora do alcance do agente. A medida anterior (1,13%, contada a partir da compra e incluindo clientes sem janela completa) foi substituída nas Seções 13.1, 13.2 e 13.4; o cálculo do business case não muda, porque usa o **aumento** em pontos percentuais.
 
 ## 8.4 Demais agentes: casos de uso e guardrails da Fase 1 (mantidos)
 
@@ -367,9 +364,9 @@ Os 54% históricos usam dias entre compras; D+7–D+90 após a entrega é uma hi
 # 9. Jornadas de Funcionamento dos Agentes (novo na Fase 2)
 
 ## 9.1 LogiPredict
-![Fluxo do LogiPredict: dois checkpoints de decisão antes de envolver pessoas e aviso ao cliente apenas quando a projeção estoura o prazo.](fluxos/fluxo_logipredict.png)
+![Fluxo do LogiPredict: checkpoints antes de envolver pessoas; aviso ao cliente só quando a projeção estoura o prazo, automático apenas dentro da alçada.](fluxos/fluxo_logipredict.png)
 
-**Decisões-chave:** (1) o seller vai estourar o limite de postagem? (2) o risco passou do limiar? (3) a nova data prevista passa do prazo? Só a terceira autoriza contato com o cliente. **Humano no loop:** o analista de operações decide a tratativa com a transportadora.
+**Decisões-chave:** (1) faltam 24h ou menos para o limite sem postagem? (2) a postagem saiu atrasada ou o score de risco chegou a 70? (3) a nova data prevista ultrapassa o prazo? (4) a projeção é consistente e o aviso está dentro da alçada? Só a terceira autoriza preparar contato com o cliente, e a quarta define se o envio é automático. **Humano no loop:** o analista de operações decide a tratativa com a transportadora e revisa e envia os avisos fora da alçada.
 
 <!-- pagebreak -->
 
@@ -450,7 +447,7 @@ problema_aberto, sinal_winback, status_execucao e status_envio.
 |---|---|
 | Motivo | PEDIDO_ITEM_FALTANDO · severidade ALTA · encaminhamento SELLER, causa a apurar |
 | Resposta | "Olá! Sentimos muito que a lancheira ainda não tenha chegado. Vamos verificar com a loja se houve envio separado e qual é a situação do item faltante." |
-| Roteamento | Proposta de ticket ao seller + dashboard + pausa do WinBack; execução PENDENTE |
+| Roteamento | Proposta de ticket ao seller + dashboard + pausa do WinBack; execução a confirmar |
 | Por que importa | A regra por palavras-chave classificou como "não recebido". A saída esperada reconhece recebimento parcial e propõe apuração; um caso ilustrativo não mede acurácia |
 
 
@@ -514,7 +511,7 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Mensagem | "Que bom que seu pedido chegou! Você pode conhecer opções de cama, mesa e banho e de decoração relacionadas à sua primeira compra." |
 | Contraste | Outro cliente histórico, com ticket aberto simulado, recebe **PAUSAR**: resolução confirmada permite reavaliar os bloqueios, sem cupom automático |
 
-**Validação da parte de Lucas.** Critérios, matriz de casos de limite e roteiro de demonstração em `fase2/prompts/VALIDACAO_LUCAS.md`. Os exemplos esperados não substituem execução registrada nem ensaio do vídeo.
+**Validação dos prompts.** Critérios de aceitação, matriz de casos de limite (22 cenários) e roteiro de demonstração estão em `fase2/prompts/VALIDACAO_LUCAS.md`. Os exemplos esperados não substituem execução registrada nem ensaio do vídeo.
 
 <!-- pagebreak -->
 
@@ -532,7 +529,7 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Privacidade / LGPD | Contato sem consentimento | Opt-in, intervalo de 15 dias, máximo de 2 contatos |
 | Viés histórico | Padrões de 2016–2018 | Evidências recalculadas com dados atuais antes do piloto |
 | Automação excessiva | Ação irreversível sem supervisão | Matriz de autonomia (11.2) e lista fechada de ações por agente |
-| Gargalo de aprovação *(novo)* | IA rápida esbarra em fila humana lenta | SLA rígido para revisão humana (ver 11.4) |
+| Gargalo de aprovação *(novo)* | IA rápida esbarra em fila humana lenta | SLA rígido para revisão humana (ver 11.5) |
 
 ## 11.2 Matriz de autonomia (Fase 1, mantida)
 
@@ -545,7 +542,11 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Suspensão de seller ou decisão reputacional | Aprovação humana obrigatória |
 | Decisão estratégica executiva | Agente recomenda; liderança decide |
 
-## 11.3 Quem decide o quê nos agentes priorizados (novo na Fase 2)
+## 11.3 Política econômica dos incentivos (novo na revisão executiva)
+
+O limite de 10% para incentivos do WinBack é uma **regra proposta**, não um teto economicamente validado. Mesmo incentivos de até 10% exigem elegibilidade, consentimento, disponibilidade orçamentária, margem incremental não negativa e política comercial aprovada. Acima de 10%, exige-se adicionalmente autorização do gestor; a aprovação **não dispensa** a análise econômica. Custos de mídia, desconto, atendimento e eventuais devoluções devem entrar na avaliação de valor líquido.
+
+## 11.4 Quem decide o quê nos agentes priorizados (novo na Fase 2)
 
 | Decisão | Agente | Analista | Gestor |
 |---|---|---|---|
@@ -556,12 +557,12 @@ elegivel=false, mensagem=null, incentivo=0, categorias=[].
 | Tratativa com a transportadora | Recomenda | **Decide** | Informado |
 | Incentivo ≤ 10% / > 10% | **Executa** / Recomenda | Informado | Define o teto / **Decide** |
 
-## 11.4 Feedback Loop e Gestão de Filas Humanas (novo na Fase 2)
+## 11.5 Feedback Loop e Gestão de Filas Humanas (novo na Fase 2)
 
 A governança protege o negócio, mas não deve engessar a operação. Para que a IA evolua continuamente e não esbarre em gargalos processuais, dois mecanismos operacionais foram estabelecidos:
 
-*   **Feedback Loop de Aprendizado:** O analista não é apenas um "aprovador". As revisões e correções feitas pelos humanos (ex: reclassificação de um motivo no *SentimentDesk* ou ajuste de rota logística no *LogiPredict*) retroalimentam o modelo. Esses acertos alimentam um banco de *few-shot examples* (exemplos de calibração), garantindo que o agente corrija seu viés e não repita o mesmo erro nas iterações futuras.
-*   **SLA de Revisão Humana:** Para que a velocidade da IA não seja anulada por uma fila de pendências no *Human in the Loop*, as etapas marcadas como "Decide" (respostas a casos críticos, compensações, tratativas logísticas) possuem um **SLA máximo de resposta humana de 4 horas úteis**. Casos não atendidos nesse prazo acionam alertas de escalonamento gerencial.
+*   **Feedback Loop de Aprendizado:** O analista não é apenas um "aprovador". As revisões e correções feitas pelos humanos (ex: reclassificação de um motivo no *SentimentDesk* ou ajuste de rota logística no *LogiPredict*) retroalimentam o agente. No *SentimentDesk*, esses acertos alimentam um banco de *few-shot examples* (exemplos de calibração); no *LogiPredict*, cujo score é uma heurística (Seção 9.5), servem para recalibrar pesos e limiar. Assim o agente corrige seu viés e não repete o mesmo erro nas iterações futuras.
+*   **SLA de Revisão Humana:** Para que a velocidade da IA não seja anulada por uma fila de pendências no *Human in the Loop*, as etapas marcadas como "Decide" (respostas a casos críticos, compensações, tratativas logísticas) possuem um **SLA máximo de resposta humana de 4 horas úteis** (meta do piloto: 95% das decisões dentro do prazo, Seção 13.2). Casos não atendidos nesse prazo acionam alertas de escalonamento gerencial.
 
 # 12. Roadmap de Implantação e Validação (atualizado na Fase 2)
 
@@ -586,7 +587,7 @@ A versão 1.0 trazia duas ordens diferentes de implantação (Seções 5.3 e 11)
 |---|---|---|
 | Financeiro | Receita total · ticket médio · LTV estimado | R$ 16.008.872,12 · R$ 161,00 · R$ 165,20 |
 | Clientes | Taxa de recompra · churn (> 6 meses) · top 10% da base | 3,00% · 58,61% · 38,25% da receita |
-| Clientes *(novo)* | Conversão em 2ª compra em 90 dias | 1,13% |
+| Clientes *(novo)* | Conversão em 2ª compra de D+7 a D+90 após a entrega (janela do WinBack) | 0,90% |
 | Logística | Tempo médio total · trânsito · processamento | **12,56 dias** · 9,33 dias · 3,23 dias *(revisados)* |
 | Logística | Taxa de atrasos · postagem após o limite *(novo)* | 8,11% · 9,0% |
 | Logística | Frete / valor do pedido | 21,34% |
@@ -598,12 +599,18 @@ A versão 1.0 trazia duas ordens diferentes de implantação (Seções 5.3 e 11)
 
 | Agente | Indicador | Baseline | Meta (90 dias) | Como medir |
 |---|---|---|---|---|
-| LogiPredict | Atraso nas rotas do piloto | 15–24% no Nordeste | −1 p.p. | Rotas controle |
+| LogiPredict | Atraso nas rotas do piloto | 14,3% no Nordeste (10,8% a 23,9% por UF) | −1 p.p. (13,3%) | Rotas controle |
 | LogiPredict | Postagens após o limite | 9,0% | ≤ 6% | Limite × postagem |
 | LogiPredict | Falso positivo do aviso | n/a | ≤ 20% | Avisos × entregas no prazo |
 | SentimentDesk | Tempo até a 1ª resposta | A medir | 90% em < 24h | Log do agente |
 | SentimentDesk | Classificação correta | n/a | ≥ 85% | Auditoria semanal (50 casos) |
-| WinBack | Conversão em 2ª compra (90 dias) | 1,13% | 1,63% | Uplift contra controle |
+| Ambos (humano no loop) | Decisões humanas dentro do SLA (Seção 11.5) | A medir | 95% em até 4h úteis | Log da fila de revisão |
+
+**Wave 2 (referência, fora do piloto de 90 dias):**
+
+| Agente | Indicador | Baseline | Meta | Como medir |
+|---|---|---|---|---|
+| WinBack | Conversão em 2ª compra de D+7 a D+90 após a entrega | 0,90% | 1,40% (+0,5 p.p.) | Uplift contra controle |
 | WinBack | Opt-out por contato | n/a | < 1% | CRM |
 
 ## 13.2.1 Protocolo mínimo de validação do piloto (novo na revisão executiva)
@@ -680,13 +687,13 @@ Todas as contas abaixo podem ser refeitas com calculadora a partir dos números 
 
 ### WinBack: segundas compras e receita adicional
 
-**Em linguagem simples.** Hoje, de cada **1.000 clientes novos**, cerca de **11 voltam** a comprar em até 90 dias (1,13%). O cenário base supõe que o contato do WinBack, no momento certo e com a categoria certa, faça voltar **mais 5 em cada 1.000** (de 11 para 16). Com **71.693 clientes novos** no ano, isso dá **358 segundas compras a mais**. Como a 2ª compra vale em média **R$ 148,35**, são **R$ 53 mil por ano**.
+**Em linguagem simples.** Hoje, de cada **1.000 clientes novos**, cerca de **9 voltam** a comprar entre 7 e 90 dias depois de receber o 1º pedido (0,90%), que é a janela em que o WinBack atua. O cenário base supõe que o contato do WinBack, no momento certo e com a categoria certa, faça voltar **mais 5 em cada 1.000** (de 9 para 14). Com **71.693 clientes novos** no ano, isso dá **358 segundas compras a mais**. Como a 2ª compra vale em média **R$ 148,35**, são **R$ 53 mil por ano**.
 
 | Entrada | Valor | Origem |
 |---|---|---|
 | A. Clientes com 1ª compra entregue em 12 meses | **71.693** | `orders` + `customers.customer_unique_id` |
-| B. Conversão atual em 2ª compra em até 90 dias | **1,13%** | `orders` (2ª compra entre 1 e 90 dias após a 1ª) |
-| C. Aumento da conversão pelo agente (premissa, pontos percentuais) | **+0,25 / +0,5 / +1,0 p.p.** | premissa do grupo (cenários); o base leva 1,13% a 1,63% |
+| B. Conversão atual em 2ª compra na janela do agente | **0,90%** | `orders`: 2ª compra de D+7 a D+90 após a entrega da 1ª, clientes com janela completa |
+| C. Aumento da conversão pelo agente (premissa, pontos percentuais) | **+0,25 / +0,5 / +1,0 p.p.** | premissa do grupo (cenários); o base leva 0,90% a 1,40% |
 | D. Valor médio da 2ª compra | **R$ 148,35** | `order_payments` das 2ªs compras |
 
 **Fórmulas:** segundas compras adicionais = A × C · receita adicional = segundas compras adicionais × D
@@ -740,13 +747,12 @@ Na Fase 1, os dados mostraram um conjunto conectado de fricções. Na Fase 2, es
 | Problema, benefício, impacto, usuários e riscos | 1 e 2 | Seções 8, 11 e 13 |
 
 
-# Apêndice B: Pontos pendentes de comprovação antes da entrega final (novo na revisão executiva)
+# Apêndice B: Limitações e próximos passos de validação (novo na Fase 2)
 
-1. **Rastreabilidade numérica:** confrontar tabelas e cenários com `fase2/NUMEROS_OFICIAIS.md`, `fase2/dados/numeros_fase2.json` e notebook 08. A consolidação preservou os números do notebook e não executou uma nova análise do dataset; a revalidação continua pendente com os responsáveis.
-2. **Volume e seleção do piloto:** quantificar pedidos, sellers e rotas elegíveis no Nordeste, estimar tamanho de amostra e validar desenho de controle.
-3. **Operação real:** validar com áreas de CX, Logística e CRM os processos descritos como presumidos, disponibilidade de APIs, canais, consentimento e alçadas.
-4. **Testes de prompts:** distinguir saídas ilustrativas de saídas executadas e auditadas; anexar evidências quando existirem.
-5. **Custos e margem:** estimar custo total do piloto e custos variáveis antes de afirmar retorno financeiro ou ROI.
-6. **Entrega acadêmica:** inserir e testar o link público do vídeo; conferir os demais links, imagens e paginação da versão de submissão.
+1. **Rastreabilidade numérica:** todos os números da Fase 2 vêm de `fase2/NUMEROS_OFICIAIS.md` (notebook 08). O notebook foi reexecutado de forma independente por outro integrante do grupo, com os mesmos resultados.
+2. **Volume e seleção do piloto:** quantificar pedidos, sellers e rotas elegíveis no Nordeste, estimar o tamanho de amostra e validar o desenho de controle.
+3. **Operação real:** validar com as áreas de CX, Logística e CRM os processos descritos como presumidos, a disponibilidade de APIs e canais, o consentimento e as alçadas.
+4. **Testes de prompts:** distinguir saídas ilustrativas de saídas executadas e auditadas, registrando modelo, data e saída bruta de cada execução.
+5. **Custos e margem:** estimar o custo total do piloto e os custos variáveis antes de afirmar retorno financeiro ou ROI (Fase 3).
 
-*Este apêndice explicita limites de evidência e não constitui um novo requisito da FIAP.*
+*Este apêndice explicita os limites da evidência atual e orienta a Fase 3; não constitui requisito adicional do enunciado.*

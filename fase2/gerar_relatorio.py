@@ -165,7 +165,7 @@ def p(texto='', tam=10, cor=None, negrito=False, alinh=None, depois=None, antes=
 p('TECH CHALLENGE · FASE 2', 13, AZUL, True, antes=60)
 p('Olist Intelligent Marketplace', 28, AZUL_ESC, True, depois=2)
 p('Relatório Executivo e Visão Estratégica de IA Agêntica', 17, CINZA, depois=4)
-p('Versão 2.1 · consolidação executiva V5 e revisão técnica da Fase 2', 12, AZUL, True, depois=26)
+p('Versão 2.1 · evolução do relatório da Fase 1 com os entregáveis da Fase 2', 12, AZUL, True, depois=26)
 p('Pós-graduação em IA Agêntica · FIAP', 10)
 p('Base: Brazilian E-Commerce Public Dataset by Olist (2016–2018) · 99.441 pedidos · R$ 16 milhões', 10)
 p(f"Versão {'final' if FINAL else 'rascunho para revisão do grupo'} · {CFG['DATA_VERSAO']}", 10, CINZA, depois=26)
@@ -325,7 +325,9 @@ texto = '\n'.join(pg.get_text() for pg in pdf)
 proibidos = ['INSERIR', 'TODO', 'XXX', '{{', 'antes da submissão', 'deve ser conferid', 'Lorem']
 if FINAL:
     proibidos += ['pendente', 'RASCUNHO']
-achados = [w for w in proibidos if (w in texto if w.isupper() else w.lower() in texto.lower())]
+# palavra inteira: 'dependente' não conta como 'pendente'
+achados = [w for w in proibidos if (w in texto if w.isupper() else
+           re.search(r'(?<![a-zà-ú])' + re.escape(w.lower()) + r'(?![a-zà-ú])', texto.lower()))]
 print(f'Páginas: {len(pdf)}  (sugestão do enunciado: 15–30)')
 print('QA placeholders:', 'OK' if not achados else f'ATENÇÃO → {achados}')
 if not FINAL:
