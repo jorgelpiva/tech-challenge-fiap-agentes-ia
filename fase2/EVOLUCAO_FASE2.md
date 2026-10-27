@@ -9,7 +9,7 @@
 
 | Entregável do enunciado | Status | Arquivo |
 |---|---|---|
-| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ Rascunho completo, **29 páginas**: é a **versão 2.1 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf](Relatorio_Executivo_Fase2_Olist_RASCUNHO.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
+| 1. Relatório Executivo evoluído (15–30 págs.) | ✅ **Versão final**, 29 páginas: é a **versão 2.1 do relatório da Fase 1**, com a mesma estrutura de seções, o conteúdo da Fase 1 corrigido e os entregáveis da Fase 2 incrementados (marcados como *atualizado* ou *novo na Fase 2*) | [Relatorio_Executivo_Fase2_Olist_FINAL.pdf](Relatorio_Executivo_Fase2_Olist_FINAL.pdf) (fonte editável: [RELATORIO_EXECUTIVO_FASE2.md](RELATORIO_EXECUTIVO_FASE2.md)) |
 | 2. Casos de uso de ≥ 3 agentes (a–f) | ✅ No relatório, Seção 8 | idem |
 | 3. Jornadas / fluxos | ✅ 3 fluxos + jornada multiagente, Seção 9 | [fluxos/](fluxos/) |
 | 4. Prompts estruturados | ✅ Resumo no relatório (Seção 10) + versão completa com 10 casos reais | [prompts/PROMPTS_V2.md](prompts/PROMPTS_V2.md) |
@@ -84,7 +84,7 @@ Critério da divisão: **Leonardo** (perfil de negócio) fica com leitura, narra
 | **Lucas** (técnico) | §8.2 SentimentDesk, §8.3 WinBack, §8.4, §9.2–9.5, §10 Prompts | [PROMPTS_V2.md](prompts/PROMPTS_V2.md): reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Vídeo V5: slides 10–12 (impacto, piloto, encerramento); apoio à demo técnica |
 
 **Regra de revisão:**
-- **Leonardo** comenta direto no Word ([Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx](Relatorio_Executivo_Fase2_Olist_RASCUNHO.docx), com Revisão → Novo comentário) e no PowerPoint. Não precisa mexer em arquivo-fonte.
+- **Leonardo** comenta direto no Word ([Relatorio_Executivo_Fase2_Olist_FINAL.docx](Relatorio_Executivo_Fase2_Olist_FINAL.docx), com Revisão → Novo comentário) e no PowerPoint. Não precisa mexer em arquivo-fonte.
 - **O pessoal técnico** aplica as correções na **fonte** (`RELATORIO_EXECUTIVO_FASE2.md`, `PROMPTS_V2.md`, `gerar_fluxos.py`, `build_notebook_08.py` ou `gerar_slides.py`) e roda o gerador. Ninguém edita o PDF, o .docx ou o .pptx gerados à mão, porque a próxima geração sobrescreve.
 
 ---
@@ -140,8 +140,7 @@ fase2/
 ├── PLANO_FASE2.md               ← plano, backlog e log de sessões
 ├── RELATORIO_EXECUTIVO_FASE2.md ← FONTE do relatório
 ├── gerar_relatorio.py · config_relatorio.json
-├── Relatorio_Executivo_Fase2_Olist_RASCUNHO.(pdf|docx)
-├── Relatorio_Executivo_Fase2_Olist_FINAL.(pdf|docx)   ← gerado quando o vídeo existir
+├── Relatorio_Executivo_Fase2_Olist_FINAL.(pdf|docx)   ← ENTREGA (versão submetida)
 ├── NUMEROS_OFICIAIS.md · dados/numeros_fase2.json
 ├── img/        ← gráficos (gerados pelo notebook 08)
 ├── fluxos/     ← fluxos PNG + gerar_fluxos.py
