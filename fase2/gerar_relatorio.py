@@ -293,6 +293,21 @@ while i < len(linhas):
     # parágrafo (junta linhas consecutivas terminadas sem quebra de bloco)
     par = doc.add_paragraph(); runs(par, s); i += 1
 
+# metadados do arquivo (sem isso o Word herda "python-docx" e data de 2013 do modelo padrão)
+from datetime import datetime, timezone
+cp = doc.core_properties
+agora = datetime.now(timezone.utc)   # o Word grava em UTC e converte para o fuso de quem abre
+cp.title = 'Olist Intelligent Marketplace · Relatório Executivo · Tech Challenge Fase 2'
+cp.subject = 'Relatório Executivo e Visão Estratégica de IA Agêntica · versão 2.1'
+cp.author = '; '.join(m.split(' · ')[0] for m in CFG['EQUIPE'])
+cp.last_modified_by = 'Grupo Tech Challenge FIAP'
+cp.keywords = 'Olist; IA Agêntica; LogiPredict; SentimentDesk; WinBack; FIAP'
+cp.comments = ''
+cp.category = 'Tech Challenge FIAP · Fase 2'
+cp.created = agora
+cp.modified = agora
+cp.revision = 1
+
 docx_path = SAIDA.with_suffix('.docx')
 doc.save(docx_path)
 print('DOCX:', docx_path)
