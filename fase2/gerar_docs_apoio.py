@@ -183,7 +183,7 @@ ALTERACOES = [  # (seção v1 → seção v2, título para achar a página na v2
         ('Corrigido', 'Tempo de resposta a reviews', '3,15 dias', '**A medir no piloto** (a coluna era a resposta do cliente à pesquisa)'),
         ('Retirado', 'Nota sobre divergência', '"essa divergência deve ser conferida antes da submissão"', 'Divergência resolvida'),
         ('Acrescentado', 'Novos baselines', '—', 'Conversão em 2ª compra de D+7 a D+90 após a entrega (**0,90%**); postagem após o limite (9,0%)'),
-        ('Acrescentado', '13.2 a 13.4', '—', 'Metas do piloto (Nordeste 14,3% → 13,3%; SLA humano 4h; WinBack 0,90% → 1,40% na Wave 2) + protocolo do piloto + business case em 3 cenários + **memória de cálculo**'),
+        ('Acrescentado', '13.2 a 13.4', '—', 'Metas do piloto (Nordeste: −1 p.p. sobre o baseline das rotas selecionadas, referência histórica 14,3%; SLA humano 4h; WinBack 0,90% → 1,40% na Wave 2) + protocolo do piloto + business case em 3 cenários + **memória de cálculo**'),
     ]),
     ('13. Recomendação → 14. Recomendação Executiva', '14. Recomendação Executiva', [
         ('Substituído', 'Recomendação', 'Começar por experiência e logística; depois retenção e sellers; depois frete e orquestração', '**Aprovar piloto de 90 dias da Wave 1** com grupo controle e metas'),
@@ -227,7 +227,7 @@ tabela(doc, ['Indicador', 'v1.0', 'v2.0', 'Motivo'], [
     ['Público do WinBack', '38.655 inativos (+439 dias)', '**1ª compra, D+7 a D+90**', '54% das 2ªs compras ocorrem em até 90 dias'],
     ['Ordem de implantação', 'Duas ordens diferentes (Seções 5.3 e 11)', '**Roadmap único**', 'Inconsistência interna'],
     ['Baseline do WinBack', '— (na v2.0: 1,13%)', '**0,90%** (D+7 a D+90 após a entrega)', 'Medido na janela em que o agente atua, só clientes com janela completa; business case inalterado'],
-    ['Atraso no Nordeste (piloto)', '— (na v2.0: "15–24%")', '**14,3%** (10,8% a 23,9% por UF)', 'Agregado dos 9 estados calculado no notebook 08; meta −1 p.p. (13,3%)'],
+    ['Atraso no Nordeste (piloto)', '— (na v2.0: "15–24%")', '**14,3%** (10,8% a 23,9% por UF)', 'Agregado dos 9 estados calculado no notebook 08 (referência histórica); meta = −1 p.p. sobre o baseline das rotas selecionadas, contra controle'],
 ], [3.6, 4.2, 3.6, 6.5])
 
 doc.add_heading('Alterações seção por seção', 2)

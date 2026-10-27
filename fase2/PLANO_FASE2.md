@@ -44,7 +44,7 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | D7 | Fluxos por script (matplotlib) com legenda única | Proposta |
 | D8 | Roadmap: Wave 1 LogiPredict + SentimentDesk · Wave 2 WinBack · Wave 3 SellerCare/SmartFreight · Fase 4 Maestro | Proposta |
 | D9 | Baseline do WinBack = **0,90%** (D+7 a D+90 após a entrega, janela completa); meta Wave 2 = 1,40% (+0,5 p.p.); business case inalterado | ✅ Jorge, 21/10 |
-| D10 | Baseline do piloto no Nordeste = **14,3%** (10,8% a 23,9% por UF); meta −1 p.p. (13,3%) | ✅ Jorge, 21/10 |
+| D10 | Nordeste: **14,3%** como referência histórica (10,8% a 23,9% por UF); meta = −1 p.p. sobre o baseline das rotas selecionadas, contra controle (redação do Leo, 26/10) | ✅ Jorge/Leo |
 | D11 | SLA de 4h úteis para decisões humanas (11.5) vira meta do piloto: 95% dentro do prazo | ✅ Jorge, 21/10 |
 | D12 | Tom: manter as ressalvas da revisão técnica como estão | ✅ Jorge, 21/10 |
 
@@ -79,8 +79,8 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 | J2 | Corrigir os gaps da análise de versão (11.3 restaurada, fluxo LogiPredict, Apêndice B, jargão, datas, QA) e regerar relatório, slides e docs | Jorge | ✅ 21/10 |
 | R4 | Reproduzir os casos S1 e W1 no claude.ai/ChatGPT; gravar a demo | Lucas | ⬜ |
 | R5 | (Opcional, diferencial) mini-avaliação: 30 a 50 avaliações rotuladas × agente | Lucas/Caio | ⬜ |
-| V1 | Ensaiar e gravar o vídeo (≤ 5:00); publicar e testar o link em aba anônima | Todos / Jorge | ⬜ |
-| F1 | Preencher `LINK_VIDEO` e gerar a versão FINAL (`gerar_relatorio.py`) | Jorge | ⬜ |
+| V1 | Ensaiar e gravar o vídeo (≤ 5:00); publicar e testar o link em aba anônima | Todos / Jorge | ✅ 26/10 (link público verificado) |
+| F1 | Preencher `LINK_VIDEO` e gerar a versão FINAL (`gerar_relatorio.py`) | Jorge | ✅ 26/10 (29 págs., QA OK) |
 | F2 | Leitura completa do PDF FINAL por 2 pessoas | 2 pessoas | ⬜ |
 | F3 | Commit/PR/merge + submissão (alvo 26/10) | Jorge | ⬜ |
 
@@ -103,6 +103,11 @@ Também observado na revisão do PDF: nenhuma imagem em 17 páginas, roadmap con
 
 ### 2026-10-12 — Sessão 1: planejamento
 - Leitura do enunciado da Fase 2 e revisão do PDF da Fase 1; primeira versão deste plano.
+
+### 2026-10-26 — Ajustes do Leo (dono do Sumário) e versão final
+- LogiPredict (13.4): frase "postar no prazo evita cerca de 20 atrasos a cada 100" trocada por redação sem causalidade (20 p.p. a mais de atraso; redução parcial como hipótese do piloto).
+- Metas (13.2): Nordeste 14,3% como referência histórica; meta de −1 p.p. sobre o baseline das rotas selecionadas, comparada ao controle.
+- Link do vídeo inserido; versão FINAL gerada.
 
 ### 2026-10-21 — Revisão do Jorge e correções de consistência
 - §13 revisada: números conferem com a fonte única; tabela de metas tinha WinBack (Wave 2) dentro do piloto e faixa "15–24% no Nordeste" sem cálculo.

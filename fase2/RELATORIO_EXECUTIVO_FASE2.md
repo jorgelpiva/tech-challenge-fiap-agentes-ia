@@ -599,7 +599,7 @@ A versão 1.0 trazia duas ordens diferentes de implantação (Seções 5.3 e 11)
 
 | Agente | Indicador | Baseline | Meta (90 dias) | Como medir |
 |---|---|---|---|---|
-| LogiPredict | Atraso nas rotas do piloto | 14,3% no Nordeste (10,8% a 23,9% por UF) | −1 p.p. (13,3%) | Rotas controle |
+| LogiPredict | Atraso nas rotas do piloto | 14,3% de atraso no Nordeste (referência histórica; baseline das rotas selecionadas a confirmar) | Redução de 1 ponto percentual em relação ao baseline das rotas selecionadas, comparada ao grupo de controle | Rotas controle |
 | LogiPredict | Postagens após o limite | 9,0% | ≤ 6% | Limite × postagem |
 | LogiPredict | Falso positivo do aviso | n/a | ≤ 20% | Avisos × entregas no prazo |
 | SentimentDesk | Tempo até a 1ª resposta | A medir | 90% em < 24h | Log do agente |
@@ -641,7 +641,7 @@ Todas as contas abaixo podem ser refeitas com calculadora a partir dos números 
 
 ### LogiPredict: atrasos e avaliações negativas evitados
 
-**Em linguagem simples.** Nos últimos 12 meses, **6.689 pedidos** foram postados pelo seller depois do prazo de postagem. Nesse grupo, **cerca de 28 em cada 100** chegaram atrasados ao cliente; quando o seller posta no prazo, são **7 a 8 em cada 100**. Postar no prazo, portanto, evita **cerca de 20 atrasos a cada 100 pedidos**. O LogiPredict lembra o seller antes do limite e aciona operações. Se ele eliminar **metade** dessa diferença (cenário base), são **10 atrasos a menos a cada 100 pedidos** desse grupo, ou **672 no ano**. E como um pedido atrasado recebe nota 1–2 muito mais vezes (54 em cada 100, contra 9 em cada 100 no prazo), **cada 100 atrasos evitados poupam cerca de 45 avaliações negativas**: **302 no ano**.
+**Em linguagem simples.** Nos últimos 12 meses, **6.689 pedidos** foram postados pelo seller depois do prazo de postagem. Nesse grupo, **cerca de 28 em cada 100** chegaram atrasados ao cliente; quando o seller posta no prazo, são **7 a 8 em cada 100**. Os dados históricos mostram que pedidos postados fora do prazo apresentam aproximadamente **20 pontos percentuais a mais de atraso** na entrega. O cenário considera, como hipótese a ser validada no piloto, que as intervenções do LogiPredict poderiam reduzir parte dessa diferença. O LogiPredict lembra o seller antes do limite e aciona operações. Se ele eliminar **metade** dessa diferença (cenário base), são **10 atrasos a menos a cada 100 pedidos** desse grupo, ou **672 no ano**. E como um pedido atrasado recebe nota 1–2 muito mais vezes (54 em cada 100, contra 9 em cada 100 no prazo), **cada 100 atrasos evitados poupam cerca de 45 avaliações negativas**: **302 no ano**.
 
 | Entrada | Valor | Origem |
 |---|---|---|
